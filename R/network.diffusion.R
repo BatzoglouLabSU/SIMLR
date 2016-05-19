@@ -76,7 +76,7 @@
 	PNN.matrix[(as.vector(loc)-1)*nrow(aff.matrix)+as.vector(inds)] = as.vector(res)
 	
 	# compute the final results and return them
-	PNN.matrix = (PNN.matrix+t(PNN.matrix))/2
+	PNN.matrix = (PNN.matrix + t(PNN.matrix))/2
 	
 	return(PNN.matrix)
 	
