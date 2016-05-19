@@ -28,4 +28,116 @@
 		X = apply(X,MARGIN=1,FUN=function(x) return(x-C_mean))
 	}
 	
+	# start the clock to measure the execution time
+    ptm = proc.time()
+    
+    # set some parameters
+    NITER = 30
+	num = ncol(X)
+	r = -1
+	beta = 0.8
+	
+	# compute the kernels
+	D_Kernels = multiple.kernel(t(X))
+	
+	
+	
+	
+	
+	
+	alphaK = 1/(size(D_Kernels,3))*ones(1,size(D_Kernels,3));
+	distX = mean(D_Kernels,3);
+	[distX1, idx] = sort(distX,2);
+	A = zeros(num);
+	di = distX1(:,2:(k+2));
+	rr = 0.5*(k*di(:,k+1)-sum(di(:,1:k),2));
+	id = idx(:,2:k+2);
+	temp = (repmat(di(:,k+1),1,size(di,2))-di)./repmat((k*di(:,k+1)-sum(di(:,1:k),2)+eps),1,size(di,2));
+	a = repmat([1:num]',1,size(id,2));
+	A(sub2ind(size(A),a(:),id(:)))=temp(:);
+	if r <= 0
+    	r = mean(rr);
+	end
+	lambda = max((mean(rr)),0);
+	A(isnan(A))=0;
+	A0 = (A+A')/2;
+	S0 = 1-distX;
+	S0 = Network_Diffusion(S0,k);
+	S0 = dn(S0,'gph');
+	S = (1-beta)*S0+beta*A0;
+	D0 = diag(sum(S));
+	L0= D0-S;
+	[F, temp, evs]=eig1(L0, c, 0);
+
+	for iter = 1:NITER
+	    distf = L2_distance_1(F',F');
+	    A = zeros(num);
+	    b = idx(:,2:(2*k+2));
+	    a = repmat([1:num]',1,size(b,2));
+	    inda = sub2ind(size(A),a(:),b(:));
+	    ad = reshape((distX(inda)+lambda*distf(inda))/2/r,num,size(b,2));
+	    ad = projsplx_c(-ad')';
+	    A(inda) = ad(:);
+	    A(isnan(A))=0;
+	    A = (A+A')/2;
+	    S = (1-beta)*S+beta*A;
+	    S = Network_Diffusion(S,k);
+	    D = diag(sum(S));
+	    L = D - S;
+	    F_old = F;
+	    [F, temp, ev]=eig1(L, c, 0);
+	    evs(:,iter+1) = ev;
+	    for i = 1:size(D_Kernels,3)
+		temp = D_Kernels(:,:,i).*S;
+	        DD(i) = mean(sum(temp-diag(diag(temp))));
+	    end
+	    alphaK0 = umkl_bo(DD);
+	    alphaK0 = alphaK0/sum(alphaK0);
+	    alphaK = (1-beta)*alphaK + beta*alphaK0;
+	    alphaK = alphaK/sum(alphaK);
+	    fn1 = sum(ev(1:c));
+	    fn2 = sum(ev(1:c+1));
+	    converge(iter) = fn2-fn1;
+	    fn2-fn1
+	    if iter<10
+	        if (ev(end) > 0.000001)
+	            lambda = 1.5*lambda;
+	            r = r/1.01;
+	        end
+	    else
+	        if (converge(iter)>converge(iter-1))
+	            S = S_old;
+	            if converge(iter-1) > 0.2
+	                warning('Maybe you should set a larger value of c');
+	            end
+	            break;
+	        end
+	    end
+	    S_old = S;
+	    distX = Kbeta(D_Kernels,alphaK');
+	    [distX1, idx] = sort(distX,2);
+	end;
+	LF = F;
+	S = Network_Diffusion(S,2*k);
+	
+	D = diag(sum(S));
+	L = D - S;
+	[U,D] = eig(L);
+	if length(no_dim)==1
+	    F = tsne_p((S),[], U(:,1:no_dim));
+	else
+	    clear F;
+	    for i = 1:length(no_dim)
+	        F{i} = tsne_p((S),[], U(:,1:no_dim(i)));
+	    end
+	end
+    
+    
+    
+    
+    
+    
+    # compute the execution time
+    execution.time = proc.time() - ptm
+	
 }
