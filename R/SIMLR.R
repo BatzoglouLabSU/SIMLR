@@ -42,34 +42,47 @@
     # compute the kernels
     D_Kernels = multiple.kernel(t(X))
     
+    # set up some parameters
+    alphaK = 1 / dim(D_Kernels[3]) * array(1,c(1,dim(D_Kernels[3])))
+    distX = t(apply(D_Kernels,MARGIN=3,FUN=mean))
     
-    
-    
-    
-    
-    alphaK = 1/(size(D_Kernels,3))*ones(1,size(D_Kernels,3));
-    distX = mean(D_Kernels,3);
+    ### 
     [distX1, idx] = sort(distX,2);
-    A = zeros(num);
-    di = distX1(:,2:(k+2));
-    rr = 0.5*(k*di(:,k+1)-sum(di(:,1:k),2));
-    id = idx(:,2:k+2);
-    temp = (repmat(di(:,k+1),1,size(di,2))-di)./repmat((k*di(:,k+1)-sum(di(:,1:k),2)+eps),1,size(di,2));
-    a = repmat([1:num]',1,size(id,2));
-    A(sub2ind(size(A),a(:),id(:)))=temp(:);
-    if r <= 0
-        r = mean(rr);
-    end
-    lambda = max((mean(rr)),0);
-    A(isnan(A))=0;
-    A0 = (A+A')/2;
-    S0 = 1-distX;
-    S0 = Network_Diffusion(S0,k);
-    S0 = dn(S0,'gph');
-    S = (1-beta)*S0+beta*A0;
-    D0 = diag(sum(S));
-    L0= D0-S;
-    [F, temp, evs]=eig1(L0, c, 0);
+    ###
+    
+    A = rep(0,num)
+    di = distX1[,2:(k+2)]
+    rr = 0.5 * (k*di[,k+1] - t(apply(di[,1:k],MARGIN=2,FUN=sum)))
+    id = idx[,2:k+2]
+    
+    ###
+    temp = (repmat(di(:,k+1),1,size(di,2))-di)./repmat((k*di(:,k+1)-sum(di(:,1:k),2)+eps),1,size(di,2))
+    a = repmat([1:num]',1,size(id,2))                      '
+    A(sub2ind(size(A),a(:),id(:)))=temp(:)
+    ###
+    
+    if(r<=0) {
+        r = mean(rr)
+    }
+    lambda = max(mean(rr),0)
+    A[is.nan(A)] = 0
+    A0 = (A + t(A)) / 2
+    S0 = 1 - distX
+    
+    cat("Performing network diffiusion...")
+    
+    # perform network diffiusion
+    S0 = network.diffusion(S0,k)
+    
+    # compute dn
+    S0 = dn(S0,'gph')
+    S = (1 - beta) %*% S0 + beta %*% A0
+    D0 = diag(sum(S))
+    L0 = D0 - S
+    
+    ###
+    [F, temp, evs]=eig1(L0, c, 0)
+    ###
 
     for iter = 1:NITER
         distf = L2_distance_1(F',F');
