@@ -43,12 +43,13 @@
     }
     
     # compute D_Kernels
+    D_Kernels = kernels
     for (i in 1:dim(kernels)[3]) {
         K = kernels[,,i]
         k = 1/sqrt(diag(K)+1)
         G = K * (k %*% t(k))
-        G1 = apply(array(0,c(length(G),length(G))),MARGIN=2,FUN=function(x) {x=diag(G)}) + 
-        G2 = apply(array(0,c(length(G),length(G))),MARGIN=1,FUN=function(x) {x=t(diag(G))})
+        G1 = apply(array(0,c(length(diag(G)),length(diag(G)))),MARGIN=2,FUN=function(x) {x=diag(G)})
+        G2 = apply(array(0,c(length(diag(G)),length(diag(G)))),MARGIN=1,FUN=function(x) {x=diag(G)})
         D_Kernels[,,i] = (G1 + G2 - 2*G)/2
         D_Kernels[,,i] = D_Kernels[,,i] - diag(diag(D_Kernels[,,i]))
     }
