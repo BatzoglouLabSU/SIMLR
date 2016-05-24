@@ -54,7 +54,7 @@
         D_Kernels[,,i] = D_Kernels[,,i] - diag(diag(D_Kernels[,,i]))
     }
     
-    return(D_Kernels[,,i])
+    return(D_Kernels)
     
 }
 
