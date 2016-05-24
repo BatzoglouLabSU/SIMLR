@@ -24,16 +24,19 @@
     n = dim(Diff)[2]
     allk = seq(10,30,2)
     t = 1
+    new_kernels = array(0,c(dim(kernels)[1],dim(kernels)[2],(dim(kernels)[3]+(length(allk)*length(sigma)))))
+    new_kernels[,,1:dim(kernels)[3]] = kernels
+    kernels = new_kernels
     for (l in 1:length(allk)) {
-        if(allk(l)<nrow(x)) {
-            TT = t(apply(Diff_sort[,2:(allk(l)+1)],MARGIN=2,FUN=mean))
+        if(allk[l]<nrow(x)) {
+            TT = t(apply(Diff_sort[,2:(allk[l]+1)],MARGIN=2,FUN=mean))
             Sig = apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=2,FUN=function(x) {x=n})
             Sig = Sig + apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=1,FUN=function(x) {x=n})
             Sig = Sig / 2
             Sig = Sig * which(Sig > .Machine$double.eps,arr.ind=TRUE) + .Machine$double.eps
             for (j in 1:length(sigma)) {
-                W = dnorm(Diff,0,sigma(j)*Sig)
-                kernels(,,KK+t) = (W + t(W)) / 2
+                W = dnorm(Diff,0,sigma[j]*Sig)
+                kernels[,,KK+t] = (W + t(W)) / 2
                 t = t + 1
             }
         }
