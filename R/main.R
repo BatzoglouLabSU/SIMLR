@@ -1,6 +1,6 @@
 # load the data
-load(file="my_data_reduced.RData")
+load(file="multiple.kernel.data.reduced.RData")
 
 # test compute.multiple.kernel.R
 source("compute.multiple.kernel.R")
-res = multiple.kernel(t(my_data_reduced))
+res = multiple.kernel(multiple.kernel.data.reduced)
