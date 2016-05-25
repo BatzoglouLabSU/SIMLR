@@ -183,9 +183,9 @@
     }
     
     # compute the distance
-    dist = (array(1,c(n2,1)) %*% t(apply(t(x^2),MARGIN=2,FUN=sum))) + 
-           (array(1,c(n1,1)) %*% apply(t(c^2),MARGIN=2,FUN=sum)) - 
-           - 2 * (x%*%t(c))
+    dist = t(rep(1,n2) %*% t(apply(t(x^2),MARGIN=2,FUN=sum))) + 
+           (rep(1,n1) %*% t(apply(t(c^2),MARGIN=2,FUN=sum))) - 
+           2 * (x%*%t(c))
     
     return(dist)
     
