@@ -27,13 +27,17 @@
     new_kernels = array(0,c(dim(kernels)[1],dim(kernels)[2],(dim(kernels)[3]+(length(allk)*length(sigma)))))
     new_kernels[,,1:dim(kernels)[3]] = kernels
     kernels = new_kernels
+    
     for (l in 1:length(allk)) {
-        if(allk[l]<nrow(x)) {
-            TT = t(apply(Diff_sort[,2:(allk[l]+1)],MARGIN=2,FUN=mean))
-            Sig = apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=2,FUN=function(x) {x=n})
-            Sig = Sig + apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=1,FUN=function(x) {x=n})
+        if(allk[l]<(nrow(x)-1)) {
+            TT = apply(Diff_sort[,2:(allk[l]+1)],MARGIN=1,FUN=mean) + .Machine$double.eps
+            TT = matrix(data = TT, nrow = length(TT), ncol = 1)
+            Sig = apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=1,FUN=function(x) {x=TT[,1]})
+            Sig = Sig + t(Sig)
             Sig = Sig / 2
-            Sig = Sig * which(Sig > .Machine$double.eps,arr.ind=TRUE) + .Machine$double.eps
+            Sig_valid = array(0,c(nrow(Sig),ncol(Sig)))
+            Sig_valid[which(Sig > .Machine$double.eps,arr.ind=TRUE)] = 1
+            Sig = Sig * Sig_valid + .Machine$double.eps
             for (j in 1:length(sigma)) {
                 W = dnorm(Diff,0,sigma[j]*Sig)
                 kernels[,,KK+t] = (W + t(W)) / 2
@@ -49,7 +53,7 @@
         k = 1/sqrt(diag(K)+1)
         G = K * (k %*% t(k))
         G1 = apply(array(0,c(length(diag(G)),length(diag(G)))),MARGIN=2,FUN=function(x) {x=diag(G)})
-        G2 = apply(array(0,c(length(diag(G)),length(diag(G)))),MARGIN=1,FUN=function(x) {x=diag(G)})
+        G2 = t(G1)
         D_Kernels[,,i] = (G1 + G2 - 2*G)/2
         D_Kernels[,,i] = D_Kernels[,,i] - diag(diag(D_Kernels[,,i]))
     }
