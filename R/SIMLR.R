@@ -44,7 +44,11 @@
     
     # set up some parameters
     alphaK = 1 / rep(dim(D_Kernels)[3],dim(D_Kernels)[3])
-    distX = t(apply(D_Kernels,MARGIN=3,FUN=mean))
+    distX = array(0,c(dim(D_Kernels)[1],dim(D_Kernels)[2]))
+    for (i in 1:dim(D_Kernels)[3]) {
+        distX = distX + D_Kernels[,,i]
+    }
+    distX = distX / dim(D_Kernels)[3]
     
     # sort distX for rows
     res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
@@ -55,17 +59,20 @@
         idx[i,] = res[[i]]$ix
     }
     
-    A = rep(0,num)
+    A = array(0,c(num,num))
     di = distX1[,2:(k+2)]
-    rr = 0.5 * (k*di[k+1] - sum(di[1:k]))
-    id = idx[,2:k+2]
+    rr = 0.5 * (k * di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum))
+    id = idx[,2:(k+2)]
     
-    numerator = (apply(array(0,c(length(di),length(di))),MARGIN=2,FUN=function(x) {x=di}) - di)
-    temp = (k*di[k+1] - sum(di[k+1]) + .Machine$double.eps)
-    denominator = apply(array(0,c(length(tmp),length(tmp))),MARGIN=1,FUN=function(x) {x=tmp})
+    numerator = (apply(array(0,c(length(di[,k+1]),dim(di)[2])),MARGIN=2,FUN=function(x) {x=di[,k+1]}) - di)
+    temp = (k*di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum) + .Machine$double.eps)
+    denominator = apply(array(0,c(length(temp),dim(di)[2])),MARGIN=2,FUN=function(x) {x=temp})
     temp = numerator / denominator
-    a = apply(array(0,c(length(t(1:num)),length(t(1:num)))),MARGIN=2,FUN=function(x) {x=1:num})
-    A[(id-1)*length(A) + a] = temp
+    a = apply(array(0,c(length(t(1:num)),dim(di)[2])),MARGIN=2,FUN=function(x) {x=1:num})
+    
+    #### A indeces are wrong! TO be fixed.
+    A[cbind(a,id)] = temp
+    ####
     
     if(r<=0) {
         r = mean(rr)
@@ -80,13 +87,13 @@
     # perform network diffiusion
     S0 = network.diffusion(S0,k)
     
-    # compute dn
-    S0 = dn(S0,'gph')
-    S = (1 - beta) %*% S0 + beta %*% A0
-    D0 = diag(sum(S))
-    L0 = D0 - S
-    
     # ####### TO DO
+    
+    # # compute dn
+    # S0 = dn(S0,'gph')
+    # S = (1 - beta) %*% S0 + beta %*% A0
+    # D0 = diag(sum(S))
+    # L0 = D0 - S
     
     # [F, temp, evs]=eig1(L0, c, 0)
     
