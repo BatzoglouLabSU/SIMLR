@@ -23,11 +23,11 @@
     
     # compute the eigenvalues and eigenvectors of P
     eigen_P = eigen(P)
-    U = eigen_P$values
-    D = eigen_P$vectors
+    U = eigen_P$vectors
+    D = eigen_P$values
     
     # set to d the real part of the diagonal of D
-    d = Re(diag(D)+.Machine$double.eps)
+    d = Re(D+.Machine$double.eps)
     
     # perform the diffusion
     alpha = 0.5
@@ -35,7 +35,8 @@
     d = (((1-alpha)*d)^beta)/(1-(alpha*d)^beta)
     
     # set to D the real part of the diagonal of d
-    D = Re(diag(d))
+    D = array(0,c(length(Re(d)),length(Re(d))))
+    diag(D) = Re(d)
     
     # finally compute W
     W = U %*% D %*% t(U)
@@ -60,7 +61,7 @@
     res.sort = apply(t(aff.matrix),MARGIN=2,FUN=function(x) {return(sort(x, decreasing = TRUE, index.return = TRUE))})
     sorted.aff.matrix = t(apply(as.matrix(1:length(res.sort)),MARGIN=1,function(x) { return(res.sort[[x]]$x) }))
     sorted.indices = t(apply(as.matrix(1:length(res.sort)),MARGIN=1,function(x) { return(res.sort[[x]]$ix) }))
-        
+    
     # get the first NR.OF.KNN columns of the sorted array
     res = sorted.aff.matrix[,1:NR.OF.KNN]
     
@@ -111,11 +112,17 @@
     # type "ave" returns D^-1*W
     if(type=="ave") {
         D = 1 / D
+        D_temp = matrix(0,nrow=length(D),ncol=length(D))
+        D_temp[cbind(1:length(D),1:length(D))] = D
+        D = D_temp
         wn = D %*% w
     }
     # type "gph" returns D^-1/2*W*D^-1/2
     else if(type=="gph") {
         D = 1 / sqrt(D)
+        D_temp = matrix(0,nrow=length(D),ncol=length(D))
+        D_temp[cbind(1:length(D),1:length(D))] = D
+        D = D_temp
         wn = D %*% (w %*% D)
     }
     else {

@@ -72,7 +72,7 @@
     
     #### A indeces are wrong! TO be fixed.
     A[cbind(a,id)] = temp
-    ####
+    #### 
     
     if(r<=0) {
         r = mean(rr)
@@ -85,7 +85,9 @@
     cat("Performing network diffiusion...")
     
     # perform network diffiusion
+    #### TO FIX! 
     S0 = network.diffusion(S0,k)
+    #### 
     
     # ####### TO DO
     
