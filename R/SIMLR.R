@@ -174,13 +174,13 @@
     U = eigen_L$vectors
     D = eigen_L$values
     
-    if (length(no_dim)==1) {
-    	F_last = tsne_p(S,NULL,U[,1:no_dim])
+    if (length(no.dim)==1) {
+    	F_last = Rtsne(S,initial_dims=no.dim)
     }
     else {
     	F_last = list()
-        for (i in 1:length(no_dim)) {
-        	F_last[i] = tsne_p(S,NULL,U[,1:no_dim[i]])
+        for (i in 1:length(no.dim)) {
+        	F_last[i] = Rtsne(S,initial_dims=no.dim[i])
         }
     }
     
@@ -192,8 +192,7 @@
     y = NA
     #### END
     
-    ydata = tsne_p(S)
-    
+    ydata = Rtsne(S)
     
     # create the structure with the results
     results = list()
