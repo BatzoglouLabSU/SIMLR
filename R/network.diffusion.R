@@ -27,7 +27,7 @@
     D = eigen_P$values
     
     # set to d the real part of the diagonal of D
-    d = Re(D+.Machine$double.eps)
+    d = Re(D + .Machine$double.eps)
     
     # perform the diffusion
     alpha = 0.5
@@ -43,7 +43,8 @@
     diagonal_matrix = array(0,c(nrow(W),ncol(W)))
     diag(diagonal_matrix) = 1
     W = (W * (1-diagonal_matrix)) / apply(array(0,c(nrow(W),ncol(W))),MARGIN=2,FUN=function(x) {x=(1-diag(W))})
-    W = D %*% W
+    diag(D) = diag(D)[length(diag(D)):1]
+    W = diag(DD) %*% W
     W = (W + t(W)) / 2
     
     return(W)

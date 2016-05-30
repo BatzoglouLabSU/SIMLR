@@ -37,7 +37,7 @@
     r = -1
     beta = 0.8
     
-    cat("Computing the Kernels...")
+    cat("Computing the multiple Kernels...")
     
     # compute the kernels
     D_Kernels = multiple.kernel(t(X))
@@ -69,11 +69,7 @@
     denominator = apply(array(0,c(length(temp),dim(di)[2])),MARGIN=2,FUN=function(x) {x=temp})
     temp = numerator / denominator
     a = apply(array(0,c(length(t(1:num)),dim(di)[2])),MARGIN=2,FUN=function(x) {x=1:num})
-    
-    #### A indeces are wrong! TO be fixed.
-    A[cbind(a,id)] = temp
-    #### 
-    
+    A[cbind(as.vector(a),as.vector(id))] = as.vector(temp)
     if(r<=0) {
         r = mean(rr)
     }
@@ -85,17 +81,13 @@
     cat("Performing network diffiusion...")
     
     # perform network diffiusion
-    #### TO FIX! 
     S0 = network.diffusion(S0,k)
-    #### 
     
-    # ####### TO DO
-    
-    # # compute dn
-    # S0 = dn(S0,'gph')
-    # S = (1 - beta) %*% S0 + beta %*% A0
-    # D0 = diag(sum(S))
-    # L0 = D0 - S
+    # compute dn
+    S0 = dn(S0,'gph')
+    S = (1 - beta) * S0 + beta * A0
+    D0 = diag(apply(S,MARGIN=2,FUN=sum))
+    L0 = D0 - S
     
     # [F, temp, evs]=eig1(L0, c, 0)
     
@@ -163,8 +155,6 @@
     # end
     
   # '  
-      
-    # ####### TO DO
     
     # compute the execution time
     execution.time = proc.time() - ptm
