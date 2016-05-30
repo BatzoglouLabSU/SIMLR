@@ -37,7 +37,7 @@
     r = -1
     beta = 0.8
     
-    cat("Computing the multiple Kernels...")
+    cat("Computing the multiple Kernels.\n")
     
     # compute the kernels
     D_Kernels = multiple.kernel(t(X))
@@ -78,7 +78,7 @@
     A0 = (A + t(A)) / 2
     S0 = 1 - distX
     
-    cat("Performing network diffiusion...")
+    cat("Performing network diffiusion.\n")
     
     # perform network diffiusion
     S0 = network.diffusion(S0,k)
@@ -89,58 +89,83 @@
     D0 = diag(apply(S,MARGIN=2,FUN=sum))
     L0 = D0 - S
     
-    # [F, temp, evs]=eig1(L0, c, 0)
+    eig1_res = eig1(L0,c,0)
+    F_eig1 = eig1_res$eigvec
+    temp_eig1 = eig1_res$eigval
+    evs_eig1 = eig1_res$eigval_full
     
-    # for iter = 1:NITER
-        # distf = L2_distance_1(F',F');
-        # A = zeros(num);
-        # b = idx(:,2:(2*k+2));
-        # a = repmat([1:num]',1,size(b,2));
-        # inda = sub2ind(size(A),a(:),b(:));
-        # ad = reshape((distX(inda)+lambda*distf(inda))/2/r,num,size(b,2));
-        # ad = projsplx_c(-ad')';
-        # A(inda) = ad(:);
-        # A(isnan(A))=0;
-        # A = (A+A')/2;
-        # S = (1-beta)*S+beta*A;
-        # S = Network_Diffusion(S,k);
-        # D = diag(sum(S));
-        # L = D - S;
-        # F_old = F;
-        # [F, temp, ev]=eig1(L, c, 0);
-        # evs(:,iter+1) = ev;
-        # for i = 1:size(D_Kernels,3)
-        # temp = D_Kernels(:,:,i).*S;
-            # DD(i) = mean(sum(temp-diag(diag(temp))));
-        # end
-        # alphaK0 = umkl_bo(DD);
-        # alphaK0 = alphaK0/sum(alphaK0);
-        # alphaK = (1-beta)*alphaK + beta*alphaK0;
-        # alphaK = alphaK/sum(alphaK);
-        # fn1 = sum(ev(1:c));
-        # fn2 = sum(ev(1:c+1));
-        # converge(iter) = fn2-fn1;
-        # fn2-fn1
-        # if iter<10
-            # if (ev(end) > 0.000001)
-                # lambda = 1.5*lambda;
-                # r = r/1.01;
-            # end
-        # else
-            # if (converge(iter)>converge(iter-1))
-                # S = S_old;
-                # if converge(iter-1) > 0.2
-                    # warning('Maybe you should set a larger value of c');
-                # end
-                # break;
-            # end
-        # end
-        # S_old = S;
-        # distX = Kbeta(D_Kernels,alphaK');
-        # [distX1, idx] = sort(distX,2);
-    # end;
-    # LF = F;
-    # S = Network_Diffusion(S,2*k);
+    # perform the iterative procedure NITER times
+    converge = vector()
+    for(iter in 1:NITER) {
+        distf = L2_distance_1(t(F_eig1),t(F_eig1))
+        A = array(0,c(num,num))
+        b = idx[,2:(2*k+2)]
+        a = apply(array(0,c(num,ncol(b))),MARGIN=2,FUN=function(x){ x = 1:num })
+        inda = cbind(as.vector(a),as.vector(b))
+        ad = (distX[inda]+lambda*distf[inda])/2/r
+        dim(ad) = c(num,ncol(b))
+        
+        #### TO FIX
+        #### ad = t(.Call("projsplx_c",-t(ad)))
+        #### END
+        
+        A[inda] = as.vector(ad)
+        A[is.nan(A)] = 0
+        A = (A + t(A)) / 2
+        S = (1 - beta) * S + beta * A
+        S = network.diffusion(S,k)
+        D = diag(apply(S,MARGIN=2,FUN=sum))
+        L = D - S
+        F_old = F_eig1
+        eig1_res = eig1(L,c,0)
+        F_eig1 = eig1_res$eigvec
+        temp_eig1 = eig1_res$eigval
+        ev_eig1 = eig1_res$eigval_full
+        evs_eig1 = cbind(evs_eig1,ev_eig1)
+        DD = vector()
+        for (i in 1:dim(D_Kernels)[3]) {
+            temp = D_Kernels[,,i] * S
+            DD[i] = mean(apply(temp-diag(diag(temp)),MARGIN=2,FUN=sum))
+        }
+        alphaK0 = umkl(DD)
+        alphaK0 = alphaK0 / sum(alphaK0)
+        alphaK = (1-beta) * alphaK + beta * alphaK0
+        alphaK = alphaK / sum(alphaK)
+        fn1 = sum(ev_eig1[1:c])
+        fn2 = sum(ev_eig1[1:c+1])
+        converge[iter] = fn2 - fn1
+        if (iter<10) {
+            if (ev_eig1[length(ev_eig1)] > 0.000001) {
+                lambda = 1.5 * lambda
+                r = r / 1.01
+            }
+        }
+        else {
+            if(converge[iter]>converge[iter-1]) {
+                S = S_old
+                if(converge[iter-1] > 0.2) {
+                    warning('Maybe you should set a larger value of c.')
+                }
+                break
+            }
+        }
+        S_old = S
+        
+        #### TO FIX
+        #### distX = .Call("Kbeta",D_Kernels,t(alphaK))
+        #### END
+        
+        # sort distX for rows
+        res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
+        distX1 = array(0,c(nrow(distX),ncol(distX)))
+        idx = array(0,c(nrow(distX),ncol(distX)))
+        for(i in 1:nrow(distX)) {
+            distX1[i,] = res[[i]]$x
+            idx[i,] = res[[i]]$ix
+        }
+    }
+    LF = F_eig1
+    S = network.diffusion(S,2*k)
     
     # D = diag(sum(S));
     # L = D - S;
