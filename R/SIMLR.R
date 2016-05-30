@@ -166,22 +166,46 @@
     }
     LF = F_eig1
     S = network.diffusion(S,2*k)
+    D = diag(apply(S,MARGIN=2,FUN=sum))
+    L = D - S
     
-    # D = diag(sum(S));
-    # L = D - S;
-    # [U,D] = eig(L);
-    # if length(no_dim)==1
-        # F = tsne_p((S),[], U(:,1:no_dim));
-    # else
-        # clear F;
-        # for i = 1:length(no_dim)
-            # F{i} = tsne_p((S),[], U(:,1:no_dim(i)));
-        # end
-    # end
+    # compute the eigenvalues and eigenvectors of P
+    eigen_L = eigen(L)
+    U = eigen_L$vectors
+    D = eigen_L$values
     
-  # '  
+    if (length(no_dim)==1) {
+    	F_last = tsne_p(S,NULL,U[,1:no_dim])
+    }
+    else {
+    	F_last = list()
+        for (i in 1:length(no_dim)) {
+        	F_last[i] = tsne_p(S,NULL,U[,1:no_dim[i]])
+        }
+    }
     
     # compute the execution time
     execution.time = proc.time() - ptm
+    
+    #### TO FIX
+    #### y = litekmeans(F, c,'replicates',200)
+    y = NA
+    #### END
+    
+    ydata = tsne_p(S)
+    
+    
+    # create the structure with the results
+    results = list()
+    results[["y"]] = y
+    results[["S"]] = S
+    results[["F"]] = F_last
+    results[["ydata"]] = ydata
+    results[["alphaK"]] = alphaK
+    results[["execution.time"]] = execution.time
+    results[["converge"]] = converge
+    results[["LF"]] = LF
+    
+    return(results)
     
 }
