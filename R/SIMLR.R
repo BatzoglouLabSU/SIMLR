@@ -43,12 +43,12 @@
     D_Kernels = multiple.kernel(t(X))
     
     # set up some parameters
-    alphaK = 1 / rep(dim(D_Kernels)[3],dim(D_Kernels)[3])
-    distX = array(0,c(dim(D_Kernels)[1],dim(D_Kernels)[2]))
-    for (i in 1:dim(D_Kernels)[3]) {
-        distX = distX + D_Kernels[,,i]
+    alphaK = 1 / rep(length(D_Kernels),length(D_Kernels))
+    distX = array(0,c(dim(D_Kernels[[1]])[1],dim(D_Kernels[[1]])[2]))
+    for (i in 1:length(D_Kernels)) {
+        distX = distX + D_Kernels[[i]]
     }
-    distX = distX / dim(D_Kernels)[3]
+    distX = distX / length(D_Kernels)
     
     # sort distX for rows
     res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
@@ -123,8 +123,8 @@
         ev_eig1 = eig1_res$eigval_full
         evs_eig1 = cbind(evs_eig1,ev_eig1)
         DD = vector()
-        for (i in 1:dim(D_Kernels)[3]) {
-            temp = D_Kernels[,,i] * S
+        for (i in 1:length(D_Kernels)) {
+            temp = D_Kernels[[i]] * S
             DD[i] = mean(apply(temp-diag(diag(temp)),MARGIN=2,FUN=sum))
         }
         alphaK0 = umkl(DD)
@@ -132,7 +132,7 @@
         alphaK = (1-beta) * alphaK + beta * alphaK0
         alphaK = alphaK / sum(alphaK)
         fn1 = sum(ev_eig1[1:c])
-        fn2 = sum(ev_eig1[1:c+1])
+        fn2 = sum(ev_eig1[1:(c+1)])
         converge[iter] = fn2 - fn1
         if (iter<10) {
             if (ev_eig1[length(ev_eig1)] > 0.000001) {
@@ -175,12 +175,12 @@
     D = eigen_L$values
     
     if (length(no.dim)==1) {
-    	F_last = Rtsne(S,initial_dims=no.dim)
+        F_last = Rtsne(S,initial_dims=no.dim)
     }
     else {
-    	F_last = list()
+        F_last = list()
         for (i in 1:length(no.dim)) {
-        	F_last[i] = Rtsne(S,initial_dims=no.dim[i])
+            F_last[i] = Rtsne(S,initial_dims=no.dim[i])
         }
     }
     

@@ -8,11 +8,11 @@
     kernel.params[1] = list(0)
     
     # compute the kernel
-    kernels = compute.multiple.kernel(kernel.type,x,x,kernel.params)
+    D_Kernels = compute.multiple.kernel(kernel.type,x,x,kernel.params)
     
     # compute some parameters from the kernels
-    N = dim(kernels)[1]
-    KK = dim(kernels)[3]
+    N = dim(D_Kernels[[1]])[1]
+    KK = length(D_Kernels)
     sigma = seq(2,1,-0.25)
     
     # compute and sort Diff
@@ -24,9 +24,6 @@
     n = dim(Diff)[2]
     allk = seq(10,30,2)
     t = 1
-    new_kernels = array(0,c(dim(kernels)[1],dim(kernels)[2],(dim(kernels)[3]+(length(allk)*length(sigma)))))
-    new_kernels[,,1:dim(kernels)[3]] = kernels
-    kernels = new_kernels
     
     for (l in 1:length(allk)) {
         if(allk[l]<(nrow(x)-1)) {
@@ -40,22 +37,22 @@
             Sig = Sig * Sig_valid + .Machine$double.eps
             for (j in 1:length(sigma)) {
                 W = dnorm(Diff,0,sigma[j]*Sig)
-                kernels[,,KK+t] = (W + t(W)) / 2
+                D_Kernels[[KK+t]] = Matrix((W + t(W)) / 2, sparse=TRUE, doDiag=FALSE)
                 t = t + 1
             }
         }
     }
     
     # compute D_Kernels
-    D_Kernels = kernels
-    for (i in 1:dim(kernels)[3]) {
-        K = kernels[,,i]
+    for (i in 1:length(D_Kernels)) {
+        K = D_Kernels[[i]]
         k = 1/sqrt(diag(K)+1)
         G = K * (k %*% t(k))
         G1 = apply(array(0,c(length(diag(G)),length(diag(G)))),MARGIN=2,FUN=function(x) {x=diag(G)})
         G2 = t(G1)
-        D_Kernels[,,i] = (G1 + G2 - 2*G)/2
-        D_Kernels[,,i] = D_Kernels[,,i] - diag(diag(D_Kernels[,,i]))
+        D_Kernels_tmp = (G1 + G2 - 2*G)/2
+        D_Kernels_tmp = D_Kernels_tmp - diag(diag(D_Kernels_tmp))
+        D_Kernels[[i]] = Matrix(D_Kernels_tmp, sparse=TRUE, doDiag=FALSE)
     }
     
     return(D_Kernels)
@@ -97,7 +94,7 @@
     }
     
     # set the structure to save the kernels
-    kernels = array(0,c(n1,n2,k.count))
+    kernels = list()
     
     # compute the kernels
     iteration.kernels = 1
@@ -106,10 +103,10 @@
             single.kernel.type = kernel.type[[i]]
             single.kernel.parameters = kernel.params[[i]][j]
             if(flag==3) {
-                kernels[,,iteration.kernels] = compute.kernel(single.kernel.type,x1,NA,single.kernel.parameters)
+                kernels[[iteration.kernels]] = compute.kernel(single.kernel.type,x1,NA,single.kernel.parameters)
             }
             else {
-                kernels[,,iteration.kernels] = compute.kernel(single.kernel.type,x1,x2,single.kernel.parameters)
+                kernels[[iteration.kernels]] = compute.kernel(single.kernel.type,x1,x2,single.kernel.parameters)
             }
         }
         iteration.kernels = iteration.kernels + 1
