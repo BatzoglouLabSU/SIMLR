@@ -188,12 +188,12 @@
     D = eigen_L$values
     
     if (length(no.dim)==1) {
-        F_last = Rtsne(S,initial_dims=no.dim)
+        F_last = tsne(S,k=no.dim)
     }
     else {
         F_last = list()
         for (i in 1:length(no.dim)) {
-            F_last[i] = Rtsne(S,initial_dims=no.dim[i])
+            F_last[i] = tsne(S,k=no.dim[i])
         }
     }
     
@@ -201,9 +201,9 @@
     execution.time = proc.time() - ptm
     
     cat("Performing Kmeans.\n")
-    y = kmeans(F_last$Y,c,nstart=200)
+    y = kmeans(F_last,c,nstart=200)
     
-    ydata = Rtsne(S)
+    ydata = tsne(S)
     
     # create the structure with the results
     results = list()
