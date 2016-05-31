@@ -1,6 +1,8 @@
 #include <R.h>
 #include <Rmath.h>
 
+extern "C" {
+
 /*
  * This function computes
  * A = 0;
@@ -55,4 +57,4 @@ void KbetaR(double *K, double *beta, double *Kbeta)
 }
 
 
-
+}

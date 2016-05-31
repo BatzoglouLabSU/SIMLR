@@ -170,8 +170,9 @@
         # call the c function
         c_input1 = D_Kernels
         c_input2 = t(alphaK)
-        c_output = NULL
+        c_output = 0
         distX = KbetaR_R_wrapper(c_input1,c_input2,c_output)
+        print("qua")
         print(distX)
         stop()
         
