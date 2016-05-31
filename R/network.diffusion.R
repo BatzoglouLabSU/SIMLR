@@ -92,7 +92,7 @@
     
     # compute the transition fields
     W = dn(W,'ave')
-    w = sqrt(apply(W,MARGIN=2,FUN=sum)+.Machine$double.eps)
+    w = sqrt(abs(apply(W,MARGIN=2,FUN=sum)+.Machine$double.eps))
     W = W / apply(array(0,c(nrow(W),ncol(W))),MARGIN=2,FUN=function(x) {x=w})
     W = W %*% t(W)
     

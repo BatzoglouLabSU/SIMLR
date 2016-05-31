@@ -1,5 +1,5 @@
 # perform the SIMLR clustering algorithm
-"SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE ) {
+"SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
     
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
@@ -40,7 +40,7 @@
     cat("Computing the multiple Kernels.\n")
     
     # compute the kernels
-    D_Kernels = multiple.kernel(t(X))
+    D_Kernels = multiple.kernel(t(X),cores.ratio)
     
     # set up some parameters
     alphaK = 1 / rep(length(D_Kernels),length(D_Kernels))
@@ -97,6 +97,9 @@
     # perform the iterative procedure NITER times
     converge = vector()
     for(iter in 1:NITER) {
+        
+        cat("Iteration: ",iter,"\n")
+        
         distf = L2_distance_1(t(F_eig1),t(F_eig1))
         A = array(0,c(num,num))
         b = idx[,2:(2*k+2)]
@@ -163,6 +166,7 @@
             distX1[i,] = res[[i]]$x
             idx[i,] = res[[i]]$ix
         }
+        
     }
     LF = F_eig1
     S = network.diffusion(S,2*k)
@@ -187,10 +191,8 @@
     # compute the execution time
     execution.time = proc.time() - ptm
     
-    #### TO FIX
-    #### y = litekmeans(F, c,'replicates',200)
-    y = NA
-    #### END
+    cat("Performing Kmeans.\n")
+    y = kmeans(F_last$Y,c,iter.max=200)
     
     ydata = Rtsne(S)
     

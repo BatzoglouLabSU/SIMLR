@@ -1,5 +1,5 @@
 # compute and returns the multiple kernel
-"multiple.kernel" = function( x ) {
+"multiple.kernel" = function( x, cores.ratio = 1 ) {
     
     # set the parameters
     kernel.type = list()
@@ -8,11 +8,11 @@
     kernel.params[1] = list(0)
     
     # compute the kernel
-    D_Kernels = compute.multiple.kernel(kernel.type,x,x,kernel.params)
+    D_Kernels_first = compute.multiple.kernel(kernel.type,x,x,kernel.params)
     
     # compute some parameters from the kernels
-    N = dim(D_Kernels[[1]])[1]
-    KK = length(D_Kernels)
+    N = dim(D_Kernels_first[[1]])[1]
+    KK = length(D_Kernels_first)
     sigma = seq(2,1,-0.25)
     
     # compute and sort Diff
@@ -23,11 +23,22 @@
     m = dim(Diff)[1]
     n = dim(Diff)[2]
     allk = seq(10,30,2)
-    t = 1
     
-    for (l in 1:length(allk)) {
-        if(allk[l]<(nrow(x)-1)) {
-            TT = apply(Diff_sort[,2:(allk[l]+1)],MARGIN=1,FUN=mean) + .Machine$double.eps
+    # setup a parallelized estimation of the kernels
+    cores = as.integer(cores.ratio * (detectCores() - 1))
+    if (cores < 1) {
+        cores = 1
+    }
+
+    cl = makeCluster(cores)
+    
+    clusterEvalQ(cl, {library(Matrix)})
+    
+    D_Kernels = list()
+    D_Kernels = unlist(parLapply(cl,1:length(allk),fun=function(l,x_fun=x,Diff_sort_fun=Diff_sort,allk_fun=allk,
+                                                                Diff_fun=Diff,sigma_fun=sigma,KK_fun=KK) {
+        if(allk_fun[l]<(nrow(x_fun)-1)) {
+            TT = apply(Diff_sort_fun[,2:(allk_fun[l]+1)],MARGIN=1,FUN=mean) + .Machine$double.eps
             TT = matrix(data = TT, nrow = length(TT), ncol = 1)
             Sig = apply(array(0,c(nrow(TT),ncol(TT))),MARGIN=1,FUN=function(x) {x=TT[,1]})
             Sig = Sig + t(Sig)
@@ -35,13 +46,18 @@
             Sig_valid = array(0,c(nrow(Sig),ncol(Sig)))
             Sig_valid[which(Sig > .Machine$double.eps,arr.ind=TRUE)] = 1
             Sig = Sig * Sig_valid + .Machine$double.eps
-            for (j in 1:length(sigma)) {
-                W = dnorm(Diff,0,sigma[j]*Sig)
-                D_Kernels[[KK+t]] = Matrix((W + t(W)) / 2, sparse=TRUE, doDiag=FALSE)
-                t = t + 1
+            for (j in 1:length(sigma_fun)) {
+                W = dnorm(Diff_fun,0,sigma_fun[j]*Sig)
+                D_Kernels[[KK_fun+l+j]] = Matrix((W + t(W)) / 2, sparse=TRUE, doDiag=FALSE)
             }
+            return(D_Kernels)
         }
-    }
+    }))
+    
+    stopCluster(cl)
+    
+    D_Kernels = c(D_Kernels_first,D_Kernels)
+    rm(D_Kernels_first)
     
     # compute D_Kernels
     for (i in 1:length(D_Kernels)) {
