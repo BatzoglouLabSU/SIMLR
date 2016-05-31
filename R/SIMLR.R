@@ -97,6 +97,9 @@
     # perform the iterative procedure NITER times
     converge = vector()
     for(iter in 1:NITER) {
+        
+        cat("Iteration: ",iter,"\n")
+        
         distf = L2_distance_1(t(F_eig1),t(F_eig1))
         A = array(0,c(num,num))
         b = idx[,2:(2*k+2)]
@@ -163,6 +166,7 @@
             distX1[i,] = res[[i]]$x
             idx[i,] = res[[i]]$ix
         }
+        
     }
     LF = F_eig1
     S = network.diffusion(S,2*k)
@@ -188,6 +192,7 @@
     execution.time = proc.time() - ptm
     
     #### TO FIX
+    cat("Performing Kmeans.\n")
     #### y = litekmeans(F, c,'replicates',200)
     y = NA
     #### END
