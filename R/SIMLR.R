@@ -192,7 +192,7 @@
     execution.time = proc.time() - ptm
     
     cat("Performing Kmeans.\n")
-    y = kmeans(F_last$Y,c,iter.max=200)
+    y = kmeans(F_last$Y,c,nstart=200)
     
     ydata = Rtsne(S)
     
