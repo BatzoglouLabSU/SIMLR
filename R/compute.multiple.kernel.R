@@ -1,5 +1,5 @@
 # compute and returns the multiple kernel
-"multiple.kernel" = function( x ) {
+"multiple.kernel" = function( x, cores.ratio = 1 ) {
     
     # set the parameters
     kernel.type = list()
@@ -24,8 +24,19 @@
     n = dim(Diff)[2]
     allk = seq(10,30,2)
     
+    # setup a parallelized estimation of the kernels
+    cores = as.integer(cores.ratio * (detectCores() - 1))
+    if (cores < 1) {
+        cores = 1
+    }
+
+    cl = makeCluster(cores)
+    
+    clusterEvalQ(cl, {library(Matrix)})
+    
     D_Kernels = list()
-    D_Kernels = unlist(lapply(1:length(allk),FUN=function(l,x_fun=x,Diff_sort_fun=Diff_sort,allk_fun=allk,Diff_fun=Diff,sigma_fun=sigma,KK_fun=KK) {
+    D_Kernels = unlist(parLapply(cl,1:length(allk),fun=function(l,x_fun=x,Diff_sort_fun=Diff_sort,allk_fun=allk,
+                                                                Diff_fun=Diff,sigma_fun=sigma,KK_fun=KK) {
         if(allk_fun[l]<(nrow(x_fun)-1)) {
             TT = apply(Diff_sort_fun[,2:(allk_fun[l]+1)],MARGIN=1,FUN=mean) + .Machine$double.eps
             TT = matrix(data = TT, nrow = length(TT), ncol = 1)
@@ -42,6 +53,9 @@
             return(D_Kernels)
         }
     }))
+    
+    stopCluster(cl)
+    
     D_Kernels = c(D_Kernels_first,D_Kernels)
     rm(D_Kernels_first)
     

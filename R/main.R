@@ -1,5 +1,6 @@
 # required external Packages
 library(Matrix)
+library(parallel)
 library(Rtsne)
 
 # test compute.multiple.kernel.R
@@ -18,7 +19,7 @@ source("SIMLR.R")
 source("compute.multiple.kernel.R")
 source("network.diffusion.R")
 source("utils.simlr.R")
-res3 = SIMLR(my_data_reduced,c=90)
+res3 = SIMLR(my_data_reduced,c=10)
 
 # test SIMLR.R on a bigger data input
 load(file="my_data.Rdata")
@@ -26,4 +27,4 @@ source("SIMLR.R")
 source("compute.multiple.kernel.R")
 source("network.diffusion.R")
 source("utils.simlr.R")
-res4 = SIMLR(my_data,c=5000)
+res4 = SIMLR(my_data,c=10)
