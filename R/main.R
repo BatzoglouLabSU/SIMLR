@@ -3,6 +3,9 @@ library(Matrix)
 library(parallel)
 library(Rtsne)
 
+# load the c files
+dyn.load("./../src/projsplx_R.so")
+
 # test compute.multiple.kernel.R
 load(file="multiple.kernel.data.reduced.RData")
 source("compute.multiple.kernel.R")

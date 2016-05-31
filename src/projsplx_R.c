@@ -1,30 +1,21 @@
-#include <math.h>
-#include "mex.h"
+#include <Rmath.h>
+#include <R.h>
 
-void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
+void projsplx_R(double *y, double *x)
 {
     
-    int numDims, m, n, k, d, j,npos,ft;
-    const int *dims;
-    double *y, *s, *x, *vs;
+    int m, n, d, j,npos,ft;
+    double *s, *vs;
     double sumResult = -1, tmpValue, tmax, f,lambda_m;
     
+    m = sizeof(y);
+    n=sizeof(y)/sizeof(y[0]);
     
-    dims = mxGetDimensions(prhs[0]);
-    numDims = mxGetNumberOfDimensions(prhs[0]);
-
-    m = dims[0];
-    n=dims[1];
-    printf("m = %d, n = %d\n", m , n );
-    
-    y  = mxGetPr(prhs[0]);
     
     /*  set the output pointer to the output matrix */
-    plhs[0] = mxCreateDoubleMatrix(m,n,mxREAL);
-    x = mxGetPr(plhs[0]);
     s = (double*) calloc (m,sizeof(double));
     vs = (double*) calloc (m,sizeof(double));
-    for (k=0;k<n;k++){
+    for (int k=0;k<n;k++){
         /* s = sort(y,'ascend'); */
         
         double means = 0;
