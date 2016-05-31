@@ -161,19 +161,11 @@
         }
         S_old = S
         
-        # wrapper function to call the C program KbetaR
-        "KbetaR_R_wrapper" <- function(c_input1,c_input2,c_output) {
-            .C("KbetaR",c_input1,c_input2,c_output)
-            return(c_output)
+        # compute Kbeta
+        distX = D_Kernels[[1]]
+        for (i in 2:length(D_Kernels)) {
+            distX = distX + as.matrix(D_Kernels[[i]]) * alphaK[i]
         }
-                
-        # call the c function
-        c_input1 = D_Kernels
-        c_input2 = t(alphaK)
-        c_output = 0
-        distX = KbetaR_R_wrapper(c_input1,c_input2,c_output)
-        print(distX)
-        stop()
         
         # sort distX for rows
         res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))

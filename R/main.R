@@ -5,7 +5,6 @@ library(Rtsne)
 
 # load the c files
 dyn.load("./../src/projsplx_R.so")
-dyn.load("./../src/KbetaR.so")
 
 # test compute.multiple.kernel.R
 load(file="multiple.kernel.data.reduced.RData")
