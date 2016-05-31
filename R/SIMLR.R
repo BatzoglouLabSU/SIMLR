@@ -108,9 +108,16 @@
         ad = (distX[inda]+lambda*distf[inda])/2/r
         dim(ad) = c(num,ncol(b))
         
-        #### TO FIX
-        #### ad = t(.Call("projsplx_c",-t(ad)))
-        #### END
+        # wrapper function to call the C program projsplx_R
+        "projsplx_R_wrapper" <- function(c_input,c_output) {
+            .C("projsplx_R",c_input,c_output)
+            return(c_output)
+        }
+        
+        # call the c function
+        c_input = -t(ad)
+        c_output = c_input
+        ad = t(projsplx_R_wrapper(c_input,c_output))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0
@@ -154,9 +161,19 @@
         }
         S_old = S
         
-        #### TO FIX
-        #### distX = .Call("Kbeta",D_Kernels,t(alphaK))
-        #### END
+        # wrapper function to call the C program KbetaR
+        "KbetaR_R_wrapper" <- function(c_input1,c_input2,c_output) {
+            .C("KbetaR",c_input1,c_input2,c_output)
+            return(c_output)
+        }
+                
+        # call the c function
+        c_input1 = D_Kernels
+        c_input2 = t(alphaK)
+        c_output = NULL
+        distX = KbetaR_R_wrapper(c_input1,c_input2,c_output)
+        print(distX)
+        stop()
         
         # sort distX for rows
         res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
