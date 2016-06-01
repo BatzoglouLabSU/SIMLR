@@ -9,12 +9,9 @@
 *-Ex.R
 
 # RStudio files
-*.RData
-!/data/*.RData
 .Rproj.user/
 .Rproj
 .Rproj.user
-*.Rdata
 *.Rproj
 
 # TRONCO Output
