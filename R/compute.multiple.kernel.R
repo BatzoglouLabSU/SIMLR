@@ -7,12 +7,9 @@
     kernel.params = list()
     kernel.params[1] = list(0)
     
-    # compute the kernel
-    D_Kernels_first = compute.multiple.kernel(kernel.type,x,x,kernel.params)
-    
     # compute some parameters from the kernels
-    N = dim(D_Kernels_first[[1]])[1]
-    KK = length(D_Kernels_first)
+    N = dim(x)[1]
+    KK = 0
     sigma = seq(2,1,-0.25)
     
     # compute and sort Diff
@@ -55,9 +52,6 @@
     }))
     
     stopCluster(cl)
-    
-    D_Kernels = c(D_Kernels_first,D_Kernels)
-    rm(D_Kernels_first)
     
     # compute D_Kernels
     for (i in 1:length(D_Kernels)) {
