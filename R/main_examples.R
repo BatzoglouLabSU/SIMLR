@@ -11,7 +11,7 @@ source("utils.simlr.R")
 # load the c file
 dyn.load("./../src/projsplx_R.so")
 
-# load the R scripts
+# load the R external scripts
 source("./../src/tsne.R")
 source("./../src/tsne-internal.R")
 

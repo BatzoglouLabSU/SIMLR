@@ -30,9 +30,9 @@
     d = Re(D + .Machine$double.eps)
     
     # perform the diffusion
-    alpha = 0.5
+    alpha = 0.9
     beta = 2*alpha
-    d = (((1-alpha)*d)^beta)/(1-(alpha*d)^beta)
+    d = ((1-alpha)*d^beta)/(1-alpha*d^beta)
     
     # set to D the real part of the diagonal of d
     D = array(0,c(length(Re(d)),length(Re(d))))
@@ -92,8 +92,9 @@
     
     # compute the transition fields
     W = dn(W,'ave')
-    w = sqrt(abs(apply(W,MARGIN=2,FUN=sum)+.Machine$double.eps))
-    W = W / apply(array(0,c(nrow(W),ncol(W))),MARGIN=2,FUN=function(x) {x=w})
+    
+    w = sqrt(apply(abs(W),MARGIN=2,FUN=sum)+.Machine$double.eps)
+    W = W / t(apply(array(0,c(nrow(W),ncol(W))),MARGIN=2,FUN=function(x) {x=w}))
     W = W %*% t(W)
     
     # set to 0 the elements of zero.index

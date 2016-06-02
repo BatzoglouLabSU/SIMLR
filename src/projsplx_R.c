@@ -1,33 +1,39 @@
-#include <Rmath.h>
 #include <R.h>
+#include <Rmath.h>
+#include <Rinternals.h>
 
-void projsplx_R(double *y, double *x)
+SEXP projsplx_R(SEXP y, SEXP x)
 {
     
-    int m, n, d, j,npos,ft;
-    double *s, *vs;
-    double sumResult = -1, tmpValue, tmax, f,lambda_m;
+    int m,n,j,npos,ft;
+    SEXP s, vs;
+    double f,lambda_m;
+    SEXP Rdim = getAttrib(y, R_DimSymbol);
+    m = INTEGER(Rdim)[0];
+    n = INTEGER(Rdim)[1];
     
-    m = sizeof(y);
-    n=sizeof(y)/sizeof(y[0]);
-    
+    y = coerceVector(y, REALSXP);
+    x = coerceVector(x, REALSXP);
     
     /*  set the output pointer to the output matrix */
-    s = (double*) calloc (m,sizeof(double));
-    vs = (double*) calloc (m,sizeof(double));
+    //s = (double*) calloc (m,sizeof(double));
+    //vs = (double*) calloc (m,sizeof(double));
+    
+    PROTECT(s = allocMatrix(REALSXP, m, 1));
+    PROTECT(vs = allocMatrix(REALSXP, m, 1));
+    
     for (int k=0;k<n;k++){
-        /* s = sort(y,'ascend'); */
         
         double means = 0;
         double mins = 100000;
         for(j = 0; j < m; j++ ){
-            s[j] = y[j+k*m];
-            means += s[j];
-            mins = (mins > s[j])? s[j]:mins;
+            REAL(s)[j] = REAL(y)[j+k*m];
+            means += REAL(s)[j];
+            mins = (mins > REAL(s)[j])? REAL(s)[j]:mins;
         }
 
         for(j = 0; j < m; j++ ){
-            s[j] -= (means-1)/m;
+            REAL(s)[j] -= (means-1)/m;
         }
         ft=1;
         if(mins<0){
@@ -37,34 +43,34 @@ void projsplx_R(double *y, double *x)
                 npos = 0;
                    f = 0;
                 for(j = 0; j < m; j++ ){
-                    vs[j] = s[j]-lambda_m;
+                    REAL(vs)[j] = REAL(s)[j]-lambda_m;
                  
-                    if (vs[j]>0){
+                    if (REAL(vs)[j]>0){
                         npos+=1;
-                        f+=vs[j];
+                        f+=REAL(vs)[j];
                     }
                 }
                 lambda_m += (f-1)/npos;
                 if(ft>100){
                     for(j = 0; j <= m-1; j++){
-                        x[j+k*m] = (vs[j] > 0)? vs[j]:0;
+                        REAL(x)[j+k*m] = (REAL(vs)[j] > 0)? REAL(vs)[j]:0;
                     }
                     break;
                 }
                 ft+=1;
             }
             for(j = 0; j <= m-1; j++){
-                x[j+k*m] = (vs[j] > 0)? vs[j]:0;;
+                REAL(x)[j+k*m] = (REAL(vs)[j] > 0)? REAL(vs)[j]:0;
             }
             
         }
         else{
             for(j = 0; j <= m-1; j++){
-                x[j+k*m] = s[j];
+                REAL(x)[j+k*m] = REAL(s)[j];
             }
             
         }
     }
-    
+    UNPROTECT(1);
+    return x;
 }
-

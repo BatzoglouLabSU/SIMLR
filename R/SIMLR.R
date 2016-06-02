@@ -108,16 +108,10 @@
         ad = (distX[inda]+lambda*distf[inda])/2/r
         dim(ad) = c(num,ncol(b))
         
-        # wrapper function to call the C program projsplx_R
-        "projsplx_R_wrapper" <- function(c_input,c_output) {
-            .C("projsplx_R",c_input,c_output)
-            return(c_output)
-        }
-        
-        # call the c function
+        # call the c function for the optimization
         c_input = -t(ad)
-        c_output = c_input
-        ad = t(projsplx_R_wrapper(c_input,c_output))
+        c_output = t(ad)
+        ad = t(.Call("projsplx_R",as.matrix(c_input),as.matrix(c_output)))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0
