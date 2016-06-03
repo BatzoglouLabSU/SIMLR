@@ -1,4 +1,4 @@
-# required external packages
+# required external packages for SIMLR
 library(Matrix)
 library(parallel)
 
@@ -10,13 +10,11 @@ source("SIMLR.R")
 source("compute.multiple.kernel.R")
 source("network.diffusion.R")
 source("utils.simlr.R")
+source("tsne.R")
+source("tsne-internal.R")
 
 # load the c file
 dyn.load("./../src/projsplx_R.so")
-
-# load the R external scripts
-source("./../src/tsne.R")
-source("./../src/tsne-internal.R")
 
 # load the datasets
 load(file="./../data/Test_1_mECS.RData")

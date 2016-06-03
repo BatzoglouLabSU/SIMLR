@@ -4,7 +4,7 @@
 
 SEXP projsplx_R(SEXP y, SEXP x)
 {
-    
+
     int m,n,j,npos,ft;
     SEXP s, vs;
     double f,lambda_m;
@@ -41,7 +41,7 @@ SEXP projsplx_R(SEXP y, SEXP x)
             lambda_m=0;
             while(fabs(f)>1e-10){
                 npos = 0;
-                   f = 0;
+                f = 0;
                 for(j = 0; j < m; j++ ){
                     REAL(vs)[j] = REAL(s)[j]-lambda_m;
                  
@@ -72,5 +72,6 @@ SEXP projsplx_R(SEXP y, SEXP x)
         }
     }
     UNPROTECT(1);
+
     return x;
 }

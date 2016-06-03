@@ -1,8 +1,8 @@
 .Hbeta <-
-function(D, beta){
+function(D, beta) {
     P = exp(-D * beta)
     sumP = sum(P)
-    if (sumP == 0){
+    if (sumP == 0) {
         H = 0
         P = D * 0
     } else {
@@ -16,7 +16,7 @@ function(D, beta){
 }
 
 .x2p <-
-function(X,perplexity = 15,tol = 1e-5){
+function(X,perplexity = 15,tol = 1e-5) {
     if (class(X) == 'dist') {
         D = X
         n = attr(D,'Size')
@@ -30,7 +30,7 @@ function(X,perplexity = 15,tol = 1e-5){
     beta = rep(1, n)
     logU = log(perplexity)
     
-    for (i in 1:n){
+    for (i in 1:n) {
         betamin = -Inf
         betamax = Inf
         Di = D[i, -i]
@@ -40,8 +40,8 @@ function(X,perplexity = 15,tol = 1e-5){
         Hdiff = H - logU;
         tries = 0;
 
-        while(abs(Hdiff) > tol && tries < 50){
-            if (Hdiff > 0){
+        while(abs(Hdiff) > tol && tries < 50) {
+            if (Hdiff > 0) {
                 betamin = beta[i]
                 if (is.infinite(betamax)) beta[i] = beta[i] * 2
                 else beta[i] = (beta[i] + betamax)/2
@@ -73,11 +73,11 @@ function(X,perplexity = 15,tol = 1e-5){
 .whiten <-
 function(X, row.norm=FALSE, verbose=FALSE, n.comp=ncol(X))
 {  
-    n.comp; # forces an eval/save of n.comp
-    if (verbose) message("Centering")
+   n.comp; # forces an eval/save of n.comp
+   if (verbose) message("Centering")
    n = nrow(X)
-    p = ncol(X)
-    X <- scale(X, scale = FALSE)
+   p = ncol(X)
+   X <- scale(X, scale = FALSE)
    X <- if (row.norm) 
        t(scale(X, scale = row.norm))
    else t(X)
@@ -89,5 +89,5 @@ function(X, row.norm=FALSE, verbose=FALSE, n.comp=ncol(X))
    K <- D %*% t(s$u)
    K <- matrix(K[1:n.comp, ], n.comp, p)
    X = t(K %*% X)
-    X
+   X
 }
