@@ -1,7 +1,7 @@
 "tsne" <-
 function(X, initial_config = NULL, k = 2, initial_dims = 30, perplexity = 30, max_iter = 1000, min_cost = 0, epoch_callback = NULL, whiten = TRUE, epoch = 100){
     
-    cat("Performing tsne.\n")
+    cat("Performing t-SNE.\n")
     
     momentum = .08
     final_momentum = .8

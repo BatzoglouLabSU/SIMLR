@@ -160,7 +160,6 @@
         for (i in 2:length(D_Kernels)) {
             distX = distX + as.matrix(D_Kernels[[i]]) * alphaK[i]
         }
-        #distX = sapply(2:length(D_Kernels),FUN=function(x){distX = distX + as.matrix(D_Kernels[[x]]) * alphaK[x]})
         
         # sort distX for rows
         res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
