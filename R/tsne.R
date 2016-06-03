@@ -1,7 +1,9 @@
 "tsne" <-
-function(X, initial_config = NULL, k=2, initial_dims=30, perplexity=30, max_iter = 1000, min_cost=0, epoch_callback=NULL,whiten=TRUE, epoch=100 ){
+function(X, initial_config = NULL, k = 2, initial_dims = 30, perplexity = 30, max_iter = 1000, min_cost = 0, epoch_callback = NULL, whiten = TRUE, epoch = 100){
     
-    momentum = .5
+    cat("Performing t-SNE.\n")
+    
+    momentum = .08
     final_momentum = .8
     mom_switch_iter = 250
 
@@ -24,18 +26,16 @@ function(X, initial_config = NULL, k=2, initial_dims=30, perplexity=30, max_iter
         ydata = matrix(rnorm(k * n),n)
     }
     
-    P = X###.x2p(X,perplexity, 1e-5)$P
-    # P[is.nan(P)]<-eps
+    P = X
     P = .5 * (P + t(P))
 
     P[P < eps]<-eps
     P = P/sum(P)
     
     P = P * initial_P_gain
-    grads =  matrix(0,nrow(ydata),ncol(ydata))
-    incs =  matrix(0,nrow(ydata),ncol(ydata))
+    grads = matrix(0,nrow(ydata),ncol(ydata))
+    incs = matrix(0,nrow(ydata),ncol(ydata))
     gains = matrix(1,nrow(ydata),ncol(ydata))
-
     
     for (iter in 1:max_iter){
         
@@ -46,11 +46,10 @@ function(X, initial_config = NULL, k=2, initial_dims=30, perplexity=30, max_iter
             if (!is.null(epoch_callback)) epoch_callback(ydata)
 
         }
-
-
+        
         sum_ydata = apply(ydata^2, 1, sum)
-        num =  1/(1 + sum_ydata +    sweep(-2 * ydata %*% t(ydata),2, -t(sum_ydata))) 
-        diag(num)=0
+        num =  1/(1 + sum_ydata + sweep(-2 * ydata %*% t(ydata),2, -t(sum_ydata))) 
+        diag(num) = 0
         Q = num / sum(num)
         if (any(is.nan(num))) message ('NaN in grad. descent')
         Q[Q < eps] = eps
@@ -66,11 +65,17 @@ function(X, initial_config = NULL, k=2, initial_dims=30, perplexity=30, max_iter
         incs = momentum * incs - epsilon * (gains * grads)
         ydata = ydata + incs
         ydata = sweep(ydata,2,apply(ydata,2,mean))
+        
+        # we are constraining the ydata
+        ydata[ydata<-100] = -100
+        ydata[ydata>100] = 100
+        
         if (iter == mom_switch_iter) momentum = final_momentum
         
         if (iter == 100 && is.null(initial_config)) P = P/4
         
     }
+    
     ydata
     
 }
