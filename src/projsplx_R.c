@@ -15,12 +15,8 @@ SEXP projsplx_R(SEXP y, SEXP x)
     y = coerceVector(y, REALSXP);
     x = coerceVector(x, REALSXP);
     
-    /*  set the output pointer to the output matrix */
-    //s = (double*) calloc (m,sizeof(double));
-    //vs = (double*) calloc (m,sizeof(double));
-    
-    PROTECT(s = allocMatrix(REALSXP, m, 1));
-    PROTECT(vs = allocMatrix(REALSXP, m, 1));
+    s = allocMatrix(REALSXP, m, 1);
+    vs = allocMatrix(REALSXP, m, 1);
     
     for (int k=0;k<n;k++){
         
@@ -71,7 +67,6 @@ SEXP projsplx_R(SEXP y, SEXP x)
             
         }
     }
-    UNPROTECT(1);
 
     return x;
 }
