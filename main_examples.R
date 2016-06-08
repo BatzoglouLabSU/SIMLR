@@ -6,21 +6,21 @@ library(parallel)
 library(igraph)
 
 # load the SIMLR R package
-source("SIMLR.R")
-source("compute.multiple.kernel.R")
-source("network.diffusion.R")
-source("utils.simlr.R")
-source("tsne.R")
-source("tsne-internal.R")
+source("./R/SIMLR.R")
+source("./R/compute.multiple.kernel.R")
+source("./R/network.diffusion.R")
+source("./R/utils.simlr.R")
+source("./R/tsne.R")
+source("./R/tsne-internal.R")
 
-# load the c file
-dyn.load("./../src/projsplx_R.so")
+# load the C file
+dyn.load("./src/projsplx_R.so")
 
 # load the datasets
-load(file="./../data/Test_1_mECS.RData")
-load(file="./../data/Test_2_Kolod.RData")
-load(file="./../data/Test_3_Pollen.RData")
-load(file="./../data/Test_4_Usoskin.RData")
+load(file="./data/Test_1_mECS.RData")
+load(file="./data/Test_2_Kolod.RData")
+load(file="./data/Test_3_Pollen.RData")
+load(file="./data/Test_4_Usoskin.RData")
 
 # test SIMLR.R on example 1
 set.seed(11111)
