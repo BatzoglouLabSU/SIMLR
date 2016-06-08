@@ -30,9 +30,9 @@
     d = Re(D + .Machine$double.eps)
     
     # perform the diffusion
-    alpha = 0.9
-    beta = 2*alpha
-    d = ((1-alpha)*d^beta)/(1-alpha*d^beta)
+    alpha = 0.8
+    beta = 2
+    d = ((1-alpha)*d)/(1-alpha*d^beta)
     
     # set to D the real part of the diagonal of d
     D = array(0,c(length(Re(d)),length(Re(d))))
@@ -46,6 +46,8 @@
     diag(D) = diag(D)[length(diag(D)):1]
     W = diag(DD) %*% W
     W = (W + t(W)) / 2
+    
+    W[which(W<0,arr.ind=TRUE)] = 0
     
     return(W)
     

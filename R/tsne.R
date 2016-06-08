@@ -1,9 +1,9 @@
 "tsne" <-
-function(X, initial_config = NULL, k = 2, initial_dims = 30, perplexity = 30, max_iter = 1000, min_cost = 0, epoch_callback = NULL, whiten = TRUE, epoch = 100){
+function(X, initial_config = NULL, k = 2, max_iter = 1000, min_cost = 0, epoch_callback = NULL, epoch = 100) {
     
     cat("Performing t-SNE.\n")
     
-    momentum = .08
+    momentum = .8
     final_momentum = .8
     mom_switch_iter = 250
 
@@ -37,7 +37,7 @@ function(X, initial_config = NULL, k = 2, initial_dims = 30, perplexity = 30, ma
     incs = matrix(0,nrow(ydata),ncol(ydata))
     gains = matrix(1,nrow(ydata),ncol(ydata))
     
-    for (iter in 1:max_iter){
+    for (iter in 1:max_iter) {
         
         if (iter %% epoch == 0) { # epoch
             cost =  sum(apply(P * log((P+eps)/(Q+eps)),1,sum))

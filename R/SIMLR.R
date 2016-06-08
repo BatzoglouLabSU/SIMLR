@@ -76,7 +76,7 @@
     lambda = max(mean(rr),0)
     A[is.nan(A)] = 0
     A0 = (A + t(A)) / 2
-    S0 = 1 - distX
+    S0 = max(max(distX)) - distX
     
     cat("Performing network diffiusion.\n")
     
@@ -84,8 +84,8 @@
     S0 = network.diffusion(S0,k)
     
     # compute dn
-    S0 = dn(S0,'gph')
-    S = (1 - beta) * S0 + beta * A0
+    S0 = dn(S0,'ave')
+    S = S0
     D0 = diag(apply(S,MARGIN=2,FUN=sum))
     L0 = D0 - S
     
@@ -102,7 +102,7 @@
         
         distf = L2_distance_1(t(F_eig1),t(F_eig1))
         A = array(0,c(num,num))
-        b = idx[,2:(2*k+2)]
+        b = idx[,2:dim(idx)[2]]
         a = apply(array(0,c(num,ncol(b))),MARGIN=2,FUN=function(x){ x = 1:num })
         inda = cbind(as.vector(a),as.vector(b))
         ad = (distX[inda]+lambda*distf[inda])/2/r
@@ -111,7 +111,7 @@
         # call the c function for the optimization
         c_input = -t(ad)
         c_output = t(ad)
-        ad = t(.Call("projsplx_R",as.matrix(c_input),as.matrix(c_output)))
+        ad = t(.Call("projsplx_R",c_input,c_output))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0
@@ -128,7 +128,7 @@
         evs_eig1 = cbind(evs_eig1,ev_eig1)
         DD = vector()
         for (i in 1:length(D_Kernels)) {
-            temp = (1+D_Kernels[[i]]) * (S+.Machine$double.eps)
+            temp = (.Machine$double.eps+D_Kernels[[i]]) * (S+.Machine$double.eps)
             DD[i] = mean(apply(temp,MARGIN=2,FUN=sum))
         }
         alphaK0 = umkl(DD)
@@ -172,7 +172,6 @@
         
     }
     LF = F_eig1
-    S = network.diffusion(S,2*k)
     D = diag(apply(S,MARGIN=2,FUN=sum))
     L = D - S
     
