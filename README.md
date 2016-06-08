@@ -20,12 +20,14 @@ We provide the R code to run *SIMLR* on 4 examples in the script *main_examples.
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
-Furthermore, to run the examples, we require the * igraph* package to compute the normalized mutual informetion metric and the * grDevices* package to color the plots. 
+Furthermore, to run the examples, we require the *igraph* package (see http://igraph.org/r/) to compute the normalized mutual informetion metric and the *grDevices* package (see https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html) to color the plots. 
 
 All these packages, can be installed with the R built-in *install.packages* function. 
 
-2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the src directory, in the file *projsplx_R.c*. In order to compite the program, the command "R CMD SHLIB projsplx_R.c" on the shell needs to be used. 
+2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the src directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB projsplx_R.c*. 
 
 An OS X pre-compiled file is also provided. 
 
-3) Example datasets. STUB. 
+3) Example datasets. The 4 example datasets are provided in the directory data. 
+
+Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
