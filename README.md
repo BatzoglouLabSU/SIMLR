@@ -14,6 +14,10 @@ Single-cell RNA-seq technologies enable high throughput gene expression measurem
 
 The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2016/05/09/052225. 
 
+**DOWNLOAD**
+
+The R code to run *SIMLR* can be downloaded either from the master (stable version) or from the development (development version) brach, while the Matlab implementation is available from the matlab branch. 
+
 **RUNNING SIMLR**
 
 We provide the R code to run *SIMLR* on 4 examples in the script *main_examples.R*. We now present a set of requirements to run the examples. 
