@@ -12,9 +12,6 @@ SEXP projsplx_R(SEXP y, SEXP x)
     m = INTEGER(Rdim)[0];
     n = INTEGER(Rdim)[1];
     
-    y = coerceVector(y, REALSXP);
-    x = coerceVector(x, REALSXP);
-    
     s = allocMatrix(REALSXP, m, 1);
     vs = allocMatrix(REALSXP, m, 1);
     

@@ -47,6 +47,8 @@
     W = diag(DD) %*% W
     W = (W + t(W)) / 2
     
+    W[which(W<0,arr.ind=TRUE)] = 0
+    
     return(W)
     
 }

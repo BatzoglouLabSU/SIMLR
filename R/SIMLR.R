@@ -102,7 +102,7 @@
         
         distf = L2_distance_1(t(F_eig1),t(F_eig1))
         A = array(0,c(num,num))
-        b = idx[,-1]
+        b = idx[,2:dim(idx)[2]]
         a = apply(array(0,c(num,ncol(b))),MARGIN=2,FUN=function(x){ x = 1:num })
         inda = cbind(as.vector(a),as.vector(b))
         ad = (distX[inda]+lambda*distf[inda])/2/r
@@ -111,7 +111,7 @@
         # call the c function for the optimization
         c_input = -t(ad)
         c_output = t(ad)
-        ad = t(.Call("projsplx_R",as.matrix(c_input),as.matrix(c_output)))
+        ad = t(.Call("projsplx_R",c_input,c_output))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0
@@ -128,7 +128,7 @@
         evs_eig1 = cbind(evs_eig1,ev_eig1)
         DD = vector()
         for (i in 1:length(D_Kernels)) {
-            temp = (1+D_Kernels[[i]]) * (S+.Machine$double.eps)
+            temp = (.Machine$double.eps+D_Kernels[[i]]) * (S+.Machine$double.eps)
             DD[i] = mean(apply(temp,MARGIN=2,FUN=sum))
         }
         alphaK0 = umkl(DD)
