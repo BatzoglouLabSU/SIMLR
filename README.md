@@ -16,7 +16,7 @@ The latest draft of thr manuscript related to *SIMLR* can be found as a preprint
 
 **DOWNLOAD**
 
-The R code to run *SIMLR* can be downloaded either from the master (stable version) or from the development (development version) brach, while the Matlab implementation is available from the matlab branch. 
+The R code to run *SIMLR* can be downloaded either from the master (stable version) or from the development (development version) branches, while the Matlab implementation is available from the matlab branch. 
 
 **RUNNING SIMLR**
 
