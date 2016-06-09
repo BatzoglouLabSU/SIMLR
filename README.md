@@ -12,7 +12,7 @@ Single-cell RNA-seq technologies enable high throughput gene expression measurem
 
 **REFERENCE**
 
-The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2016/05/09/052225. 
+The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2016/06/09/052225. 
 
 **DOWNLOAD**
 
@@ -28,9 +28,9 @@ Furthermore, to run the examples, we require the *igraph* package (see http://ig
 
 All these packages, can be installed with the R built-in *install.packages* function. 
 
-2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the src directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB projsplx_R.c*. 
+2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the src directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB -c projsplx_R.c*. 
 
-An OS X pre-compiled file is also provided. 
+An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 
 3) Example datasets. The 4 example datasets are provided in the directory data. 
 
