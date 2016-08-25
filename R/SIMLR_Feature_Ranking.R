@@ -2,14 +2,15 @@
 # X is the data of size nxp
 "SIMLR_Feature_Ranking" <- function( A, X ) {
     
-    yscore = array(NA,c(100,(1:round(nrow(A)*0.9))))
+    yscore = array(NA,c(100,nrow(A)))
     for (i in 1:100) {
         cat(i,"\n")
         index = sample(1:nrow(A))
         index = index[1:round(nrow(A)*0.9)]
         Ai = A[index,index]
         Xi = X[index,]
-        yscore[i,] = (LaplacianScore(Xi,Ai))
+        res = LaplacianScore(Xi,Ai)
+        yscore[i,] = res
     }
 
     yscore = 1 - yscore
@@ -17,18 +18,20 @@
     denominator = (max(as.vector(yscore)) - min(as.vector(yscore)) + .Machine$double.eps)
     glist = numerator / denominator
     res = aggregateRanks(glist)
-    res2 = sort(res$pval,index.return=FALSE)
+    res2 = sort(res$pval,index.return=TRUE)
     
-    return(pval = res2$x, aggR = res$aggR[res2$ix])
+    res = list(pval=res2$x,aggR=res$aggR[res2$ix])
+    
+    return(res)
     
 }
 
 "LaplacianScore" = function( X, W ) {
     
-    nSmp = size(X,2)
-    nFea = size(X,1)
+    nSmp = ncol(X)
+    nFea = nrow(X)
     
-    if(size(W,2) != nSmp) {
+    if(ncol(W) != nFea) {
         stop('W is error')
     }
 
@@ -39,13 +42,13 @@
 
     tmp1 = t(D) %*% X
     
-    DPrime = sum(t((t(X)%*%D))*X)-tmp1*tmp1/sum(diag(D))
+    DPrime = sum(t((t(X)%*%D)))-tmp1*tmp1/sum(diag(D))
     LPrime = sum(t((t(X)%*%L))*X)-tmp1*tmp1/sum(diag(D))
     DPrime[DPrime < 1e-12] = 10000
     Y = LPrime/DPrime
     Y = t(Y)
     
-    return(Y)
+    return(as.vector(Y))
     
 }
 
