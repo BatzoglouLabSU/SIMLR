@@ -137,20 +137,20 @@ end
 pval = NaN;
 
 
-        aggR = rhoScores(rmat, topCutoff);
-        pval = aggR;
-        
+aggR = rhoScores(rmat, topCutoff);
+pval = aggR;
+
 
 end
 
 
 function rho = rhoScores(r, topCutoff)
 %RHOSCORES Compute Rho scores for rank vector
-%   rho = RHOSCORES(r, topCutoff) 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
+%   rho = RHOSCORES(r, topCutoff)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %   INPUTS:
 %       r           vector of normalized rank values on interval [0,1]
-%       topCutoff   a vector of cutoff values used to limit the number of 
+%       topCutoff   a vector of cutoff values used to limit the number of
 %                   elements in the input lists
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %   OUTPUTS:
@@ -159,58 +159,160 @@ function rho = rhoScores(r, topCutoff)
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %   See also CORRECTBETAPVALUES, THRESHOLDBETASCORE, AGGREGATERANKS.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-%   Copyright (2013) Nejc Ilc <nejc.ilc@gmail.com> 
-%   Based on R package RobustRankAggreg written by Raivo Kolde. 
+%   Copyright (2013) Nejc Ilc <nejc.ilc@gmail.com>
+%   Based on R package RobustRankAggreg written by Raivo Kolde.
 %   Reference:
 %     Kolde, R., Laur, S., Adler, P., & Vilo, J. (2012).
 %     Robust rank aggregation for gene list integration and meta-analysis.
 %     Bioinformatics, 28(4), 573-580
-%   
+%
 %   Revision: 1.0 Date: 2013/05/16
 %--------------------------------------------------------------------------
-    if ~exist('topCutoff','var') || isempty(topCutoff)
-        topCutoff = NaN;
-    end
+if ~exist('topCutoff','var') || isempty(topCutoff)
+    topCutoff = NaN;
+end
+
+if isvector(r)
+    rows = 1;
+    r = r(:)'; % force row vector form
+else
+    rows = size(r,1);
+end
+
+rho = nan(rows,1);
+
+for rInd = 1:rows
+    r1 = r(rInd,:);
     
-    if isvector(r)
-        rows = 1;
-        r = r(:)'; % force row vector form
+    if(isnan(topCutoff(1)))
+        x = betaScores(r1);
+        % Correct using Bonferroni method.
+        rho(rInd) = correctBetaPvalues( min(x), sum(~isnan(x)));
     else
-        rows = size(r,1);
+        r1 = r1(~isnan(r1));
+        r1(r1 == 1) = nan;
+        % Consider thresholds in topCutoff vector.
+        x = thresholdBetaScore(r1,[],[],topCutoff);
+        % Correct using Bonferroni method.
+        rho(rInd) = correctBetaPvalues( min(x), length(r1));
     end
-    
-    rho = nan(rows,1);
-    
-    for rInd = 1:rows
-        r1 = r(rInd,:);
-        
-        if(isnan(topCutoff(1)))
-            x = betaScores(r1);
-            % Correct using Bonferroni method.
-            rho(rInd) = correctBetaPvalues( min(x), sum(~isnan(x)));
-        else            
-            r1 = r1(~isnan(r1));
-            r1(r1 == 1) = nan;
-            % Consider thresholds in topCutoff vector.
-            x = thresholdBetaScore(r1,[],[],topCutoff);
-            % Correct using Bonferroni method.
-            rho(rInd) = correctBetaPvalues( min(x), length(r1));
-        end
-    end
+end
 end
 
 function pval = correctBetaPvalues(p,k)
 %CORRECTBETAPVALUES Compute p-values based on Beta distribution
-%   pval = CORRECTBETAPVALUES(p,k) 
+%   pval = CORRECTBETAPVALUES(p,k)
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-%   Copyright (2013) Nejc Ilc <nejc.ilc@gmail.com> 
-%   Based on R package RobustRankAggreg written by Raivo Kolde. 
+%   Copyright (2013) Nejc Ilc <nejc.ilc@gmail.com>
+%   Based on R package RobustRankAggreg written by Raivo Kolde.
 %   Reference:
 %     Kolde, R., Laur, S., Adler, P., & Vilo, J. (2012).
 %     Robust rank aggregation for gene list integration and meta-analysis.
 %     Bioinformatics, 28(4), 573-580
-%   
+%
 %   Revision: 1.0 Date: 2013/05/16
 %--------------------------------------------------------------------------
-    pval = betacdf(p,1,k);
+pval = betacdf(p,1,k);
 end
+
+
+function [Y] = LaplacianScore(X, W)
+%	Usage:
+%	[Y] = LaplacianScore(X, W)
+%
+%	X: Rows of vectors of data points
+%	W: The affinity matrix.
+%	Y: Vector of (1-LaplacianScore) for each feature.
+%      The features with larger y are more important.
+%
+%    Examples:
+%
+%       fea = rand(50,70);
+%       options = [];
+%       options.Metric = 'Cosine';
+%       options.NeighborMode = 'KNN';
+%       options.k = 5;
+%       options.WeightMode = 'Cosine';
+%       W = constructW(fea,options);
+%
+%       LaplacianScore = LaplacianScore(fea,W);
+%       [junk, index] = sort(-LaplacianScore);
+%
+%       newfea = fea(:,index);
+%       %the features in newfea will be sorted based on their importance.
+%
+%	Type "LaplacianScore" for a self-demo.
+%
+% See also constructW
+%
+%Reference:
+%
+%   Xiaofei He, Deng Cai and Partha Niyogi, "Laplacian Score for Feature Selection".
+%   Advances in Neural Information Processing Systems 18 (NIPS 2005),
+%   Vancouver, Canada, 2005.
+%
+%   Deng Cai, 2004/08
+
+
+if nargin == 0, selfdemo; return; end
+
+[nSmp,nFea] = size(X);
+
+if size(W,1) ~= nSmp
+    error('W is error');
+end
+
+D = full(sum(W,2));
+L = W;
+
+allone = ones(nSmp,1);
+
+
+tmp1 = D'*X;
+
+D = sparse(1:nSmp,1:nSmp,D,nSmp,nSmp);
+
+DPrime = sum((X'*D)'.*X)-tmp1.*tmp1/sum(diag(D));
+LPrime = sum((X'*L)'.*X)-tmp1.*tmp1/sum(diag(D));
+
+DPrime(find(DPrime < 1e-12)) = 10000;
+
+Y = LPrime./DPrime;
+Y = Y';
+Y = full(Y);
+
+end
+
+function p = betaScores(r)
+%BETASCORES Compute Beta scores for rank vector
+%   p = BETASCORES(r)
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%   INPUTS:
+%       r   vector of normalized rank values on interval [0,1]
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%   OUTPUTS:
+%       p   a vector of p-values that corresponds to the sorted input
+%           vector. The NaN-s are moved to the end.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%   See also CORRECTBETAPVALUES, THRESHOLDBETASCORE, AGGREGATERANKS.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%   Copyright (2013) Nejc Ilc <nejc.ilc@gmail.com>
+%   Based on R package RobustRankAggreg written by Raivo Kolde.
+%   Reference:
+%     Kolde, R., Laur, S., Adler, P., & Vilo, J. (2012).
+%     Robust rank aggregation for gene list integration and meta-analysis.
+%     Bioinformatics, 28(4), 573-580
+%
+%   Revision: 1.0 Date: 2013/05/16
+%--------------------------------------------------------------------------
+n = sum(~isnan(r));
+p = nan(1,length(r));
+% Sort the values.
+r = sort(r);
+% Get the order statistics and calculates p-values for each of the
+% order statistics. These are based on their expected distribution
+% under the null hypothesis of uniform distribution.
+p(1:n) = betacdf(r(1:n),1:n,n:-1:1);
+end
+
+%---------------------------------------------------

@@ -16,7 +16,7 @@ source("./R/utils.simlr.R")
 source("./R/tsne.R")
 
 # load the C file
-dyn.load("./src/projsplx_R.so")
+dyn.load("./R/projsplx_R.so")
 
 # load the datasets
 load(file="./data/Test_1_mECS.RData")
