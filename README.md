@@ -16,9 +16,9 @@ The latest draft of thr manuscript related to *SIMLR* can be found as a preprint
 
 **DOWNLOAD**
 
-The R code to run *SIMLR* can be downloaded either from the master (stable version) or from the development (development version) branches, while the Matlab implementation is available from the matlab branch. 
+We provide both the R and MATLAB implementations of *SIMLR* in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. 
 
-**RUNNING SIMLR**
+**RUNNING SIMLR R IMPLEMENTATION**
 
 We provide the R code to run *SIMLR* on 4 examples in the script *main_examples.R*. We now present a set of requirements to run the examples. 
 
@@ -28,10 +28,18 @@ Furthermore, to run the examples, we require the *igraph* package (see http://ig
 
 All these packages, can be installed with the R built-in *install.packages* function. 
 
-2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the src directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB -c projsplx_R.c*. 
+2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the R directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB -c projsplx_R.c*. 
 
 An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 
 3) Example datasets. The 4 example datasets are provided in the directory data. 
 
 Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
+
+**RUNNING SIMLR MATLAB IMPLEMENTATION**
+
+We also provide the MATLAB code to run *SIMLR* on 4 examples in the script main_demo.m. 
+
+We make use of external C programs during the computations of *SIMLR*. The code is located in the MATLAB directory in the files *Kbeta.cpp* and *projsplx_c.c*. In order to compite the program, one needs to run on the MATLAB console the commands *mex Kbeta.cpp* and *mex projsplx_R.c*. 
+
+OS X pre-compiled files are also provided. 
