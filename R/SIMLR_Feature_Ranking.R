@@ -2,16 +2,16 @@
 # X is the data of size nxp
 "SIMLR_Feature_Ranking" <- function( A, X ) {
     
-    yscore = array(NA,c(100,ncol(X)))
-    for (i in 1:100) {
-        cat(i,"\n")
+    res = lapply(1:nrow(yscore),FUN=function( x ) {
+        cat(x,"\n")
         index = sample(1:nrow(A))
         index = index[1:round(nrow(A)*0.9)]
         Ai = A[index,index]
         Xi = X[index,]
         res = LaplacianScore(Xi,Ai)
-        yscore[i,] = res
-    }
+        return(res)
+    })
+    yscore = Reduce("rbind",res)
 
     yscore = 1 - yscore
     numerator = (t(yscore) - min(as.vector(yscore)) + .Machine$double.eps)
