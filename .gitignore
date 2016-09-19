@@ -30,3 +30,6 @@ cfg.R
 *.out
 
 *.toc
+/inst/doc/vignette.R
+/inst/doc/vignette.Rnw
+/src/SIMLR.so

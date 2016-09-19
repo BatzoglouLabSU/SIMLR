@@ -1,0 +1,130 @@
+%\VignetteEngine{knitr::knitr}
+
+\documentclass[a4paper, 9pt]{article}
+
+
+<<style-knitr, eval=TRUE, echo=FALSE, results="asis">>=
+BiocStyle::latex()
+@
+
+%% \VignetteIndexEntry{An R Package for todo}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{tcolorbox}
+
+\begin{document}
+
+\title{Using the \Biocpkg{SIMLR} package}
+
+\author{
+Daniele Ramazzotti\footnote{bho} \and
+Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca
+Milano, Italy.}
+}
+
+\date{\today}
+\maketitle
+
+
+\begin{tcolorbox}{\bf Overview.} The \Biocpkg{SIMLR} \R{} package  collects algorithms . \\
+
+\vspace{1.0cm}
+
+
+{\em In this vignette, we will  give an overview of the package by presenting some of the functions that could be most commonly used to arrange a data-analysis pipeline. Advanced example case studies  are available at the tool webpage}
+
+\vspace{1.0cm}
+
+\renewcommand{\arraystretch}{1.5}
+
+\end{tcolorbox}
+
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+concordance = TRUE,
+background = "#f3f3ff"
+)
+@
+
+
+\newpage
+
+\tableofcontents
+
+
+\section{Changelog} 
+
+\begin{itemize}
+\item[1.0] first version;
+\end{itemize}
+
+
+\section{Algorithms and useful links} \label{sec:stuff}
+
+\renewcommand{\arraystretch}{2}
+
+\begin{center}
+\begin{tabular}{l | p{5.0cm} | l  | p{6.0cm}}
+{\bf Acronym} & {\bf Extended name} & {\bf App.} & {\bf Reference}\\ \hline
+
+
+aaa & bbbb & cccc & \href{http://www.google.com}{google}\\ \hline
+
+
+ \end{tabular}
+\end{center}
+
+
+
+
+
+\section{Loading data}
+
+\paragraph{Preliminaries.} 
+
+
+
+<<req>>=
+library(SIMLR)
+data(test)
+@
+
+<<igraph, results='hide'>>=
+library(igraph)
+@
+
+<<example>>=
+set.seed(11111)
+example = SIMLR(X=test$in_X, c=test$n_clust)
+nmi_1 = compare(test$true_labs[,1], example$y$cluster, method="nmi")
+@
+
+<<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
+plot(example$ydata, 
+	col = c(topo.colors(test$n_clust))[test$true_labs[,1]], 
+	xlab = "SIMLR component 1",
+	ylab = "SIMLR component 2",
+	pch = 20,
+	main="SIMILR 2D visualization for Test_1_mECS")
+@
+
+\begin{figure*}[ht]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figure/image-1}
+\end{center}
+\caption{wow!}
+\end{figure*}
+
+
+\section{\Rcode{sessionInfo()}}
+
+<<sessioninfo, results='asis'>>=
+toLatex(sessionInfo())
+@
+
+
+\end{document}

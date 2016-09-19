@@ -1,4 +1,27 @@
-# perform the SIMLR clustering algorithm
+#' perform the SIMLR clustering algorithm
+#' 
+#' @title SIMLR
+#'
+#' @examples
+#' #todo
+#' 
+#' @param X todo
+#' @param c todo
+#' @param no.dim todo
+#' @param k todo
+#' @param if.impute todo
+#' @param normalize todo
+#' @param cores.ratio todo
+#'
+#' @return todo
+#' 
+#' @export SIMLR
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
+#' @importFrom parallel parLapply
+#' @importFrom stats dnorm kmeans pbeta rnorm
+#' @import Matrix
+#' @useDynLib SIMLR projsplx_R
+#'
 "SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
     
     # set any required parameter to the defaults
@@ -7,7 +30,7 @@
     }
     
     # check the if.impute parameter
-    if(if.impute == TRUE) {
+    if (if.impute == TRUE) {
         X = t(X)
         X_zeros = which(X==0,arr.ind=TRUE)
         if(length(X_zeros)>0) {
@@ -20,7 +43,7 @@
     }
     
     # check the normalize parameter
-    if(normalize == TRUE) {
+    if(normalize == TRUE) {
         X = t(X)
         X = X - min(as.vector(X))
         X = X / max(as.vector(X))
