@@ -26,6 +26,6 @@ LazyData: TRUE
 License: GPL-3
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
-biocViews: BiomedicalInformatics
+biocViews: Clustering
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr

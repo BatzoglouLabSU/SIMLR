@@ -33,3 +33,4 @@ cfg.R
 /inst/doc/vignette.R
 /inst/doc/vignette.Rnw
 /src/SIMLR.so
+/src/projsplx_R.o

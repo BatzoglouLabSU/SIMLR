@@ -20,7 +20,7 @@
 #' @importFrom parallel parLapply
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @import Matrix
-#' @useDynLib SIMLR projsplx_R
+#' @useDynLib SIMLR, projsplx_R, .registration = TRUE
 #'
 "SIMLR" <- function( X, 
     c,
