@@ -16,6 +16,7 @@ Suggests:
     BiocStyle,
     testthat,
     knitr,
+    igraph,
 Title: 
     Title here
 Description:

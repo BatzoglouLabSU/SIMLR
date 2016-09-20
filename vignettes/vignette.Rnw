@@ -105,11 +105,11 @@ nmi_1 = compare(test$true_labs[,1], example$y$cluster, method="nmi")
 
 <<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
 plot(example$ydata, 
-	col = c(topo.colors(test$n_clust))[test$true_labs[,1]], 
-	xlab = "SIMLR component 1",
-	ylab = "SIMLR component 2",
-	pch = 20,
-	main="SIMILR 2D visualization for Test_1_mECS")
+    col = c(topo.colors(test$n_clust))[test$true_labs[,1]], 
+    xlab = "SIMLR component 1",
+    ylab = "SIMLR component 2",
+    pch = 20,
+    main="SIMILR 2D visualization for Test_1_mECS")
 @
 
 \begin{figure*}[ht]

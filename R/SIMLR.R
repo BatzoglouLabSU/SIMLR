@@ -22,7 +22,13 @@
 #' @import Matrix
 #' @useDynLib SIMLR projsplx_R
 #'
-"SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
+"SIMLR" <- function( X, 
+    c,
+    no.dim = NA,
+    k = 10,
+    if.impute = FALSE,
+    normalize = FALSE,
+    cores.ratio = 1 ) {
     
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
@@ -74,7 +80,9 @@
     distX = distX / length(D_Kernels)
     
     # sort distX for rows
-    res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
+    res = apply(distX,
+        MARGIN=1,
+        FUN=function(x) return(sort(x,index.return = TRUE)))
     distX1 = array(0,c(nrow(distX),ncol(distX)))
     idx = array(0,c(nrow(distX),ncol(distX)))
     for(i in 1:nrow(distX)) {
@@ -87,11 +95,17 @@
     rr = 0.5 * (k * di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum))
     id = idx[,2:(k+2)]
     
-    numerator = (apply(array(0,c(length(di[,k+1]),dim(di)[2])),MARGIN=2,FUN=function(x) {x=di[,k+1]}) - di)
+    numerator = (apply(array(0,c(length(di[,k+1]),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=di[,k+1]}) - di)
     temp = (k*di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum) + .Machine$double.eps)
-    denominator = apply(array(0,c(length(temp),dim(di)[2])),MARGIN=2,FUN=function(x) {x=temp})
+    denominator = apply(array(0,c(length(temp),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=temp})
     temp = numerator / denominator
-    a = apply(array(0,c(length(t(1:num)),dim(di)[2])),MARGIN=2,FUN=function(x) {x=1:num})
+    a = apply(array(0,c(length(t(1:num)),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=1:num})
     A[cbind(as.vector(a),as.vector(id))] = as.vector(temp)
     if(r<=0) {
         r = mean(rr)
@@ -185,7 +199,9 @@
         }
         
         # sort distX for rows
-        res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
+        res = apply(distX,
+            MARGIN = 1,
+            FUN=function(x) return(sort(x,index.return = TRUE)))
         distX1 = array(0,c(nrow(distX),ncol(distX)))
         idx = array(0,c(nrow(distX),ncol(distX)))
         for(i in 1:nrow(distX)) {
