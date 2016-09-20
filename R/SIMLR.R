@@ -3,7 +3,7 @@
 #' @title SIMLR
 #'
 #' @examples
-#' #todo
+#' SIMLR(X=test$in_X, c=test$n_clust)
 #' 
 #' @param X todo
 #' @param c todo

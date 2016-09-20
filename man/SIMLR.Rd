@@ -29,7 +29,7 @@ todo
 perform the SIMLR clustering algorithm
 }
 \examples{
-#todo
+SIMLR(X=test$in_X, c=test$n_clust)
 
 }
 
