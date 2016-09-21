@@ -8,22 +8,22 @@ SIMLR(X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE,
   cores.ratio = 1)
 }
 \arguments{
-\item{X}{todo}
+\item{X}{input data of gene expression measurements of individual cells}
 
-\item{c}{todo}
+\item{c}{number of clusters}
 
-\item{no.dim}{todo}
+\item{no.dim}{number of dimensions}
 
-\item{k}{todo}
+\item{k}{tuning parameter}
 
-\item{if.impute}{todo}
+\item{if.impute}{should I traspose the input data?}
 
-\item{normalize}{todo}
+\item{normalize}{should I normalize the input data?}
 
-\item{cores.ratio}{todo}
+\item{cores.ratio}{ratio of the number of cores to be used when computing the multi-kernel}
 }
 \value{
-todo
+clusters the cells based on SIMLR and their similarities
 }
 \description{
 perform the SIMLR clustering algorithm
