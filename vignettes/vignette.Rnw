@@ -81,7 +81,7 @@ background = "#f3f3ff"
 \renewcommand{\arraystretch}{2}
 
 \begin{center}
-\begin{tabular}{l | p{5.0cm} | l  | p{6.0cm}}
+\begin{tabular}{| l | p{6.0cm} | l |}
 {\bf Acronym} & {\bf Extended name} & {\bf Reference}\\ \hline
 
 

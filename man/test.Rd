@@ -4,17 +4,14 @@
 \name{test}
 \alias{test}
 \title{test dataset}
-\format{todo data}
+\format{gene expression measurements of individual cells}
 \source{
-todo
+Buettner, Florian, et al. "Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells." Nature biotechnology 33.2 (2015): 155-160.
 }
 \usage{
 data(test)
 }
 \description{
-This dataset a todo
-}
-\author{
-Daniele Ramazzotti
+example dataset to test SIMRL from the work by Buettner, Florian, et al.
 }
 
