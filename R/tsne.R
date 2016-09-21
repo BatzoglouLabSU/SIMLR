@@ -1,3 +1,4 @@
+# perform T-SNE
 "tsne" <- function(X, initial_config = NULL, k = 2, max_iter = 1000, min_cost = 0, epoch = 100) {
     
     cat("Performing t-SNE.\n")

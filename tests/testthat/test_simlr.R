@@ -1,4 +1,3 @@
-
 library(igraph)
 set.seed(11111)
 example = SIMLR(X=test$in_X, c=test$n_clust)

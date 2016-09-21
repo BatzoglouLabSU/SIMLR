@@ -1,8 +1,20 @@
-# A is the similarity matrix by SIMLR
-# X is the data of size nxp
+#' perform the SIMLR feature ranking algorithm
+#' 
+#' @title SIMLR Feature Ranking
+#'
+#' @examples
+#' SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+#' 
+#' @param A similarity matrix by SIMLR
+#' @param X input data of gene expression measurements of individual cells
+#'
+#' @return pvalues and ranking ordering
+#' 
+#' @export SIMLR_Feature_Ranking
+#'
 "SIMLR_Feature_Ranking" <- function( A, X ) {
     
-    res = lapply(1:nrow(yscore),FUN=function( x ) {
+    res = lapply(1:100,FUN=function( x ) {
         cat(x,"\n")
         index = sample(1:nrow(A))
         index = index[1:round(nrow(A)*0.9)]

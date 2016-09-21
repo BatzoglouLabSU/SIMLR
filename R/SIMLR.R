@@ -5,15 +5,15 @@
 #' @examples
 #' SIMLR(X=test$in_X, c=test$n_clust)
 #' 
-#' @param X todo
-#' @param c todo
-#' @param no.dim todo
-#' @param k todo
-#' @param if.impute todo
-#' @param normalize todo
-#' @param cores.ratio todo
+#' @param X input data of gene expression measurements of individual cells
+#' @param c number of clusters
+#' @param no.dim number of dimensions
+#' @param k tuning parameter
+#' @param if.impute should I traspose the input data?
+#' @param normalize should I normalize the input data?
+#' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
 #'
-#' @return todo
+#' @return clusters the cells based on SIMLR and their similarities
 #' 
 #' @export SIMLR
 #' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
