@@ -23,7 +23,7 @@ BiocStyle::latex()
 	Serafim Batzoglou\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
 	Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca
 	Milano, Italy.} \and
-	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
+	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and \\
 	Daniele Ramazzotti\footnote{Department of Pathology, Stanford University, Stanford, CA , USA.} \and
 	Bo Wang\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
 	Junjie Zhu\footnote{Department of Electrical Engineering, Stanford University, Stanford, CA , USA.}
@@ -72,7 +72,7 @@ background = "#f3f3ff"
 \section{Changelog} 
 
 \begin{itemize}
-\item[1.0] first version;
+\item[1.0] implements SIMLR and SIMLR feature ranking algorithms. 
 \end{itemize}
 
 
@@ -82,10 +82,10 @@ background = "#f3f3ff"
 
 \begin{center}
 \begin{tabular}{l | p{5.0cm} | l  | p{6.0cm}}
-{\bf Acronym} & {\bf Extended name} & {\bf App.} & {\bf Reference}\\ \hline
+{\bf Acronym} & {\bf Extended name} & {\bf Reference}\\ \hline
 
 
-aaa & bbbb & cccc & \href{http://www.google.com}{google}\\ \hline
+SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & cccc & \href{http://biorxiv.org/content/early/2016/06/09/052225}{Paper}\\ \hline
 
 
  \end{tabular}
@@ -95,26 +95,36 @@ aaa & bbbb & cccc & \href{http://www.google.com}{google}\\ \hline
 
 
 
-\section{Loading data}
+\section{Using SIMLR}
 
-\paragraph{Preliminaries.} 
-
-
+We first load the data provided as an example in the package. 
 
 <<req>>=
 library(SIMLR)
 data(test)
 @
 
+The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering. 
+
 <<igraph, results='hide'>>=
 library(igraph)
 @
 
-<<example>>=
+We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. "Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells." Nature biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 cell populations, i.e., clusters. 
+
+<<SIMLR_run>>=
 set.seed(11111)
 example = SIMLR(X=test$in_X, c=test$n_clust)
-nmi_1 = compare(test$true_labs[,1], example$y$cluster, method="nmi")
 @
+
+We now compute the normalized mutual information between the inferred clusters by SIMLR and the true one. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance. 
+
+<<nmi_performance>>=
+nmi_1 = compare(test$true_labs[,1], example$y$cluster, method="nmi")
+print(nmi_1)
+@
+
+As a further understanding of the results, we now visualize the cell populations in a plot. 
 
 <<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
 plot(example$ydata, 
@@ -129,8 +139,16 @@ plot(example$ydata,
 \begin{center}
 \includegraphics[width=0.5\textwidth]{figure/image-1}
 \end{center}
-\caption{wow!}
+\caption{Visualization of the 3 cell populations retrieved by SIMLR.}
 \end{figure*}
+
+
+We finally run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
+
+<<SIMLR_Feature_Ranking_run>>=
+ranks = SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+head(ranks)
+@
 
 
 \section{\Rcode{sessionInfo()}}
