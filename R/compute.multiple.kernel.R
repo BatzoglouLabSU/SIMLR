@@ -29,7 +29,7 @@
 
     cl = makeCluster(cores)
     
-    clusterEvalQ(cl, {library(Matrix)})
+    clusterEvalQ(cl, library(Matrix))
     
     D_Kernels = list()
     D_Kernels = unlist(parLapply(cl,1:length(allk),fun=function(l,x_fun=x,Diff_sort_fun=Diff_sort,allk_fun=allk,

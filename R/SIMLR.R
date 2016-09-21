@@ -1,5 +1,34 @@
-# perform the SIMLR clustering algorithm
-"SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
+#' perform the SIMLR clustering algorithm
+#' 
+#' @title SIMLR
+#'
+#' @examples
+#' SIMLR(X=test$in_X, c=test$n_clust)
+#' 
+#' @param X input data of gene expression measurements of individual cells
+#' @param c number of clusters
+#' @param no.dim number of dimensions
+#' @param k tuning parameter
+#' @param if.impute should I traspose the input data?
+#' @param normalize should I normalize the input data?
+#' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
+#'
+#' @return clusters the cells based on SIMLR and their similarities
+#' 
+#' @export SIMLR
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
+#' @importFrom parallel parLapply
+#' @importFrom stats dnorm kmeans pbeta rnorm
+#' @import Matrix
+#' @useDynLib SIMLR, projsplx_R, .registration = TRUE
+#'
+"SIMLR" <- function( X, 
+    c,
+    no.dim = NA,
+    k = 10,
+    if.impute = FALSE,
+    normalize = FALSE,
+    cores.ratio = 1 ) {
     
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
@@ -7,7 +36,7 @@
     }
     
     # check the if.impute parameter
-    if(if.impute == TRUE) {
+    if (if.impute == TRUE) {
         X = t(X)
         X_zeros = which(X==0,arr.ind=TRUE)
         if(length(X_zeros)>0) {
@@ -20,7 +49,7 @@
     }
     
     # check the normalize parameter
-    if(normalize == TRUE) {
+    if(normalize == TRUE) {
         X = t(X)
         X = X - min(as.vector(X))
         X = X / max(as.vector(X))
@@ -51,7 +80,9 @@
     distX = distX / length(D_Kernels)
     
     # sort distX for rows
-    res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
+    res = apply(distX,
+        MARGIN=1,
+        FUN=function(x) return(sort(x,index.return = TRUE)))
     distX1 = array(0,c(nrow(distX),ncol(distX)))
     idx = array(0,c(nrow(distX),ncol(distX)))
     for(i in 1:nrow(distX)) {
@@ -64,11 +95,17 @@
     rr = 0.5 * (k * di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum))
     id = idx[,2:(k+2)]
     
-    numerator = (apply(array(0,c(length(di[,k+1]),dim(di)[2])),MARGIN=2,FUN=function(x) {x=di[,k+1]}) - di)
+    numerator = (apply(array(0,c(length(di[,k+1]),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=di[,k+1]}) - di)
     temp = (k*di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum) + .Machine$double.eps)
-    denominator = apply(array(0,c(length(temp),dim(di)[2])),MARGIN=2,FUN=function(x) {x=temp})
+    denominator = apply(array(0,c(length(temp),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=temp})
     temp = numerator / denominator
-    a = apply(array(0,c(length(t(1:num)),dim(di)[2])),MARGIN=2,FUN=function(x) {x=1:num})
+    a = apply(array(0,c(length(t(1:num)),dim(di)[2])),
+        MARGIN = 2,
+        FUN = function(x) {x=1:num})
     A[cbind(as.vector(a),as.vector(id))] = as.vector(temp)
     if(r<=0) {
         r = mean(rr)
@@ -162,7 +199,9 @@
         }
         
         # sort distX for rows
-        res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
+        res = apply(distX,
+            MARGIN = 1,
+            FUN=function(x) return(sort(x,index.return = TRUE)))
         distX1 = array(0,c(nrow(distX),ncol(distX)))
         idx = array(0,c(nrow(distX),ncol(distX)))
         for(i in 1:nrow(distX)) {
