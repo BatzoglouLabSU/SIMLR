@@ -23,7 +23,7 @@ BiocStyle::latex()
 	Serafim Batzoglou\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
 	Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca
 	Milano, Italy.} \and
-	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and \\
+	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
 	Daniele Ramazzotti\footnote{Department of Pathology, Stanford University, Stanford, CA , USA.} \and
 	Bo Wang\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
 	Junjie Zhu\footnote{Department of Electrical Engineering, Stanford University, Stanford, CA , USA.}
@@ -85,10 +85,10 @@ background = "#f3f3ff"
 {\bf Acronym} & {\bf Extended name} & {\bf Reference}\\ \hline
 
 
-SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & cccc & \href{http://biorxiv.org/content/early/2016/06/09/052225}{Paper}\\ \hline
+SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & \href{http://biorxiv.org/content/early/2016/06/09/052225}{Paper}\\ \hline
 
 
- \end{tabular}
+\end{tabular}
 \end{center}
 
 
