@@ -6,8 +6,4 @@
 src/*.o
 src/*.so
 LICENSE.md
-Test_1_mECS.RData
-Test_2_Kolod.RData
-Test_3_Pollen.RData
-Test_4_Usoskin.RData
-R_main_demo.R
+.travis.yml
