@@ -3,7 +3,7 @@
 #' @title SIMLR
 #'
 #' @examples
-#' SIMLR(X=test$in_X, c=test$n_clust)
+#' SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
 #' 
 #' @param X input data of gene expression measurements of individual cells
 #' @param c number of clusters

@@ -1,7 +1,7 @@
 library(igraph)
 set.seed(11111)
-example = SIMLR(X=test$in_X, c=test$n_clust)
-ranks = SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+example = SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
+ranks = SIMLR_Feature_Ranking(A = test$results$S, X = test$in_X)
 
 context("SIMLR")
 test_that("structure of output is compliant", {

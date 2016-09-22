@@ -114,7 +114,7 @@ We now run SIMLR as an example on an input dataset from Buettner, Florian, et al
 
 <<SIMLR_run, warning=FALSE>>=
 set.seed(11111)
-example = SIMLR(X=test$in_X, c=test$n_clust)
+example = SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
 @
 
 We now compute the normalized mutual information between the inferred clusters by SIMLR and the true one. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance. 
