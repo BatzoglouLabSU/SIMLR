@@ -6,7 +6,6 @@
 src/*.o
 src/*.so
 LICENSE.md
-LICENSE
 Test_1_mECS.RData
 Test_2_Kolod.RData
 Test_3_Pollen.RData

@@ -106,13 +106,13 @@ data(test)
 
 The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering. 
 
-<<igraph, results='hide'>>=
+<<igraph, results='hide', message=FALSE>>=
 library(igraph)
 @
 
 We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. "Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells." Nature biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 cell populations, i.e., clusters. 
 
-<<SIMLR_run>>=
+<<SIMLR_run, warning=FALSE>>=
 set.seed(11111)
 example = SIMLR(X=test$in_X, c=test$n_clust)
 @
@@ -145,11 +145,14 @@ plot(example$ydata,
 
 We finally run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
 
-<<SIMLR_Feature_Ranking_run>>=
+<<SIMLR_Feature_Ranking_run, results='hide'>>=
 ranks = SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
-head(ranks)
 @
 
+<<head-ranks>>=
+head(ranks$pval)
+head(ranks$aggR)
+@
 
 \section{\Rcode{sessionInfo()}}
 
