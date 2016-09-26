@@ -1,14 +1,14 @@
 Package: SIMLR
-Version: 0.99.0
-Date: 2016-09-21
+Version: 0.99.1
+Date: 2016-09-26
 Title: SIMLR: Single-cell Interpretation via Multi-kernel LeaRning
-Authors@R: c(person("Serafim", "Batzoglou", role=c("ctb")),
+Authors@R: c(person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
+             person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
              person("Luca", "De Sano", role=c("aut"), email="l.desano@campus.unimib.it"),
+             person("Junjie", "Zhu", role=c("ctb")),
              person("Emma", "Pierson", role=c("ctb")),
-             person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@stanford.edu"),
-             person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
-             person("Junjie", "Zhu", role=c("ctb")))
-Maintainer: Daniele Ramazzotti <daniele.ramazzotti@stanford.edu>
+             person("Serafim", "Batzoglou", role=c("ctb")))
+Maintainer: Daniele Ramazzotti <daniele.ramazzotti@yahoo.com>
 Depends:
     R (>= 3.3),
 Imports:
