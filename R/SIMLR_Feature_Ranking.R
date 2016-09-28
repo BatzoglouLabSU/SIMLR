@@ -1,19 +1,25 @@
-#' perform the SIMLR feature ranking algorithm
+#' perform the SIMLR feature ranking algorithm. This takes as input the original 
+#' input data and the corresponding similarity matrix computed by SIMLR
 #' 
 #' @title SIMLR Feature Ranking
 #'
 #' @examples
 #' SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 #' 
-#' @param A similarity matrix by SIMLR
-#' @param X input data of gene expression measurements of individual cells
+#' @param A an (n x n) similarity matrix by SIMLR
+#' @param X an (m x n) data matrix of gene expression measurements of individual cells
 #'
-#' @return pvalues and ranking ordering
+#' @return a list of 2 elements: pvalues and ranking ordering over the n covariates 
+#' as estimated by the method
 #' 
 #' @export SIMLR_Feature_Ranking
 #'
 "SIMLR_Feature_Ranking" <- function( A, X ) {
     
+    # traspose X
+    X = t(X)
+    
+    # start the computation
     res = lapply(1:100,FUN=function( x ) {
         cat(x,"\n")
         index = sample(1:nrow(A))

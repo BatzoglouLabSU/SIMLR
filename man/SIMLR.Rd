@@ -8,9 +8,9 @@ SIMLR(X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE,
   cores.ratio = 1)
 }
 \arguments{
-\item{X}{input data of gene expression measurements of individual cells}
+\item{X}{an (m x n) data matrix of gene expression measurements of individual cells}
 
-\item{c}{number of clusters}
+\item{c}{number of clusters to be estimated over X}
 
 \item{no.dim}{number of dimensions}
 
@@ -24,6 +24,16 @@ SIMLR(X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE,
 }
 \value{
 clusters the cells based on SIMLR and their similarities
+
+list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
+	y = results of k-means clusterings,
+ 	S = similarities ccomputed by SIMLR, 
+ 	F = results from network diffiusion, 
+ 	ydata = data referring the the results by k-means,
+ 	alphaK = clustering coefficients,
+ 	execution.time = execution time of the present run,
+ 	converge = iterative convergence values by T-SNE,
+ 	LF = parameters of the clustering
 }
 \description{
 perform the SIMLR clustering algorithm
