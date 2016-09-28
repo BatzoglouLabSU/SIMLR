@@ -1,16 +1,22 @@
 library(igraph)
 set.seed(11111)
-example = SIMLR(X=test$in_X, c=test$n_clust)
 
+ranks = SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
+normal = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
+if.impute = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0, if.impute = TRUE)
+normalise = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0, normalize = TRUE)
 
 context("SIMLR")
-test_that("structure of output", {
-	expect_equal(names(example), c("y", "S", "F", "ydata",
+test_that("structure of output is compliant", {
+	expect_equal(names(normal), c("y", "S", "F", "ydata",
+		"alphaK", "execution.time", "converge", "LF"))
+	expect_equal(names(if.impute), c("y", "S", "F", "ydata",
+		"alphaK", "execution.time", "converge", "LF"))
+	expect_equal(names(normalise), c("y", "S", "F", "ydata",
 		"alphaK", "execution.time", "converge", "LF"))
 })
 
-test_that("test2", {
-	expect_equal(
-		round(compare(test$true_labs[,1], example$y$cluster, method="nmi"), 2), 
-		round(0.888298, 2))
+context("SIMLR ranking")
+test_that("structure of output is compliant", {
+	expect_equal(names(ranks), c("pval", "aggR"))
 })

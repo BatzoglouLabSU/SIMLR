@@ -1,0 +1,19 @@
+language: r
+r: bioc-release
+r: bioc-devel
+
+cache: packages
+
+before_install:    
+  - tlmgr install tcolorbox
+
+# blocklist
+branches:
+  except:
+  - SIMLR
+
+# codecov integration
+r_github_packages:
+  - jimhester/covr
+after_success:
+  - Rscript -e 'library(covr);codecov()'
