@@ -2,6 +2,10 @@
 # X is the data of size nxp
 "SIMLR_Feature_Ranking" <- function( A, X ) {
     
+    # traspose X
+    X = t(X)
+    
+    # start the computation
     res = lapply(1:100,FUN=function( x ) {
         cat(x,"\n")
         index = sample(1:nrow(A))
