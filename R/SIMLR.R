@@ -3,7 +3,7 @@
 #' @title SIMLR
 #'
 #' @examples
-#' SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
+#' SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 #' 
 #' @param X input data of gene expression measurements of individual cells
 #' @param c number of clusters
@@ -20,7 +20,7 @@
 #' @importFrom parallel parLapply
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @import Matrix
-#' @useDynLib SIMLR, projsplx_R, .registration = TRUE
+#' @useDynLib SIMLR projsplx
 #'
 "SIMLR" <- function( X, 
     c,
@@ -148,7 +148,7 @@
         # call the c function for the optimization
         c_input = -t(ad)
         c_output = t(ad)
-        ad = t(.Call("projsplx_R",c_input,c_output))
+        ad = t(.Call("projsplx", c_input, c_output))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0

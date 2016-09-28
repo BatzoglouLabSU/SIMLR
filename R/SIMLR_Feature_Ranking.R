@@ -3,7 +3,7 @@
 #' @title SIMLR Feature Ranking
 #'
 #' @examples
-#' SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+#' SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 #' 
 #' @param A similarity matrix by SIMLR
 #' @param X input data of gene expression measurements of individual cells

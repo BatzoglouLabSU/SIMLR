@@ -18,7 +18,7 @@ pvalues and ranking ordering
 perform the SIMLR feature ranking algorithm
 }
 \examples{
-SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 
 }
 

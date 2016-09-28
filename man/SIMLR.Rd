@@ -29,7 +29,7 @@ clusters the cells based on SIMLR and their similarities
 perform the SIMLR clustering algorithm
 }
 \examples{
-SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
+SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 
 }
 

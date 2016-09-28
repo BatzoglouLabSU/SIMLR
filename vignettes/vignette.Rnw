@@ -101,7 +101,7 @@ We first load the data provided as an example in the package.
 
 <<req>>=
 library(SIMLR)
-data(test)
+data(BuettnerFlorian)
 @
 
 The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering. 
@@ -114,13 +114,13 @@ We now run SIMLR as an example on an input dataset from Buettner, Florian, et al
 
 <<SIMLR_run, warning=FALSE>>=
 set.seed(11111)
-example = SIMLR(X = test$in_X, c = test$n_clust, cores.ratio = 0)
+example = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 @
 
 We now compute the normalized mutual information between the inferred clusters by SIMLR and the true one. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance. 
 
 <<nmi_performance>>=
-nmi_1 = compare(test$true_labs[,1], example$y$cluster, method="nmi")
+nmi_1 = compare(BuettnerFlorian$true_labs[,1], example$y$cluster, method="nmi")
 print(nmi_1)
 @
 
@@ -128,7 +128,7 @@ As a further understanding of the results, we now visualize the cell populations
 
 <<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
 plot(example$ydata, 
-    col = c(topo.colors(test$n_clust))[test$true_labs[,1]], 
+    col = c(topo.colors(BuettnerFlorian$n_clust))[BuettnerFlorian$true_labs[,1]], 
     xlab = "SIMLR component 1",
     ylab = "SIMLR component 2",
     pch = 20,
@@ -146,7 +146,7 @@ plot(example$ydata,
 We finally run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
 
 <<SIMLR_Feature_Ranking_run, results='hide'>>=
-ranks = SIMLR_Feature_Ranking(A=test$results$S,X=test$in_X)
+ranks = SIMLR_Feature_Ranking(A=BuettnerFlorian$results$S,X=BuettnerFlorian$in_X)
 @
 
 <<head-ranks>>=

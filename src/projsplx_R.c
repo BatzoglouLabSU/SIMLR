@@ -1,8 +1,20 @@
-#include <R.h>
-#include <Rmath.h>
 #include <Rinternals.h>
+#include <Rdefines.h>
+#include <Rmath.h>
+#include <R_ext/Rdynload.h>
 
-SEXP projsplx_R(SEXP y, SEXP x)
+SEXP projsplx(SEXP y, SEXP x);
+
+static const R_CallMethodDef callMethods[]  = {
+    {"projsplx", (DL_FUNC)&projsplx, 2},
+    {NULL, NULL, 0}
+};
+
+void R_init_SIMLR(DllInfo *info) {
+    R_registerRoutines(info, NULL, callMethods, NULL, NULL);
+}
+
+SEXP projsplx(SEXP y, SEXP x)
 {
 
     int m,n,j,npos,ft;
