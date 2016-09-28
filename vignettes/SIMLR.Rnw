@@ -20,13 +20,13 @@ BiocStyle::latex()
 \title{Using the \Biocpkg{SIMLR} package}
 
 \author{
-	Serafim Batzoglou\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
-	Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca
-	Milano, Italy.} \and
-	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
-	Daniele Ramazzotti\footnote{Department of Pathology, Stanford University, Stanford, CA , USA.} \and
 	Bo Wang\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
-	Junjie Zhu\footnote{Department of Electrical Engineering, Stanford University, Stanford, CA , USA.}
+	Daniele Ramazzotti\footnote{Department of Pathology, Stanford University, Stanford, CA , USA.} \and
+	Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca 
+	Milano, Italy.} \and
+	Junjie Zhu\footnote{Department of Electrical Engineering, Stanford University, Stanford, CA , USA.} \and
+	Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
+	Serafim Batzoglou\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.}
 }
 
 \date{\today}

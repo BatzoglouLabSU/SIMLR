@@ -5,8 +5,8 @@
 #' @examples
 #' SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 #' 
-#' @param X input data of gene expression measurements of individual cells
-#' @param c number of clusters
+#' @param X an (m x n) data matrix of gene expression measurements of individual cells
+#' @param c number of clusters to be estimated over X
 #' @param no.dim number of dimensions
 #' @param k tuning parameter
 #' @param if.impute should I traspose the input data?
@@ -14,6 +14,16 @@
 #' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
 #'
 #' @return clusters the cells based on SIMLR and their similarities
+ 
+#' @return list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
+#'		y = results of k-means clusterings,
+#'  	S = similarities ccomputed by SIMLR, 
+#'  	F = results from network diffiusion, 
+#'  	ydata = data referring the the results by k-means,
+#'  	alphaK = clustering coefficients,
+#'  	execution.time = execution time of the present run,
+#'  	converge = iterative convergence values by T-SNE,
+#'  	LF = parameters of the clustering
 #' 
 #' @export SIMLR
 #' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
