@@ -1,5 +1,5 @@
 Package: SIMLR
-Version: 0.99.3
+Version: 0.99.4
 Date: 2016-09-28
 Title: SIMLR: Single-cell Interpretation via Multi-kernel LeaRning
 Authors@R: c(person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
@@ -15,12 +15,14 @@ Imports:
     parallel,
     Matrix,
     stats,
+    methods,
 Suggests:
     BiocGenerics,
     BiocStyle,
     testthat,
     knitr,
     igraph,
+    scran,
 Title: 
     SIMLR: Single-cell Interpretation via Multi-kernel LeaRning
 Description:
@@ -30,6 +32,6 @@ LazyData: TRUE
 License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
-biocViews: Clustering
+biocViews: Clustering, GeneExpression, Sequencing, SingleCell
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
