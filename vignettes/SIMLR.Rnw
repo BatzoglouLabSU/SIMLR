@@ -144,7 +144,7 @@ plot(example$ydata,
 
 SIMRL supports SCESet objects. We now create an example object and then run SIMLR on it.
 
-<<sceset>>=
+<<sceset, message=FALSE, warning=FALSE>>=
 library(scran)
 ncells = 100
 ngenes = 50
