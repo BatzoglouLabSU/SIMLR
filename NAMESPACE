@@ -3,6 +3,7 @@
 export(SIMLR)
 export(SIMLR_Feature_Ranking)
 import(Matrix)
+importFrom(methods,is)
 importFrom(parallel,clusterEvalQ)
 importFrom(parallel,detectCores)
 importFrom(parallel,makeCluster)

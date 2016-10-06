@@ -142,6 +142,19 @@ plot(example$ydata,
 \caption{Visualization of the 3 cell populations retrieved by SIMLR.}
 \end{figure*}
 
+SIMRL supports SCESet objects. We now create an example object and then run SIMLR on it.
+
+<<sceset, message=FALSE, warning=FALSE>>=
+library(scran)
+ncells = 100
+ngenes = 50
+mu <- 2^runif(ngenes, 3, 10)
+gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
+rownames(gene.counts) = paste0("X", seq_len(ngenes))
+sce = newSCESet(countData=data.frame(gene.counts))
+output = SIMLR(X = sce, c = 8, cores.ratio = 0)
+@
+
 
 We finally run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
 

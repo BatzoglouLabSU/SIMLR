@@ -5,7 +5,17 @@
 #' @examples
 #' SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 #' 
-#' @param X an (m x n) data matrix of gene expression measurements of individual cells
+#' library(scran)
+#' ncells = 50
+#' ngenes = 25
+#' mu <- 2^runif(ngenes, 3, 10)
+#' gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
+#' rownames(gene.counts) = paste0("X", seq_len(ngenes))
+#' sce = newSCESet(countData=data.frame(gene.counts))
+#' output = SIMLR(X = sce, c = 8, cores.ratio = 0)
+#' 
+#' @param X an (m x n) data matrix of gene expression measurements of individual cells or
+#' and object of class SCESet
 #' @param c number of clusters to be estimated over X
 #' @param no.dim number of dimensions
 #' @param k tuning parameter
@@ -29,6 +39,7 @@
 #' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
 #' @importFrom parallel parLapply
 #' @importFrom stats dnorm kmeans pbeta rnorm
+#' @importFrom methods is
 #' @import Matrix
 #' @useDynLib SIMLR projsplx
 #'
@@ -39,7 +50,13 @@
     if.impute = FALSE,
     normalize = FALSE,
     cores.ratio = 1 ) {
-    
+
+    # convert SCESet    
+    if (is(X, "SCESet")) {
+        cat("X is and SCESet, converting to input matrix.\n")
+        X = X@assayData$exprs
+    }
+
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
         no.dim = c
