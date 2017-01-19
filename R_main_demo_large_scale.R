@@ -12,8 +12,8 @@ library(grDevices)
 
 # load the SIMLR R package
 source("./R/SIMLR_Large_Scale.R")
-source("./R/network.diffusion.R")
 source("./R/utils.simlr.large.scale.R")
+source("./R/utils.simlr.R")
 
 # load the C file
 dyn.load("./R/projsplx_R.so")

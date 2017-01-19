@@ -27,7 +27,7 @@
     
     res = list()
     res$val = t(matrix(abs(val),nrow=n,ncol=dim(xx)[2]))
-    res$ind = ind + 1
+    res$ind = t(ind+1)
     
     return(res)
     
@@ -71,10 +71,40 @@
 "L2_distance_large_scale" <- function( a, b ) {
     
     I = matrix(rep(1:dim(b)[1],dim(b)[2]),nrow=dim(b)[1],ncol=dim(b)[2])
-    temp = apply((F[as.vector(I),]-F[b,])^2,MARGIN=2,FUN=sum)
+    temp = as.vector(distance(i=as.vector((I-1)),j=as.vector((b-1)),x=t(a),distance_method="Euclidean"))
     
-    d = matrix(temp,nrow=dim(b)[1],ncol=dim(b)[1])
+    d = t(matrix(temp,nrow=dim(b)[2],ncol=dim(b)[1]))
     
     return(d)
+    
+}
+
+# normalizes a symmetric kernel for large scale
+"dn_large_scale" = function( w, type ) {
+    
+    # compute the sum of any column
+    D = apply(w,MARGIN=1,FUN=sum)
+    
+    # type "ave" returns D^-1*W
+    if(type=="ave") {
+        D = 1 / D
+        D_temp = matrix(0,nrow=length(D),ncol=length(D))
+        D_temp[cbind(1:length(D),1:length(D))] = D
+        D = D_temp
+        wn = D %*% w
+    }
+    # type "gph" returns D^-1/2*W*D^-1/2
+    else if(type=="gph") {
+        D = 1 / sqrt(D)
+        D_temp = matrix(0,nrow=length(D),ncol=length(D))
+        D_temp[cbind(1:length(D),1:length(D))] = D
+        D = D_temp
+        wn = D %*% (w %*% D)
+    }
+    else {
+        stop("Invalid type!")
+    }
+    
+    return(wn)
     
 }

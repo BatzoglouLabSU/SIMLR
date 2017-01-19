@@ -76,9 +76,9 @@
     cat("Performing the iterative procedure ",NITER," times.\n")
     
     # compute dn
-    S0 = dn(S0,'ave')
+    S0 = dn_large_scale(S0,'ave')
     
-    S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)),nrow=nrow(ind),ncol=ncol(ind))),j=as.vector(ind),x=S0,symmetric=TRUE)
+    S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
     eig_res = eigs_sym(S0_sparse,c)
     F_eig = eig_res$vectors
     eig_res = eig_res$values
@@ -103,13 +103,14 @@
         ad = dn(S0,'ave')
         S0 = beta * S0 + (1 - beta) * ad
         
-        S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)),nrow=nrow(ind),ncol=ncol(ind))),j=as.vector(ind),x=S0,symmetric=TRUE)
+        S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
         eig_res = eigs_sym(S0_sparse,c)
         F_eig = eig_res$vectors
         eig_res = eig_res$values
         
+        DD = vector()
         for (i in 1:length(D_Kernels)) {
-            temp = (.Machine$double.eps+D_Kernels[[i]]) * (S+.Machine$double.eps)
+            temp = (.Machine$double.eps+D_Kernels[[i]]) * (S0+.Machine$double.eps)
             DD[i] = mean(apply(temp,MARGIN=2,FUN=sum))
         }
         alphaK0 = umkl(DD)
@@ -127,17 +128,20 @@
         
     }
     
-    I = matrix(rep(1:dim(S0)[1],dim(S0)[2]),nrow=dim(S0)[1],ncol=dim(S0)[2])
-    
     # compute the execution time
     execution.time = proc.time() - ptm
     
+    cat("Performing Kmeans.\n")
+    y = kmeans(F_last,c,nstart=200)
+    
+    ydata = NULL
+    
     # create the structure with the results
     results = list()
-    results[["y"]] = NULL
+    results[["y"]] = Y
     results[["S0"]] = S0
     results[["F"]] = F_eig
-    results[["ydata"]] = NULL
+    results[["ydata"]] = ydata
     results[["alphaK"]] = alphaK
     results[["val"]] = val
     results[["ind"]] = ind
