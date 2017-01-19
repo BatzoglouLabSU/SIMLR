@@ -122,7 +122,7 @@
         
         # compute Kbeta
         distX = D_Kernels[[1]] * alphaK[1]
-        for (i in 2:length(D_Kernels)) {
+        for (i in 1:length(D_Kernels)) {
             distX = distX + as.matrix(D_Kernels[[i]]) * alphaK[i]
         }
         
