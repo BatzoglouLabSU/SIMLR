@@ -100,7 +100,7 @@
         c_output = t(ad)
         ad = t(.Call("projsplx_R",c_input,c_output))
         
-        ad = dn(S0,'ave')
+        ad = dn_large_scale(S0,'ave')
         S0 = beta * S0 + (1 - beta) * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
@@ -132,13 +132,13 @@
     execution.time = proc.time() - ptm
     
     cat("Performing Kmeans.\n")
-    y = kmeans(F_last,c,nstart=200)
+    y = kmeans(F_eig,c,nstart=200)
     
     ydata = NULL
     
     # create the structure with the results
     results = list()
-    results[["y"]] = Y
+    results[["y"]] = y
     results[["S0"]] = S0
     results[["F"]] = F_eig
     results[["ydata"]] = ydata
