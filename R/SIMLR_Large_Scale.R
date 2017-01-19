@@ -79,7 +79,7 @@
     S0 = dn(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)),nrow=nrow(ind),ncol=ncol(ind))),j=as.vector(ind),x=S0,symmetric=TRUE)
-    eig_res = eigs_sym(S0_sparse,c) eig_large_scale(S0,ind,c)
+    eig_res = eigs_sym(S0_sparse,c)
     F_eig = eig_res$vectors
     eig_res = eig_res$values
     
@@ -88,7 +88,6 @@
         
         cat("Iteration: ",iter,"\n")
         
-        #### TO FIX FOR LARGE SCALE
         distf = L2_distance_large_scale(F_eig,ind)
         b = idx[,2:dim(idx)[2]]
         a = apply(array(0,c(num,ncol(b))),MARGIN=2,FUN=function(x){ x = 1:num })
@@ -128,9 +127,7 @@
         
     }
     
-    #### TO FIX FOR LARGE SCALE
-    #I = repmat([1:size(S0,1)]',1,size(S0,2))
-    [S0 = sparse(I(:), ind(:), S0(:), size(S0,1),size(S0,1))
+    I = matrix(rep(1:dim(S0)[1],dim(S0)[2]),nrow=dim(S0)[1],ncol=dim(S0)[2])
     
     # compute the execution time
     execution.time = proc.time() - ptm

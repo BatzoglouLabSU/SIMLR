@@ -66,3 +66,15 @@
     return(D_Kernels)
     
 }
+
+# compute the L2 distance for large scale datasets
+"L2_distance_large_scale" <- function( a, b ) {
+    
+    I = matrix(rep(1:dim(b)[1],dim(b)[2]),nrow=dim(b)[1],ncol=dim(b)[2])
+    temp = apply((F[as.vector(I),]-F[b,])^2,MARGIN=2,FUN=sum)
+    
+    d = matrix(temp,nrow=dim(b)[1],ncol=dim(b)[1])
+    
+    return(d)
+    
+}
