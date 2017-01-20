@@ -70,9 +70,11 @@
     S0 = dn_large_scale(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-    eig_res = eigs_sym(S0_sparse,c)
+    eig_res = eigs(S0_sparse,c)
     F_eig = eig_res$vectors
+    F_eig = Re(F_eig)
     eig_res = eig_res$values
+    eig_res = Re(eig_res)
     
     # perform the iterative procedure NITER times
     for(iter in 1:NITER) {
@@ -92,9 +94,11 @@
         S0 = beta * S0 + (1 - beta) * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-        eig_res = eigs_sym(S0_sparse,c)
+        eig_res = eigs(S0_sparse,c)
         F_eig = eig_res$vectors
+        F_eig = Re(F_eig)
         eig_res = eig_res$values
+        eig_res = Re(eig_res)
         
         DD = vector()
         for (i in 1:length(D_Kernels)) {
