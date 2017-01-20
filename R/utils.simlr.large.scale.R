@@ -52,11 +52,11 @@
         if(allk_fun[l]<(ncol(val_fun))) {
             TT = apply(val_fun[,1:allk_fun[l]],MARGIN=1,FUN=mean) + .Machine$double.eps
             TT0 = apply(array(0,c(ncol(val_fun))),MARGIN=1,FUN=function(x) {x=TT})
-            TT0 = (TT0 + TT[ind_fun])*0.5
+            TT0 = (TT0 + matrix(TT[ind_fun],nrow=dim(TT0)[1],ncol=dim(TT0)[2]))*0.5
             for (j in 1:length(sigma_fun)) {
                 temp = dnorm(val_fun,0,sigma_fun[j]*TT0)
                 temptemp = temp[,1]
-                temp = (apply(array(0,c(ncol(val_fun))),MARGIN=1,FUN=function(x) {x=temptemp}) + temptemp[ind_fun]) * 0.5 - temp
+                temp = (apply(array(0,c(ncol(val_fun))),MARGIN=1,FUN=function(x) {x=temptemp}) + matrix(temptemp[ind_fun],nrow=dim(TT0)[1],ncol=dim(TT0)[2])) * 0.5 - temp
                 KK_fun = KK_fun + 1
                 D_Kernels[[KK_fun]] = temp + .Machine$double.eps
             }

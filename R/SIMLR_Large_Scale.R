@@ -55,15 +55,6 @@
     }
     distX = distX / length(D_Kernels)
     
-    # sort distX for rows
-    res = apply(distX,MARGIN=1,FUN=function(x) return(sort(x,index.return = TRUE)))
-    distX1 = array(0,c(nrow(distX),ncol(distX)))
-    idx = array(0,c(nrow(distX),ncol(distX)))
-    for(i in 1:nrow(distX)) {
-        distX1[i,] = res[[i]]$x
-        idx[i,] = res[[i]]$ix
-    }
-    
     di = distX1[,2:(k+2)]
     rr = 0.5 * (k * di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum))
     
@@ -89,10 +80,7 @@
         cat("Iteration: ",iter,"\n")
         
         distf = L2_distance_large_scale(F_eig,ind)
-        b = idx[,2:dim(idx)[2]]
-        a = apply(array(0,c(num,ncol(b))),MARGIN=2,FUN=function(x){ x = 1:num })
-        inda = cbind(as.vector(a),as.vector(b))
-        ad = (distX[inda]+lambda*distf[inda])/2/r
+        ad = (distX+lambda*distf)/2/r
         dim(ad) = c(num,ncol(b))
         
         # call the c function for the optimization
