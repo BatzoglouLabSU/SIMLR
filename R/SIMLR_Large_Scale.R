@@ -1,5 +1,5 @@
 # perform the SIMLR clustering algorithm for large scale datasets
-"SIMLR_Large_Scale" <- function( X, c, k = 10, kk = 100, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
+"SIMLR_Large_Scale" <- function( X, c, k = 10, kk = 100, if.impute = FALSE, normalize = FALSE ) {
     
     # check the if.impute parameter
     if(if.impute == TRUE) {
@@ -31,14 +31,12 @@
     num = ncol(X)
     r = -1
     beta = 0.8
-    X = t(X)
     
     cat("Performing fast PCA.\n")
-    fast.pca_res = fast.pca(X,k=kk)
-    fast.pca_res = t(fast.pca_res)
+    fast.pca_res = rpca(X,kk)$rotation
     
     cat("Performing k-nearest neighbour search.\n")
-    nearest_neighbour_res = knn.search(fast.pca_res,k*3)
+    nearest_neighbour_res = knn.search(t(fast.pca_res),k*3)
     val = nearest_neighbour_res$val
     ind = nearest_neighbour_res$ind
     

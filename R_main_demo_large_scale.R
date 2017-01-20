@@ -1,8 +1,9 @@
 # required external packages for SIMLR
 library(Matrix)
 library(parallel)
-library(RSpectra)
+library(rsvd)
 library(largeVis)
+library(RSpectra)
 
 # load the igraph package to compute the NMI
 library(igraph)

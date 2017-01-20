@@ -1,20 +1,3 @@
-# function to compute fast PCA
-"fast.pca" = function( x, k ) {
-    
-    # performs svds
-    res_svds = svds(x,k)
-    U = res_svds$u
-    S = res_svds$d
-    
-    # perform fast PCA
-    tmp = array(0,c(length(S),length(S)))
-    diag(tmp) = S
-    res = U %*% tmp
-    
-    return(res)
-    
-}
-
 # function to perform k-nearest neighbour search and distances
 "knn.search" = function( xx, n ) {
     
