@@ -83,7 +83,6 @@
         
         distf = L2_distance_large_scale(F_eig,ind)
         ad = (distX+lambda*distf)/2/r
-        dim(ad) = c(num,ncol(b))
         
         # call the c function for the optimization
         c_input = -t(ad)
