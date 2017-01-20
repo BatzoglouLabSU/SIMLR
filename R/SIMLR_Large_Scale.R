@@ -55,7 +55,7 @@
     }
     distX = distX / length(D_Kernels)
     
-    di = distX1[,2:(k+2)]
+    di = distX[,2:(k+2)]
     rr = 0.5 * (k * di[,k+1] - apply(di[,1:k],MARGIN=1,FUN=sum))
     
     if(r<=0) {
