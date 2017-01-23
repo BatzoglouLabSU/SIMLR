@@ -38,7 +38,9 @@
     cat("Performing k-nearest neighbour search.\n")
     nearest_neighbour_res = knn.search(t(fast.pca_res),k*3)
     val = nearest_neighbour_res$val
+    val = cbind(rep(0,nrow(val)),val)
     ind = nearest_neighbour_res$ind
+    ind = cbind(1:nrow(ind),ind)
     
     cat("Computing the multiple Kernels.\n")
     
@@ -62,8 +64,6 @@
     lambda = max(mean(rr),0)
     S0 = max(max(distX)) - distX
     
-    cat("Performing the iterative procedure ",NITER," times.\n")
-    
     # compute dn
     S0 = dn_large_scale(S0,'ave')
     
@@ -73,6 +73,8 @@
     F_eig = Re(F_eig)
     eig_res = eig_res$values
     eig_res = Re(eig_res)
+    
+    cat("Performing the iterative procedure ",NITER," times.\n")
     
     # perform the iterative procedure NITER times
     for(iter in 1:NITER) {

@@ -26,7 +26,7 @@
     allk = seq(from=ceiling(kk/2),to=ceiling(kk*1.5),by=ceiling(kk/10))
     
     D_Kernels = list()
-    val_fun=val
+    val_fun=val*val
     ind_fun=ind
     allk_fun=allk
     sigma_fun=sigma
