@@ -68,11 +68,12 @@
     S0 = dn_large_scale(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-    eig_res = eigs(S0_sparse,c)
-    F_eig = eig_res$vectors
-    F_eig = Re(F_eig)
-    eig_res = eig_res$values
-    eig_res = Re(eig_res)
+    eig_res = rsvd((S0_sparse+t(S0_sparse)),c)
+    F_eig = eig_res$u
+    eig_res = sqrt(eig_res$d)
+    tmp_eig = array(0,c(length(eig_res),length(eig_res)))
+    diag(tmp_eig) = eig_res
+    F_eig = F_eig %*% tmp_eig
     
     cat("Performing the iterative procedure ",NITER," times.\n")
     
@@ -93,11 +94,12 @@
         S0 = beta * S0 + (1 - beta) * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-        eig_res = eigs(S0_sparse,c)
-        F_eig = eig_res$vectors
-        F_eig = Re(F_eig)
-        eig_res = eig_res$values
-        eig_res = Re(eig_res)
+        eig_res = rsvd((S0_sparse+t(S0_sparse)),c)
+        F_eig = eig_res$u
+        eig_res = sqrt(eig_res$d)
+        tmp_eig = array(0,c(length(eig_res),length(eig_res)))
+        diag(tmp_eig) = eig_res
+        F_eig = F_eig %*% tmp_eig
         
         DD = vector()
         for (i in 1:length(D_Kernels)) {
