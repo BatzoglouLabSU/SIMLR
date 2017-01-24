@@ -68,9 +68,9 @@
     S0 = dn_large_scale(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-    eig_res = rsvd((S0_sparse+t(S0_sparse)),c)
-    F_eig = eig_res$u
-    eig_res = sqrt(eig_res$d)
+    eig_res = eigs(S0_sparse,c)
+    F_eig = Re(eig_res$vectors)
+    eig_res = sqrt(Re(eig_res$values))
     tmp_eig = array(0,c(length(eig_res),length(eig_res)))
     diag(tmp_eig) = eig_res
     F_eig = F_eig %*% tmp_eig
@@ -90,13 +90,13 @@
         c_output = t(ad)
         ad = t(.Call("projsplx_R",c_input,c_output))
         
-        ad = dn_large_scale(S0,'ave')
+        ad = dn_large_scale(ad,'ave')
         S0 = beta * S0 + (1 - beta) * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
-        eig_res = rsvd((S0_sparse+t(S0_sparse)),c)
-        F_eig = eig_res$u
-        eig_res = sqrt(eig_res$d)
+        eig_res = eigs(S0_sparse,c)
+        F_eig = Re(eig_res$vectors)
+        eig_res = sqrt(Re(eig_res$values))
         tmp_eig = array(0,c(length(eig_res),length(eig_res)))
         diag(tmp_eig) = eig_res
         F_eig = F_eig %*% tmp_eig
@@ -115,7 +115,7 @@
         
         # compute Kbeta
         distX = D_Kernels[[1]] * alphaK[1]
-        for (i in 1:length(D_Kernels)) {
+        for (i in 2:length(D_Kernels)) {
             distX = distX + as.matrix(D_Kernels[[i]]) * alphaK[i]
         }
         

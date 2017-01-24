@@ -54,9 +54,9 @@
 "L2_distance_large_scale" <- function( a, b ) {
     
     I = matrix(rep(1:dim(b)[1],dim(b)[2]),nrow=dim(b)[1],ncol=dim(b)[2])
-    temp = as.vector(distance(i=as.vector((I-1)),j=as.vector((b-1)),x=t(a),distance_method="Euclidean"))
+    temp = rowSums((a[as.vector(I),]-a[as.vector(b),])^2)
     
-    d = t(matrix(temp,nrow=dim(b)[2],ncol=dim(b)[1]))
+    d = matrix(temp,nrow=dim(b)[1],ncol=dim(b)[2])
     
     return(d)
     

@@ -2,6 +2,7 @@
 library(Matrix)
 library(rsvd)
 library(largeVis)
+library(rARPACK)
 
 # load the igraph package to compute the NMI
 library(igraph)
