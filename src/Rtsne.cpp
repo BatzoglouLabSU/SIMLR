@@ -18,14 +18,14 @@ Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_d
   origN = I.size();
   D = 1; //I.size();
     
-	dataI = (int*) calloc(D * origN, sizeof(int));
+  dataI = (int*) calloc(D * origN, sizeof(int));
   dataJ = (int*) calloc(D * origN, sizeof(int));
   dataV = (double*) calloc(D * origN, sizeof(double));
   if(dataI == NULL || dataJ == NULL || dataV == NULL) { Rcpp::stop("Memory allocation failed!\n"); }
   for (int i = 0; i < origN; i++){
       dataI[i*D] = I(i);
-      dataI[i*D] = J(i);
-      dataI[i*D] = V(i);
+      dataJ[i*D] = J(i);
+      dataV[i*D] = V(i);
   }
     
   // Make dummy landmarks
