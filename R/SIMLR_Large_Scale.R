@@ -125,7 +125,7 @@
     cat("Performing Kmeans.\n")
     y = kmeans(F_eig,c,nstart=200)
     
-    ydata = NULL
+    ydata = Rtsne(as.matrix(S0_sparse))$Y
     
     # create the structure with the results
     results = list()
