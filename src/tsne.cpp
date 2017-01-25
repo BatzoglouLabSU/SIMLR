@@ -92,7 +92,7 @@ void TSNE::run(int* row_P, int* col_P, double* val_P, int N, double* Y, int no_d
   	int costi = 0; //iterator for saving the total costs for the iterations
   
   int iterations_progress_count = 0;
-  Rprintf("The main loop will be now performed with a maximum of %d iterations...\n", max_iter);
+  Rprintf("The main loop will be now performed with a maximum of %d iterations.\n", max_iter);
 
 	for(int iter = 0; iter < max_iter; iter++) {
         
@@ -135,7 +135,7 @@ void TSNE::run(int* row_P, int* col_P, double* val_P, int N, double* Y, int no_d
 
         iterations_progress_count = iterations_progress_count + 1;
         if(iterations_progress_count==10) {
-        	Rprintf("Performing %d iteration...\n", iter + 1);
+        	Rprintf("Performing iteration %d.\n", iter + 1);
         }
 
     }
