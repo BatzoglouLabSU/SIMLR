@@ -70,12 +70,15 @@ Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_d
     itercostsr(i) = itercosts[i];
   }
   
-  free(dataI); dataI = NULL;
-  free(dataJ); dataJ = NULL;
-  free(dataV); dataV = NULL;
+  //free(dataI); dataI = NULL;
+  dataI = NULL;
+  //free(dataJ); dataJ = NULL;
+  dataJ = NULL;
+  //free(dataV); dataV = NULL;
+  dataV = NULL;
   free(Y); Y = NULL;
-	free(costs); costs = NULL;
-	free(landmarks); landmarks = NULL;
+  free(costs); costs = NULL;
+  free(landmarks); landmarks = NULL;
   delete(tsne);
   
   Rcpp::List output = Rcpp::List::create(Rcpp::_["theta"]=theta, Rcpp::_["perplexity"]=perplexity, Rcpp::_["N"]=N,Rcpp::_["origD"]=D,Rcpp::_["Y"]=Yr, Rcpp::_["costs"]=costsr, Rcpp::_["itercosts"]=itercostsr);
