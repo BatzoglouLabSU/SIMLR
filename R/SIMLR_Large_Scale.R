@@ -33,7 +33,7 @@
     beta = 0.8
     
     cat("Performing fast PCA.\n")
-    fast.pca_res = rpca(X,kk)$rotation
+    fast.pca_res = rpca(X,kk,loading=TRUE)$loading
     
     cat("Performing k-nearest neighbour search.\n")
     nearest_neighbour_res = nn2(data=fast.pca_res,k=(k*3))
