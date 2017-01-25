@@ -15,21 +15,23 @@ Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_d
   double perplexity = perplexity_in;
   double theta = theta_in;
 
-  origN = I.size();
+  N = I.size()-1;
+  origN = J.size();
   D = 1; //I.size();
     
-  dataI = (int*) calloc(D * origN, sizeof(int));
+  dataI = (int*) calloc(D * N, sizeof(int));
   dataJ = (int*) calloc(D * origN, sizeof(int));
   dataV = (double*) calloc(D * origN, sizeof(double));
   if(dataI == NULL || dataJ == NULL || dataV == NULL) { Rcpp::stop("Memory allocation failed!\n"); }
+  for (int i = 0; i < N+1; i++){
+      dataI[i*D] = I(i)-1;
+  }
   for (int i = 0; i < origN; i++){
-      dataI[i*D] = I(i);
-      dataJ[i*D] = J(i);
+      dataJ[i*D] = J(i)-1;
       dataV[i*D] = V(i);
   }
     
   // Make dummy landmarks
-  N = origN;
   if (verbose) Rprintf("Read the %i x %i data matrix successfully!\n", N, D);
   int* landmarks = (int*) malloc(N * sizeof(int));
   if(landmarks == NULL) { Rcpp::stop("Memory allocation failed!\n"); }

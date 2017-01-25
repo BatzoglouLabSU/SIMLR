@@ -25,7 +25,7 @@ sourceCpp("./src/Rtsne.cpp")
 load(file="./data/Zelsel.RData")
 
 # test SIMLR.R on the large scale dataset
-set.seed(55555)
+set.seed(11111)
 res_large_scale = SIMLR_Large_Scale(X=Zelsel$in_X,c=Zelsel$n_clust)
 nmi_large_scale = compare(Zelsel$true_labs[,1],res_large_scale$y$cluster,method="nmi")
 
