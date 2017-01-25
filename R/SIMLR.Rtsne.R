@@ -13,7 +13,7 @@
 # 
 # After checking the correctness of the input, the \code{Rtsne} function (optionally) does an initial reduction of the feature space using \code{\link{prcomp}}, before calling the C++ TSNE implementation. Since R's random number generator is used, use \code{\link{set.seed}} before the function call to get reproducible results.
 # 
-SIMLR.Rtsne <- function( I, J, V, dims = 2, perplexity = 30, theta = 0.5, verbose = FALSE, max_iter = 1000, Y_init = NULL, ...) {
+SIMLR.Rtsne <- function( I, J, V, dims = 2, perplexity = 30, theta = 0.5, verbose = FALSE, max_iter = 300, Y_init = NULL, ...) {
   
   if (is.null(Y_init)) {
     init <- FALSE
