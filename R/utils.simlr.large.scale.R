@@ -1,21 +1,3 @@
-# function to perform k-nearest neighbour search and distances
-"knn.search" = function( xx, n ) {
-    
-    # performs k-nearest neighbour search
-    ind = randomProjectionTreeSearch(xx,n,distance_method="Euclidean")
-    
-    # compute the distances from the results
-    indices = neighborsToVectors(ind)
-    val = distance(i=indices$i,j=indices$j,x=xx,distance_method="Euclidean")
-    
-    res = list()
-    res$val = t(matrix(abs(val),nrow=n,ncol=dim(xx)[2]))
-    res$ind = t(ind+1)
-    
-    return(res)
-    
-}
-
 # compute and returns the multiple kernel for large scale data
 "multiple.kernel_large_scale" = function( val, ind, kk = 20 ) {
     

@@ -1,7 +1,7 @@
 # required external packages for SIMLR
 library(Matrix)
 library(rsvd)
-library(largeVis)
+library(RANN)
 library(rARPACK)
 
 # load the igraph package to compute the NMI

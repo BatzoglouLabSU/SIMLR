@@ -36,11 +36,9 @@
     fast.pca_res = rpca(X,kk)$rotation
     
     cat("Performing k-nearest neighbour search.\n")
-    nearest_neighbour_res = knn.search(t(fast.pca_res),k*3)
-    val = nearest_neighbour_res$val
-    val = cbind(rep(0,nrow(val)),val)
-    ind = nearest_neighbour_res$ind
-    ind = cbind(1:nrow(ind),ind)
+    nearest_neighbour_res = nn2(data=fast.pca_res,k=(k*3))
+    val = nearest_neighbour_res$nn.dist
+    ind = nearest_neighbour_res$nn.idx
     
     cat("Computing the multiple Kernels.\n")
     
@@ -67,7 +65,7 @@
     # compute dn
     S0 = dn_large_scale(S0,'ave')
     
-    S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
+    S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
     eig_res = eigs(S0_sparse,c)
     F_eig = Re(eig_res$vectors)
     eig_res = sqrt(Re(eig_res$values))
@@ -93,7 +91,7 @@
         ad = dn_large_scale(ad,'ave')
         S0 = beta * S0 + (1 - beta) * ad
         
-        S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0))
+        S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
         eig_res = eigs(S0_sparse,c)
         F_eig = Re(eig_res$vectors)
         eig_res = sqrt(Re(eig_res$values))
