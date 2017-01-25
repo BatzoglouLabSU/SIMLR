@@ -126,7 +126,7 @@
     y = kmeans(F_eig,c,nstart=200)
     
     cat("Performing t-SNE.\n")
-    ydata = Rtsne(as.matrix(S0_sparse))$Y
+    ydata = SIMLR.Rtsne(as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),as.vector(ind),as.vector(S0))$Y
     
     # create the structure with the results
     results = list()

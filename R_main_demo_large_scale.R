@@ -1,9 +1,9 @@
 # required external packages for SIMLR
+library(Rcpp)
 library(Matrix)
 library(rsvd)
 library(RANN)
 library(rARPACK)
-library(Rtsne)
 
 # load the igraph package to compute the NMI
 library(igraph)
@@ -15,9 +15,11 @@ library(grDevices)
 source("./R/SIMLR_Large_Scale.R")
 source("./R/utils.simlr.large.scale.R")
 source("./R/utils.simlr.R")
+source("./R/SIMLR.Rtsne.R")
 
-# load the C file
+# load the C files
 dyn.load("./R/projsplx_R.so")
+sourceCpp("./src/Rtsne.cpp")
 
 # load the datasets
 load(file="./data/Zelsel.RData")
