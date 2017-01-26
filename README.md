@@ -10,6 +10,8 @@ Single-cell RNA-seq technologies enable high throughput gene expression measurem
 
 *SIMLR* offers three main unique advantages over previous methods: (1) it learns a distance metric that best fits the structure of the data via combining multiple kernels. This is important because the diverse statistical characteristics due to large noise and dropout effect of single-cell data produced today do not easily fit specific statistical assumptions made by standard dimension reduction algorithms. The adoption of multiple kernel representations provides a better fit to the true underlying statistical distribution of the specific input scRNA-seq data set; (2) *SIMLR* addresses the challenge of high levels of dropout events that can significantly weaken cell-to-cell similarities even under an appropriate distance metric, by employing graph diffusion, which improves weak similarity measures that are likely to result from noise or dropout events; (3) in contrast to some previous analyses that pre-select gene subsets of known function, *SIMLR* is unsupervised, thus allowing de novo discovery from the data. We empirically demonstrate that *SIMLR* produces more reliable clusters than commonly used linear methods, such as principal component analysis (PCA), and nonlinear methods, such as t-distributed stochastic neighbor embedding (t-SNE), and we use *SIMLR* to provide 2-D and 3-D visualizations that assist with the interpretation of single-cell data derived from several diverse technologies and biological samples. 
 
+Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large scale) capable of handling large scale datasets. 
+
 **REFERENCE**
 
 The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2016/06/09/052225. 
@@ -20,7 +22,7 @@ We provide both the R and MATLAB implementations of *SIMLR* in the SIMLR branch,
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
-We provide the R code to run *SIMLR* on 4 examples in the script *main_examples.R*. We now present a set of requirements to run the examples. 
+We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 3 examples in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
@@ -35,6 +37,8 @@ An OS X pre-compiled file is also provided. Note: if there are issues in compili
 3) Example datasets. The 4 example datasets are provided in the directory data. 
 
 Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
+
+Moreover, for the large scale examples, the dataset of Zelsel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174, Marcos.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/26000488 and PBMC68K.RData refers to http://biorxiv.org/content/early/2016/07/26/065912. 
 
 **RUNNING SIMLR MATLAB IMPLEMENTATION**
 
