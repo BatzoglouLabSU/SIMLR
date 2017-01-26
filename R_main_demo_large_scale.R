@@ -28,18 +28,21 @@ load(file="./data/PBMC68K.RData")
 
 # test SIMLR.R on the large scale dataset of Zelsel
 set.seed(11111)
+cat("Performing analysis for Zelsel","\n")
 res_large_scale_1 = SIMLR_Large_Scale(X=Zelsel$in_X,c=Zelsel$n_clust)
 nmi_large_scale_1 = compare(Zelsel$true_labs[,1],res_large_scale_1$y$cluster,method="nmi")
 
 # test SIMLR.R on the large scale dataset of Marcos
 set.seed(22222)
+cat("Performing analysis for Marcos","\n")
 res_large_scale_2 = SIMLR_Large_Scale(X=Marcos$in_X,c=Marcos$n_clust)
 nmi_large_scale_2 = compare(Marcos$true_labs[,1],res_large_scale_2$y$cluster,method="nmi")
 
 # test SIMLR.R on the large scale dataset of PBMC68K
 set.seed(33333)
+cat("Performing analysis for PBMC68K","\n")
 res_large_scale_3 = SIMLR_Large_Scale(X=PBMC68K$in_X,c=PBMC68K$n_clust)
 nmi_large_scale_3 = compare(PBMC68K$true_labs[,1],res_large_scale_3$y$cluster,method="nmi")
 
 # make the scatterd plots
-plot(res_large_scale_1$ydata,col=c(topo.colors(Zelsel$n_clust))[Zelsel$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Zelsel")
+#plot(res_large_scale_1$ydata,col=c(topo.colors(Zelsel$n_clust))[Zelsel$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Zelsel")
