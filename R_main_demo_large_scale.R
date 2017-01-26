@@ -45,4 +45,8 @@ res_large_scale_3 = SIMLR_Large_Scale(X=PBMC68K$in_X,c=PBMC68K$n_clust)
 nmi_large_scale_3 = compare(PBMC68K$true_labs[,1],res_large_scale_3$y$cluster,method="nmi")
 
 # make the scatterd plots
-#plot(res_large_scale_1$ydata,col=c(topo.colors(Zelsel$n_clust))[Zelsel$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Zelsel")
+plot(res_large_scale_1$ydata,col=c(topo.colors(Zelsel$n_clust))[Zelsel$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Zelsel")
+
+plot(res_large_scale_2$ydata,col=c(topo.colors(Marcos$n_clust))[Marcos$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Marcos")
+
+plot(res_large_scale_3$ydata,col=c(topo.colors(PBMC68K$n_clust))[PBMC68K$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for PBMC68K")
