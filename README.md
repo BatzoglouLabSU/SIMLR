@@ -22,9 +22,11 @@ We provide both the R and MATLAB implementations of *SIMLR* in the SIMLR branch,
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
-We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 3 examples in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
+We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
+
+To run the large scale analysis, it is necessary to install 4 more packages, namely *Rcpp* package (see https://cran.r-project.org/web/packages/Rcpp/index.html), *rsvd* package (see https://cran.r-project.org/web/packages/rsvd/index.html), *RANN* package (see https://cran.r-project.org/web/packages/RANN/index.html) and *rARPACK* package (see https://cran.r-project.org/web/packages/rARPACK/index.html). 
 
 Furthermore, to run the examples, we require the *igraph* package (see http://igraph.org/r/) to compute the normalized mutual informetion metric and the *grDevices* package (see https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html) to color the plots. 
 
@@ -34,15 +36,15 @@ All these packages, can be installed with the R built-in *install.packages* func
 
 An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 
-3) Example datasets. The 4 example datasets are provided in the directory data. 
+3) Example datasets. The 5 example datasets are provided in the directory data. 
 
 Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
 
-Moreover, for the large scale examples, the dataset of Zelsel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174, Marcos.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/26000488 and PBMC68K.RData refers to http://biorxiv.org/content/early/2016/07/26/065912. 
+Moreover, for the large scale example, the dataset of Zelsel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174. 
 
 **RUNNING SIMLR MATLAB IMPLEMENTATION**
 
-We also provide the MATLAB code to run *SIMLR* on 4 examples in the script main_demo.m. 
+We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script main_demo.m. 
 
 We make use of external C programs during the computations of *SIMLR*. The code is located in the MATLAB directory in the files *Kbeta.cpp* and *projsplx_c.c*. In order to compite the program, one needs to run on the MATLAB console the commands *mex Kbeta.cpp* and *mex projsplx_R.c*. 
 

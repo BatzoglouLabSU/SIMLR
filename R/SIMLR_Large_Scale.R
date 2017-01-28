@@ -66,7 +66,7 @@
     S0 = dn_large_scale(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
-    eig_res = eigs(S0_sparse,c)
+    eig_res = eigs(S0_sparse,c,which="LR")
     F_eig = Re(eig_res$vectors)
     eig_res = Re(eig_res$values)/max(Re(eig_res$values))
     eig_res = (1-beta)*eig_res / (1-beta*eig_res^2)
@@ -94,7 +94,7 @@
         S0 = (1 - beta) * S0 + beta * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
-        eig_res = eigs(S0_sparse,c)
+        eig_res = eigs(S0_sparse,c,which="LR")
         F_eig = Re(eig_res$vectors)
         eig_res = Re(eig_res$values)/max(Re(eig_res$values))
         eig_res = (1-beta)*eig_res / (1-beta*eig_res^2)
