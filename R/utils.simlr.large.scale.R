@@ -48,7 +48,7 @@
 "dn_large_scale" = function( w, type ) {
     
     # compute the sum of any column
-    D = apply(w,MARGIN=1,FUN=sum)
+    D = apply(abs(w),MARGIN=1,FUN=sum)
     
     # type "ave" returns D^-1*W
     if(type=="ave") {
