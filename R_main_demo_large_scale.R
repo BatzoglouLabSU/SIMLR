@@ -1,4 +1,4 @@
-# required external packages for SIMLR
+# required external packages for SIMLR large scale
 library(Rcpp)
 library(Matrix)
 library(rsvd)
@@ -24,7 +24,6 @@ sourceCpp("./src/Rtsne.cpp")
 # load the datasets
 load(file="./data/Zelsel.RData")
 load(file="./data/Marcos.RData")
-load(file="./data/PBMC68K.RData")
 
 # test SIMLR.R on the large scale dataset of Zelsel
 set.seed(11111)
@@ -38,15 +37,7 @@ cat("Performing analysis for Marcos","\n")
 res_large_scale_2 = SIMLR_Large_Scale(X=Marcos$in_X,c=Marcos$n_clust)
 nmi_large_scale_2 = compare(Marcos$true_labs[,1],res_large_scale_2$y$cluster,method="nmi")
 
-# test SIMLR.R on the large scale dataset of PBMC68K
-set.seed(33333)
-cat("Performing analysis for PBMC68K","\n")
-res_large_scale_3 = SIMLR_Large_Scale(X=PBMC68K$in_X,c=PBMC68K$n_clust)
-nmi_large_scale_3 = compare(PBMC68K$true_labs[,1],res_large_scale_3$y$cluster,method="nmi")
-
 # make the scatterd plots
 plot(res_large_scale_1$ydata,col=c(topo.colors(Zelsel$n_clust))[Zelsel$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Zelsel")
 
 plot(res_large_scale_2$ydata,col=c(topo.colors(Marcos$n_clust))[Marcos$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for Marcos")
-
-plot(res_large_scale_3$ydata,col=c(topo.colors(PBMC68K$n_clust))[PBMC68K$true_labs[,1]],xlab="SIMLR component 1", ylab="SIMLR component 2",pch=20,main="SIMILR 2D visualization for PBMC68K")
