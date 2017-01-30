@@ -16,7 +16,7 @@ Imports:
     Matrix,
     stats,
     methods,
-    Rcpp (>= 0.11.0),
+    Rcpp,
     pracma,
     RcppAnnoy,
     RSpectra
@@ -37,7 +37,7 @@ License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
 biocViews: Clustering, GeneExpression, Sequencing, SingleCell
-LinkingTo: Rcpp
 RoxygenNote: 5.0.1
+LinkingTo: Rcpp
 NeedsCompilation: yes
 VignetteBuilder: knitr
