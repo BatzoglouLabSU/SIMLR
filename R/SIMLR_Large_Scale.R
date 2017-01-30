@@ -208,7 +208,7 @@
     I = as.vector(seq(1,ncol(ind)*nrow(ind)+1,ncol(ind)))
     J = as.vector(t(ind))
     V = as.vector(t(S0))
-    ydata = Rtsne.default(I,J,V)$Y
+    ydata = Rtsne(I,J,V)$Y
     
     # create the structure with the results
     results = list()
