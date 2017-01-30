@@ -12,7 +12,7 @@
 #' gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
 #' rownames(gene.counts) = paste0("X", seq_len(ngenes))
 #' sce = newSCESet(countData=data.frame(gene.counts))
-#' output = SIMLR_Large_Scale(X = sce, c = 9)
+#' output = SIMLR_Large_Scale(X = sce, c = 8)
 #' 
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells or
 #' and object of class SCESet
@@ -45,7 +45,18 @@
 #' @useDynLib SIMLR projsplx
 #' @useDynLib SIMLR Rtsne_cpp
 #'
-"SIMLR_Large_Scale" <- function( X, c, k = 10, kk = 100, if.impute = FALSE, normalize = FALSE ) {
+"SIMLR_Large_Scale" <- function( X, 
+    c,
+    k = 10,
+    kk = 100,
+    if.impute = FALSE,
+    normalize = FALSE ) {
+
+    # convert SCESet    
+    if (is(X, "SCESet")) {
+        cat("X is and SCESet, converting to input matrix.\n")
+        X = X@assayData$exprs
+    }
     
     # check the if.impute parameter
     if(if.impute == TRUE) {

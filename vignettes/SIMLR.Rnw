@@ -73,6 +73,7 @@ background = "#f3f3ff"
 
 \begin{itemize}
 \item[1.0] implements SIMLR and SIMLR feature ranking algorithms. 
+\item[1.0.2] implements SIMLR large scale algorithms. 
 \end{itemize}
 
 
@@ -97,11 +98,12 @@ SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & \href{http://bior
 
 \section{Using SIMLR}
 
-We first load the data provided as an example in the package. 
+We first load the data provided as an example in the package. The dataset BuettnerFlorian is used for an example of the standard SIMLR, while the dataset ZeiselAmit is used for an example of SIMLR large scale. 
 
 <<req>>=
 library(SIMLR)
 data(BuettnerFlorian)
+data(ZeiselAmit)
 @
 
 The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering. 
@@ -117,7 +119,7 @@ set.seed(11111)
 example = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 @
 
-We now compute the normalized mutual information between the inferred clusters by SIMLR and the true one. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance. 
+We now compute the normalized mutual information between the inferred clusters by SIMLR and the true ones. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance. 
 
 <<nmi_performance>>=
 nmi_1 = compare(BuettnerFlorian$true_labs[,1], example$y$cluster, method="nmi")
@@ -132,14 +134,14 @@ plot(example$ydata,
     xlab = "SIMLR component 1",
     ylab = "SIMLR component 2",
     pch = 20,
-    main="SIMILR 2D visualization for Test_1_mECS")
+    main="SIMILR 2D visualization for BuettnerFlorian")
 @
 
 \begin{figure*}[ht]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{figure/image-1}
 \end{center}
-\caption{Visualization of the 3 cell populations retrieved by SIMLR.}
+\caption{Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Florian, et al.}
 \end{figure*}
 
 SIMRL supports SCESet objects. We now create an example object and then run SIMLR on it.
@@ -155,12 +157,43 @@ sce = newSCESet(countData=data.frame(gene.counts))
 output = SIMLR(X = sce, c = 8, cores.ratio = 0)
 @
 
-
-We finally run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
+We also run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
 
 <<SIMLR_Feature_Ranking_run, results='hide'>>=
 ranks = SIMLR_Feature_Ranking(A=BuettnerFlorian$results$S,X=BuettnerFlorian$in_X)
 @
+
+We finally show an example for SIMLR large scale on an input dataset from Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
+
+<<SIMLR_Large_Scale_run, warning=FALSE>>=
+set.seed(11111)
+example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, k = 30, kk = 200)
+@
+
+We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones. 
+
+<<nmi_performance>>=
+nmi_large_scale = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
+print(nmi_large_scale)
+@
+
+As a further understanding of the results, also in this case we visualize the cell populations in a plot. 
+
+<<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
+plot(example_large_scale$ydata, 
+    col = c(topo.colors(ZeiselAmit$n_clust))[ZeiselAmit$true_labs[,1]], 
+    xlab = "SIMLR component 1",
+    ylab = "SIMLR component 2",
+    pch = 20,
+    main="SIMILR 2D visualization for ZeiselAmit")
+@
+
+\begin{figure*}[ht]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figure/image-1}
+\end{center}
+\caption{Visualization of the 9 cell populations retrieved by SIMLR large scale on the dataset by Zeisel, Amit, et al.}
+\end{figure*}
 
 <<head-ranks>>=
 head(ranks$pval)
