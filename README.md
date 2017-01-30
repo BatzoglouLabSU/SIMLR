@@ -26,7 +26,7 @@ We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
-To run the large scale analysis, it is necessary to install 4 more packages, namely *Rcpp* package (see https://cran.r-project.org/web/packages/Rcpp/index.html), *rsvd* package (see https://cran.r-project.org/web/packages/rsvd/index.html), *RANN* package (see https://cran.r-project.org/web/packages/RANN/index.html) and *rARPACK* package (see https://cran.r-project.org/web/packages/rARPACK/index.html). 
+To run the large scale analysis, it is necessary to install 4 more packages, namely *Rcpp* package (see https://cran.r-project.org/web/packages/Rcpp/index.html), *pracma* package (see https://cran.r-project.org/web/packages/pracma/index.html), *RcppAnnoy* package (see https://cran.rstudio.com/web/packages/RcppAnnoy/index.html) and *RSpectra* package (see https://cran.r-project.org/web/packages/RSpectra/index.html). 
 
 Furthermore, to run the examples, we require the *igraph* package (see http://igraph.org/r/) to compute the normalized mutual informetion metric and the *grDevices* package (see https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html) to color the plots. 
 
