@@ -30,8 +30,8 @@ list of 8 elements describing the clusters obtained by SIMLR, of which y are the
  	F = results from the large scale iterative procedure, 
  	ydata = data referring the the results by k-means,
  	alphaK = clustering coefficients,
- 	ind = indeces from the k-nearest neighbour search,
  	val = distances from the k-nearest neighbour search,
+     ind = indeces from the k-nearest neighbour search,
  	execution.time = execution time of the present run
 }
 \description{
@@ -47,7 +47,7 @@ mu <- 2^runif(ngenes, 3, 10)
 gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
 rownames(gene.counts) = paste0("X", seq_len(ngenes))
 sce = newSCESet(countData=data.frame(gene.counts))
-output = SIMLR_Large_Scale(X = sce, c = 9)
+output = SIMLR_Large_Scale(X = sce, c = 8)
 
 }
 
