@@ -41,7 +41,7 @@
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
-#' @useDynLib projsplx
+#' @useDynLib SIMLR projsplx
 #'
 "SIMLR" <- function( X, 
     c,

@@ -41,9 +41,8 @@
 #' @importFrom pracma orth
 #' @import RcppAnnoy
 #' @importFrom RSpectra eigs_sym
-#' @useDynLib projsplx
+#' @useDynLib SIMLR projsplx
 #' @import Rcpp
-#' @useDynLib SIMLR
 #'
 "SIMLR_Large_Scale" <- function( X, 
     c,

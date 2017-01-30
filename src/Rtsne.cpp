@@ -3,7 +3,7 @@
 using namespace Rcpp;
 
 // Function that runs the Barnes-Hut implementation of t-SNE
-// [[Rcpp::export]]
+// [[Rcpp::export(name = ".Rtsne_cpp")]]
 Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_dims_in, double perplexity_in, double theta_in, bool verbose, int max_iter, NumericMatrix Y_in, bool init) {
 
   int origN, N, D, no_dims = no_dims_in;
