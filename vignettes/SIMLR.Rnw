@@ -172,14 +172,14 @@ example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_cl
 
 We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones. 
 
-<<nmi_performance>>=
+<<nmi_performance_large_scale>>=
 nmi_large_scale = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
 print(nmi_large_scale)
 @
 
 As a further understanding of the results, also in this case we visualize the cell populations in a plot. 
 
-<<image, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
+<<image_large_scale, fig.show='hide', fig.width=5, fig.height=5,results='hide'>>=
 plot(example_large_scale$ydata, 
     col = c(topo.colors(ZeiselAmit$n_clust))[ZeiselAmit$true_labs[,1]], 
     xlab = "SIMLR component 1",
