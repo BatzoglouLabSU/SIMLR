@@ -16,7 +16,7 @@ Imports:
     Matrix,
     stats,
     methods,
-    Rcpp,
+    Rcpp (>= 0.11.0),
     pracma,
     RcppAnnoy,
     RSpectra
