@@ -1,3 +1,50 @@
+# perform fast pca
+"fast.pca" = function( X, K ) {
+
+    X = t(X)
+    tmp_val = as.vector(colSums(X)/nrow(X))
+    X = X - t(apply(array(0,dim(X)),MARGIN=1,FUN=function(x) {x=tmp_val}))
+    res = fast.rsvd(X,K)
+    U = res$U
+    S = res$S
+    K = min(dim(S)[2],K)
+    diag_val = sqrt(diag(S[1:K,1:K]))
+    diag_mat = array(0,c(length(diag_val),length(diag_val)))
+    diag(diag_mat) = diag_val
+    X = U[,1:K]%*%diag_mat
+    normalization_val = sqrt(rowSums(X*X))
+    X = X / apply(array(0,c(length(normalization_val),K)),MARGIN=2,FUN=function(x) {x=normalization_val})
+
+    return(X)
+
+}
+
+# perform fast rsvd
+"fast.rsvd" = function( A, K ) {
+    
+    M = dim(A)[1]
+    N = dim(A)[2]
+    P = min(2*K,N)
+    X = matrix(rnorm(N*P),nrow=N,ncol=P)
+    Y = A%*%X
+    W1 = orth(Y)
+    B = t(W1)%*%A
+    res = svd(B,nu=min(dim(B)),nv=min(dim(B)))
+    W2 = res$u
+    tmp_S = res$d
+    S = array(0,c(length(tmp_S),length(tmp_S)))
+    diag(S) = tmp_S
+    V = res$v
+    U = W1%*%W2
+    K = min(K,dim(U)[2])
+    U = U[,1:K]
+    S = S[1:K,1:K]
+    V = V[,1:K]
+
+    return(list(U=U,S=S,V=V))
+
+}
+
 # compute and returns the multiple kernel for large scale data
 "multiple.kernel_large_scale" = function( val, ind, kk = 20 ) {
     

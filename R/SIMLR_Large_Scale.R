@@ -34,7 +34,7 @@
     
     cat("Performing fast PCA.\n")
     
-    fast.pca_res = rpca(X,kk,loading=TRUE)$loading
+    fast.pca_res = fast.pca(X,kk)
     
     cat("Performing k-nearest neighbour search.\n")
     
