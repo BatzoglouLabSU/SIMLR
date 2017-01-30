@@ -43,7 +43,7 @@
 #' @importFrom RSpectra eigs_sym
 #' @useDynLib SIMLR projsplx
 #' @import Rcpp
-#' @useDynLib SIMLR Rtsne_cpp
+#' @useDynLib SIMLR Rtsne
 #'
 "SIMLR_Large_Scale" <- function( X, 
     c,
