@@ -208,7 +208,8 @@
     I = as.vector(seq(1,ncol(ind)*nrow(ind)+1,ncol(ind)))
     J = as.vector(t(ind))
     V = as.vector(t(S0))
-    ydata = SIMLR.Rtsne(I,J,V)$Y
+    ydata = Rtsne_cpp(I,J,V,dims=2,perplexity=30,theta=0.5,verbose=FALSE,max_iter=300,Y_init=matrix(),init=FALSE)
+    ydata = ydata$Y
     
     # create the structure with the results
     results = list()
