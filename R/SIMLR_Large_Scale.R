@@ -33,12 +33,26 @@
     beta = 0.8
     
     cat("Performing fast PCA.\n")
+    
     fast.pca_res = rpca(X,kk,loading=TRUE)$loading
     
     cat("Performing k-nearest neighbour search.\n")
-    nearest_neighbour_res = nn2(data=fast.pca_res,k=(k*3))
-    val = nearest_neighbour_res$nn.dist
-    ind = nearest_neighbour_res$nn.idx
+    
+    a_annoy = new(AnnoyEuclidean,dim(fast.pca_res)[2])
+    n_annoy = dim(fast.pca_res)[1]
+    for (i_annoy in seq(n_annoy)) {
+        v_annoy = as.vector(fast.pca_res[i_annoy,])
+        a_annoy$addItem(i_annoy-1,v_annoy)
+    }
+    a_annoy$build(200)
+    val = array(0,c(dim(fast.pca_res)[1],k*2))
+    ind = array(0,c(dim(fast.pca_res)[1],k*2))
+    for(j_annoy in 1:dim(val)[1]) {
+        ind[j_annoy,] = a_annoy$getNNsByItem(j_annoy-1,k*2)+1
+        for(val_annoy in 1:dim(val)[2]) {
+            val[j_annoy,val_annoy] = a_annoy$getDistance(j_annoy-1,ind[j_annoy,val_annoy]-1)
+        }
+    }
     
     cat("Computing the multiple Kernels.\n")
     
@@ -66,7 +80,7 @@
     S0 = dn_large_scale(S0,'ave')
     
     S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
-    eig_res = eigs(S0_sparse,c,which="LR")
+    eig_res = eigs_sym(S0_sparse+t(S0_sparse),c,which="LM")
     F_eig = Re(eig_res$vectors)
     eig_res = Re(eig_res$values)/max(Re(eig_res$values))
     eig_res = (1-beta)*eig_res / (1-beta*eig_res^2)
@@ -94,7 +108,7 @@
         S0 = (1 - beta) * S0 + beta * ad
         
         S0_sparse = sparseMatrix(i=as.vector(matrix(rep(1:nrow(ind),ncol(ind)))),j=as.vector(ind),x=as.vector(S0),dims=c(nrow(ind),nrow(ind)))
-        eig_res = eigs(S0_sparse,c,which="LR")
+        eig_res = eigs_sym(S0_sparse+t(S0_sparse),c,which="LM")
         F_eig = Re(eig_res$vectors)
         eig_res = Re(eig_res$values)/max(Re(eig_res$values))
         eig_res = (1-beta)*eig_res / (1-beta*eig_res^2)
@@ -129,9 +143,11 @@
     execution.time = proc.time() - ptm
     
     cat("Performing Kmeans.\n")
+    
     y = kmeans(F_eig,c,nstart=200)
     
     cat("Performing t-SNE.\n")
+    
     I = as.vector(seq(1,ncol(ind)*nrow(ind)+1,ncol(ind)))
     J = as.vector(t(ind))
     V = as.vector(t(S0))

@@ -2,8 +2,8 @@
 library(Rcpp)
 library(Matrix)
 library(rsvd)
-library(RANN)
-library(rARPACK)
+library(RcppAnnoy)
+library(RSpectra)
 
 # load the igraph package to compute the NMI
 library(igraph)
@@ -34,7 +34,7 @@ nmi_large_scale_1 = compare(Zelsel$true_labs[,1],res_large_scale_1$y$cluster,met
 # test SIMLR.R on the large scale dataset of Marcos
 set.seed(22222)
 cat("Performing analysis for Marcos","\n")
-res_large_scale_2 = SIMLR_Large_Scale(X=Marcos$in_X,c=Marcos$n_clust)
+res_large_scale_2 = SIMLR_Large_Scale(X=Marcos$in_X,c=Marcos$n_clust,k=30,kk=500)
 nmi_large_scale_2 = compare(Marcos$true_labs[,1],res_large_scale_2$y$cluster,method="nmi")
 
 # make the scatterd plots
