@@ -1,11 +1,11 @@
 library(igraph)
 set.seed(11111)
 
-ranks = SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 normal = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 if.impute = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0, if.impute = TRUE)
 normalise = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0, normalize = TRUE)
-
+ranks = SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
+normal_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust)
 
 context("SIMLR")
 test_that("structure of output is compliant", {
@@ -20,6 +20,12 @@ test_that("structure of output is compliant", {
 context("SIMLR ranking")
 test_that("structure of output is compliant", {
     expect_equal(names(ranks), c("pval", "aggR"))
+})
+
+context("SIMLR large scale")
+test_that("structure of output is compliant", {
+    expect_equal(names(normal_large_scale), c("y", "S0", "F", "ydata",
+        "alphaK", "val", "ind", "execution.time"))
 })
 
 library(scran)

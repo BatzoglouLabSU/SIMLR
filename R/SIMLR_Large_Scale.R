@@ -30,8 +30,8 @@
 #'  	F = results from the large scale iterative procedure, 
 #'  	ydata = data referring the the results by k-means,
 #'  	alphaK = clustering coefficients,
-#'  	ind = indeces from the k-nearest neighbour search,
 #'  	val = distances from the k-nearest neighbour search,
+#'      ind = indeces from the k-nearest neighbour search,
 #'  	execution.time = execution time of the present run
 #' 
 #' @export SIMLR_Large_Scale
