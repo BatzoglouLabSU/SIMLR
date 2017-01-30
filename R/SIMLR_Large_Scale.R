@@ -38,11 +38,11 @@
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
-#' @import Rcpp
 #' @importFrom pracma orth
 #' @import RcppAnnoy
 #' @importFrom RSpectra eigs_sym
 #' @useDynLib SIMLR projsplx
+#' @import Rcpp
 #' @useDynLib SIMLR Rtsne_cpp
 #'
 "SIMLR_Large_Scale" <- function( X, 
