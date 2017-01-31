@@ -16,7 +16,7 @@ NULL
 
 #' @name ZeiselAmit
 #' @title test dataset for SIMLR large scale
-#' @description example dataset to test SIMLR large scale from the work by Zeisel, Amit, et al. 
+#' @description example dataset to test SIMLR large scale, reduced version from the work by Zeisel, Amit, et al. 
 #' @docType data
 #' @usage data(ZeiselAmit)
 #' @format gene expression measurements of individual cells

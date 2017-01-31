@@ -21,6 +21,6 @@ list of 6:
  	nmi = normalized mutual information as a measure of the inferred clusters compared to the true labels
 }
 \description{
-example dataset to test SIMLR large scale from the work by Zeisel, Amit, et al.
+example dataset to test SIMLR large scale, reduced version from the work by Zeisel, Amit, et al.
 }
 

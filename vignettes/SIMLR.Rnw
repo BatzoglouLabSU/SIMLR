@@ -160,6 +160,7 @@ output = SIMLR(X = sce, c = 8, cores.ratio = 0)
 We also run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
 
 <<SIMLR_Feature_Ranking_run, results='hide'>>=
+set.seed(11111)
 ranks = SIMLR_Feature_Ranking(A=BuettnerFlorian$results$S,X=BuettnerFlorian$in_X)
 @
 
@@ -168,18 +169,18 @@ head(ranks$pval)
 head(ranks$aggR)
 @
 
-We finally show an example for SIMLR large scale on an input dataset from Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
+We finally show an example for SIMLR large scale on an input dataset being a reduced version of the dataset provided in Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
 
 <<SIMLR_Large_Scale_run, warning=FALSE>>=
 set.seed(11111)
-example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, k = 30, kk = 200)
+example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust)
 @
 
 We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones. 
 
 <<nmi_performance_large_scale>>=
-nmi_large_scale = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
-print(nmi_large_scale)
+nmi_2 = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
+print(nmi_2)
 @
 
 As a further understanding of the results, also in this case we visualize the cell populations in a plot. 
