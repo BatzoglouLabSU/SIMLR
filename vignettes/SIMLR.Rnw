@@ -190,7 +190,7 @@ plot(example_large_scale$ydata,
 
 \begin{figure*}[ht]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{figure/image-1}
+\includegraphics[width=0.5\textwidth]{figure/image-2}
 \end{center}
 \caption{Visualization of the 9 cell populations retrieved by SIMLR large scale on the dataset by Zeisel, Amit, et al.}
 \end{figure*}
