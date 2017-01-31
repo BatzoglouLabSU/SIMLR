@@ -42,7 +42,6 @@
 #' @import RcppAnnoy
 #' @importFrom RSpectra eigs_sym
 #' @useDynLib SIMLR projsplx
-#' @import Rcpp
 #'
 "SIMLR_Large_Scale" <- function( X, 
     c,
