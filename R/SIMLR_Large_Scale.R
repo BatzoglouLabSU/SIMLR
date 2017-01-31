@@ -158,7 +158,7 @@
         # call the c function for the optimization
         c_input = -t(ad)
         c_output = t(ad)
-        ad = t(.Call("projsplx_R",c_input,c_output))
+        ad = t(.Call("projsplx",c_input,c_output))
         
         S0 = (1 - beta) * S0 + beta * ad
         
