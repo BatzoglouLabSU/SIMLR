@@ -36,8 +36,9 @@
 #' 
 #' @export SIMLR_Large_Scale
 #' @importFrom stats dnorm kmeans pbeta rnorm
-#' @importFrom methods is
+#' @importFrom methods is new
 #' @import Matrix
+#' @import Rcpp
 #' @importFrom pracma orth
 #' @import RcppAnnoy
 #' @importFrom RSpectra eigs_sym
@@ -57,7 +58,7 @@
     }
     
     # check the if.impute parameter
-    if(if.impute == TRUE) {
+    if(if.impute == TRUE){
         X = t(X)
         X_zeros = which(X==0,arr.ind=TRUE)
         if(length(X_zeros)>0) {
@@ -70,7 +71,7 @@
     }
     
     # check the normalize parameter
-    if(normalize == TRUE) {
+    if(normalize == TRUE){
         X = t(X)
         X = X - min(as.vector(X))
         X = X / max(as.vector(X))
