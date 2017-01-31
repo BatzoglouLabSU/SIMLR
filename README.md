@@ -44,8 +44,4 @@ Moreover, for the large scale example, the dataset of Zelsel.RData refers to htt
 
 **RUNNING SIMLR MATLAB IMPLEMENTATION**
 
-We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script main_demo.m. 
-
-We make use of external C programs during the computations of *SIMLR*. The code is located in the MATLAB directory in the files *Kbeta.cpp* and *projsplx_c.c*. In order to compite the program, one needs to run on the MATLAB console the commands *mex Kbeta.cpp* and *mex projsplx_R.c*. 
-
-OS X pre-compiled files are also provided. 
+We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script main_demo.m and main_LARGE_demo_.m. Please refer to the directory *MATLAB* and the file ReadMe.txt within for further details. 
