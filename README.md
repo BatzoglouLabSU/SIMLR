@@ -18,7 +18,7 @@ The latest draft of thr manuscript related to *SIMLR* can be found as a preprint
 
 **DOWNLOAD**
 
-We provide both the R and MATLAB implementations of *SIMLR* in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. 
+We provide both the R and MATLAB implementations of *SIMLR* (both standard and large scale) in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. Furthermore, we also provide a Python implementation for SIMLR large scale. 
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
