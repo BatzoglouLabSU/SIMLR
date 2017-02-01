@@ -3,16 +3,7 @@
 #' @title SIMLR Large Scale 
 #'
 #' @examples
-#' SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust)
-#' 
-#' library(scran)
-#' ncells = 50
-#' ngenes = 25
-#' mu <- 2^runif(ngenes, 3, 10)
-#' gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
-#' rownames(gene.counts) = paste0("X", seq_len(ngenes))
-#' sce = newSCESet(countData=data.frame(gene.counts))
-#' output = SIMLR_Large_Scale(X = sce, c = 3)
+#' output = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust)
 #' 
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells or
 #' and object of class SCESet

@@ -23,11 +23,11 @@ The latest draft of thr manuscript related to *SIMLR* can be found as a preprint
 
 **DOWNLOAD**
 
-We provide both the R and MATLAB implementations of *SIMLR* in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. 
+We provide both the R and MATLAB implementations of *SIMLR* (both standard and large scale) in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. Furthermore, we also provide a Python implementation for SIMLR large scale. 
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
-We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we also provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
+We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
