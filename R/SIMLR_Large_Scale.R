@@ -3,7 +3,9 @@
 #' @title SIMLR Large Scale 
 #'
 #' @examples
+#' \dontrun{
 #' SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, k = 5, kk = 25)
+#' }
 #' 
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells or
 #' and object of class SCESet

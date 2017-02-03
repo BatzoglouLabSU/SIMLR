@@ -38,16 +38,9 @@ list of 8 elements describing the clusters obtained by SIMLR, of which y are the
 perform the SIMLR clustering algorithm for large scale datasets
 }
 \examples{
-SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, ,k = 30, kk = 200)
-
-library(scran)
-ncells = 50
-ngenes = 25
-mu <- 2^runif(ngenes, 3, 10)
-gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
-rownames(gene.counts) = paste0("X", seq_len(ngenes))
-sce = newSCESet(countData=data.frame(gene.counts))
-output = SIMLR_Large_Scale(X = sce, c = 8)
+\dontrun{
+SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, k = 5, kk = 25)
+}
 
 }
 
