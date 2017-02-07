@@ -22,7 +22,7 @@ We provide both the R and MATLAB implementations of *SIMLR* (both standard and l
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
-We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. We now present a set of requirements to run the examples. 
+We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. The R libraries required to run the 2 demos can be installed by running the script *install_R_libraries.R*. We now present a set of requirements to run the examples. 
 
 1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
