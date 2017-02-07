@@ -64,7 +64,7 @@ S0 = max(max(distX))-distX;
 S0 = NE_dn(S0,'ave');
 
 
-[F,evalues] = mex_top_eig_svd(S0, ind, c);
+[F,evalues] = mex_top_eig(S0, ind, c);
 d = evalues/max(evalues);
 d = (1-beta)*d./(1-beta*d.^2);
 F =F.*repmat((d+eps)', length(F),1);
@@ -76,7 +76,7 @@ for iter = 1:NITER
     distf = (distX+lambda*distf)/2/r;
     distf = projsplx_c(-distf')';
     S0 = (1-beta)*S0+(beta)*distf;
-    [F,evalues] = mex_top_eig_svd(S0, ind, c);
+    [F,evalues] = mex_top_eig(S0, ind, c);
     d = evalues/max(evalues);
     d = (1-beta)*d./(1-beta*d.^2);
     F =F.*repmat((d+eps)', length(F),1);
