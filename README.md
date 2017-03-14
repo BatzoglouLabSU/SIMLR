@@ -34,7 +34,7 @@ Furthermore, to run the examples, we require the *igraph* package (see http://ig
 
 All these packages, can be installed with the R built-in *install.packages* function. 
 
-2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is located in the R directory in the file *projsplx_R.c*. In order to compite the program, one needs to run on the shell the command *R CMD SHLIB -c projsplx_R.c*. 
+2) External C code. We make use of an external C program during the computations of *SIMLR*. The code is *located in the R directory* in the file *projsplx_R.c*. In order to *compite the program*, one needs to run on the shell the command *R CMD SHLIB -c projsplx_R.c*. 
 
 An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 

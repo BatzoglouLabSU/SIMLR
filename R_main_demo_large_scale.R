@@ -17,7 +17,19 @@ source("./R/utils.simlr.large.scale.R")
 source("./R/utils.simlr.R")
 source("./R/SIMLR.Rtsne.R")
 
-# load the C files
+# load the C file
+
+# NOTE 1: we make use of an external C program during the computations of SIMLR.
+# The code is located in the R directory in the file projsplx_R.c. In order to 
+# use SIMLR one needs to compite the program. To do so, one needs to run on the 
+# shell the command R CMD SHLIB -c projsplx_R.c. 
+# The precompiled projsplx_R.so is already provided for MAC OS X only. 
+# If one wants to use SIMLR on other operative systems, the file projsplx_R.so 
+# needs to be deleted, and re-compiled. 
+
+# NOTE 2: for Windows, the command dyn.load("./R/projsplx_R.so") needs to be 
+# substituted with the command dyn.load("./R/projsplx_R.dll"). 
+
 dyn.load("./R/projsplx_R.so")
 sourceCpp("./src/Rtsne.cpp")
 
