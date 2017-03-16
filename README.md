@@ -19,7 +19,7 @@ Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large 
 
 **REFERENCE**
 
-The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2016/06/09/052225. 
+The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2017/02/28/052225 and it is published on Nature Methods at http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4207.html. 
 
 Available on *Bioconductor* at https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html (release version on branch master) and https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html (development version on branch development). 
 
@@ -28,6 +28,34 @@ Available on *Bioconductor* at https://www.bioconductor.org/packages/release/bio
 We provide both the R and MATLAB implementations of *SIMLR* (both standard and large scale) in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. 
 
 Furthermore, we also provide a Python implementation for SIMLR which can be found at https://github.com/bowang87/SIMLR_PY. 
+
+**INSTALLING SIMLR R Bioconductor IMPLEMENTATION**
+
+As mentioned, SIMLR is also hosted on Bioconductor at https://bioconductor.org/packages/release/bioc/html/SIMLR.html and can be installed as follow. To install the package directly from Bioconductor, run the following commands directly from R: 
+
+source("https://bioconductor.org/biocLite.R")
+
+biocLite("SIMLR")
+
+Moreover, it is also possible to install the Github version of SIMLR from R by using the R library devtools. 
+
+library(devtools)
+
+install_github("BatzoglouLabSU/SIMLR", ref = 'master')
+
+library(SIMLR)
+
+or,
+
+library(devtools)
+
+install_github("BatzoglouLabSU/SIMLR", ref = 'development')
+
+library(SIMLR)
+
+We notice that on the "master" branch it is hosted the latest stable version of the code which is also available on Bioconductor on the stable repository. While on the "development" branch it is hosted the latest version that is on the devel repository on Bioconductor. 
+
+We describe next our to manually install SIMLR in case one wishes to do so. 
 
 **RUNNING SIMLR R IMPLEMENTATION**
 
