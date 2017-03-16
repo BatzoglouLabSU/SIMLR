@@ -22,6 +22,27 @@ We provide both the R and MATLAB implementations of *SIMLR* (both standard and l
 
 Furthermore, we also provide a Python implementation for SIMLR which can be found at https://github.com/bowang87/SIMLR_PY. 
 
+**INSTALLING SIMLR R Bioconductor IMPLEMENTATION**
+As mentioned, SIMLR is also hosted on Bioconductor at https://bioconductor.org/packages/ release/bioc/html/SIMLR.html and can be installed as follow. To install the package directly from Bioconductor, run the following commands directly from R: 
+
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("SIMLR")
+
+Moreover, it is also possible to install the Github version of SIMLR from R by using the R library devtools. 
+
+library(devtools)
+install_github("BatzoglouLabSU/SIMLR", ref = 'master')
+library(SIMLR)
+
+library(devtools)
+install_github("BatzoglouLabSU/SIMLR", ref = 'development')
+library(SIMLR)
+
+We notice that on the "master" branch it is hosted the latest stable version of the code which is also available on Bioconductor on the stable repository. While on the "development" branch it is hosted the latest version that is on the devel repository on Bioconductor. 
+
+We describe next our to manually install SIMLR in case one wishes to do so. 
+
 **RUNNING SIMLR R IMPLEMENTATION**
 
 We provide the R code to run *SIMLR* on 4 examples in the script *R_main_demo.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_large_scale.R*. The R libraries required to run the 2 demos can be installed by running the script *install_R_libraries.R*. We now present a set of requirements to run the examples. 
