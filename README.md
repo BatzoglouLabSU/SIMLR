@@ -14,7 +14,9 @@ Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large 
 
 **REFERENCE**
 
-The latest draft of thr manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2017/02/28/052225 and it is published on Nature Methods at http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4207.html. 
+The latest draft of the manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2017/02/28/052225 and it is published on Nature Methods at http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4207.html. 
+
+Also see http://biorxiv.org/content/early/2017/03/21/118901 for a description of the software. 
 
 **DOWNLOAD**
 
