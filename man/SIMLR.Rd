@@ -28,7 +28,7 @@ clusters the cells based on SIMLR and their similarities
 
 list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
 	y = results of k-means clusterings,
- 	S = similarities ccomputed by SIMLR, 
+ 	S = similarities computed by SIMLR, 
  	F = results from network diffiusion, 
  	ydata = data referring the the results by k-means,
  	alphaK = clustering coefficients,
