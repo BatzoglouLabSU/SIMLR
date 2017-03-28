@@ -43,25 +43,17 @@
 #' @import Matrix
 #' @useDynLib SIMLR projsplx
 #'
-"SIMLR" <- function( X, 
-    c,
-    no.dim = NA,
-    k = 10,
-    if.impute = FALSE,
-    normalize = FALSE,
-    cores.ratio = 1 ) {
+"SIMLR" <- function( X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
 
     # convert SCESet    
     if (is(X, "SCESet")) {
         cat("X is and SCESet, converting to input matrix.\n")
         X = X@assayData$exprs
     }
-
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
         no.dim = c
     }
-    
     # check the if.impute parameter
     if (if.impute == TRUE) {
         X = t(X)
@@ -74,7 +66,6 @@
         }
         X = t(X)
     }
-    
     # check the normalize parameter
     if(normalize == TRUE) {
         X = t(X)
@@ -94,8 +85,6 @@
     beta = 0.8
     
     cat("Computing the multiple Kernels.\n")
-    
-    # compute the kernels
     D_Kernels = multiple.kernel(t(X),cores.ratio)
     
     # set up some parameters
@@ -143,8 +132,6 @@
     S0 = max(max(distX)) - distX
     
     cat("Performing network diffiusion.\n")
-    
-    # perform network diffiusion
     S0 = network.diffusion(S0,k)
     
     # compute dn
@@ -161,7 +148,6 @@
     # perform the iterative procedure NITER times
     converge = vector()
     for(iter in 1:NITER) {
-        
         cat("Iteration: ",iter,"\n")
         
         distf = L2_distance_1(t(F_eig1),t(F_eig1))
@@ -235,7 +221,6 @@
             distX1[i,] = res[[i]]$x
             idx[i,] = res[[i]]$ix
         }
-        
     }
     LF = F_eig1
     D = diag(apply(S,MARGIN=2,FUN=sum))

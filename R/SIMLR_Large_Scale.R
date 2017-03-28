@@ -37,19 +37,13 @@
 #' @importFrom RSpectra eigs_sym
 #' @useDynLib SIMLR projsplx
 #'
-"SIMLR_Large_Scale" <- function( X, 
-    c,
-    k = 10,
-    kk = 100,
-    if.impute = FALSE,
-    normalize = FALSE ) {
+"SIMLR_Large_Scale" <- function( X, c, k = 10, kk = 100, if.impute = FALSE, normalize = FALSE ) {
 
     # convert SCESet    
     if (is(X, "SCESet")) {
         cat("X is and SCESet, converting to input matrix.\n")
         X = X@assayData$exprs
     }
-    
     # check the if.impute parameter
     if(if.impute == TRUE){
         X = t(X)
@@ -62,7 +56,6 @@
         }
         X = t(X)
     }
-    
     # check the normalize parameter
     if(normalize == TRUE){
         X = t(X)
@@ -82,11 +75,9 @@
     beta = 0.8
     
     cat("Performing fast PCA.\n")
-    
     fast.pca_res = fast.pca(X,kk)
     
     cat("Performing k-nearest neighbour search.\n")
-    
     a_annoy = new(AnnoyEuclidean,dim(fast.pca_res)[2])
     n_annoy = dim(fast.pca_res)[1]
     for (i_annoy in seq(n_annoy)) {
@@ -104,7 +95,6 @@
     }
     
     cat("Computing the multiple Kernels.\n")
-    
     # compute the kernels
     D_Kernels = multiple.kernel_large_scale(val,ind,k)
     
@@ -140,10 +130,8 @@
     F_eig_initial = F_eig
     
     cat("Performing the iterative procedure ",NITER," times.\n")
-    
     # perform the iterative procedure NITER times
     for(iter in 1:NITER) {
-        
         cat("Iteration: ",iter,"\n")
         
         distf = L2_distance_large_scale(F_eig,ind)
@@ -185,18 +173,15 @@
         for (i in 2:length(D_Kernels)) {
             distX = distX + as.matrix(D_Kernels[[i]]) * alphaK[i]
         }
-        
     }
     
     # compute the execution time
     execution.time = proc.time() - ptm
     
     cat("Performing Kmeans.\n")
-    
     y = kmeans(F_eig,c,nstart=200)
     
     cat("Performing t-SNE.\n")
-    
     I = as.vector(seq(1,ncol(ind)*nrow(ind)+1,ncol(ind)))
     J = as.vector(t(ind))
     V = as.vector(t(S0))
