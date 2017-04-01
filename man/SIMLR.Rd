@@ -52,4 +52,3 @@ sce = newSCESet(countData=data.frame(gene.counts))
 output = SIMLR(X = sce, c = 8, cores.ratio = 0)
 
 }
-

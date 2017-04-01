@@ -23,4 +23,3 @@ input data and the corresponding similarity matrix computed by SIMLR
 SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 
 }
-
