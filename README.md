@@ -1,8 +1,8 @@
 **SIMLR** *(Single-cell Interpretation via Multi-kernel LeaRning)*
 ===============================
 
-| Branch              | Stato CI      |  Code Coverage  |
-|---------------------|---------------|-----------------|
+| Branch              | Stato CI      |
+|---------------------|---------------|
 | master | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=master)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
 | development | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=development)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
 
