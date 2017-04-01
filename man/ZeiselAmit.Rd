@@ -23,4 +23,3 @@ list of 6:
 \description{
 example dataset to test SIMLR large scale, reduced version from the work by Zeisel, Amit, et al.
 }
-

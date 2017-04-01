@@ -23,4 +23,3 @@ list of 6:
 \description{
 example dataset to test SIMLR from the work by Buettner, Florian, et al.
 }
-

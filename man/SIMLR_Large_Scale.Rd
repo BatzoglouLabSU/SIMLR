@@ -43,4 +43,3 @@ SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, k = 5, kk = 25)
 }
 
 }
-
