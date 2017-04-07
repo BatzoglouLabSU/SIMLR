@@ -11,7 +11,7 @@ Authors@R: c(person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Daniele Ramazzotti <daniele.ramazzotti@yahoo.com>
 Depends:
-    R (>= 3.3),
+    R (>= 3.4),
 Imports:
     parallel,
     Matrix,
