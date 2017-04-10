@@ -6,6 +6,7 @@
     \itemize{
         \item Minor bug fixes.
     }
+}
 
 \section{Changes in version 1.1.3 (2017-03-27)}{
     \itemize{
