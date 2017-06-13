@@ -18,6 +18,12 @@ The latest draft of the manuscript related to *SIMLR* can be found as a preprint
 
 Also see http://biorxiv.org/content/early/2017/03/21/118901 for a description of the software. 
 
+**CITATION**
+
+When using our tool, please cite Wang, B., Zhu, J., Pierson, E., Ramazzotti, D., & Batzoglou, S. (2017). Visualization and analysis of single-cell RNA-seq data by kernel-based similarity learning. Nature Methods, 14(4), 414-416. 
+
+The citation of Wang, B., Ramazzotti, D., De Sano, L., Zhu, J., Pierson, E., & Batzoglou, S. (2017). SIMLR: a tool for large-scale single-cell analysis by multi-kernel learning. arXiv preprint arXiv:1703.07844 is optional. 
+
 **DOWNLOAD**
 
 We provide both the R and MATLAB implementations of *SIMLR* (both standard and large scale) in the SIMLR branch, while the master (stable version) or the development (development version) branches provide the version of *SIMLR* available on Bioconductor. 
