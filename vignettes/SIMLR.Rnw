@@ -173,7 +173,7 @@ We finally show an example for SIMLR large scale on an input dataset being a red
 
 <<SIMLR_Large_Scale_run, warning=FALSE>>=
 set.seed(11111)
-example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust)
+example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, kk = 10)
 @
 
 We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones. 
