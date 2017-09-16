@@ -42,13 +42,4 @@ perform the SIMLR clustering algorithm
 \examples{
 SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 
-library(scran)
-ncells = 50
-ngenes = 25
-mu <- 2^runif(ngenes, 3, 10)
-gene.counts <- matrix(rnbinom(ngenes*ncells, mu=mu, size=2), nrow=ngenes)
-rownames(gene.counts) = paste0("X", seq_len(ngenes))
-sce = newSCESet(countData=data.frame(gene.counts))
-output = SIMLR(X = sce, c = 8, cores.ratio = 0)
-
 }
