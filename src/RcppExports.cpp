@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // Rtsne_cpp
 Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_dims_in, double perplexity_in, double theta_in, bool verbose, int max_iter, NumericMatrix Y_in, bool init);
-RcppExport SEXP SIMLR_Rtsne_cpp(SEXP ISEXP, SEXP JSEXP, SEXP VSEXP, SEXP no_dims_inSEXP, SEXP perplexity_inSEXP, SEXP theta_inSEXP, SEXP verboseSEXP, SEXP max_iterSEXP, SEXP Y_inSEXP, SEXP initSEXP) {
+RcppExport SEXP _SIMLR_Rtsne_cpp(SEXP ISEXP, SEXP JSEXP, SEXP VSEXP, SEXP no_dims_inSEXP, SEXP perplexity_inSEXP, SEXP theta_inSEXP, SEXP verboseSEXP, SEXP max_iterSEXP, SEXP Y_inSEXP, SEXP initSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
