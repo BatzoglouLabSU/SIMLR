@@ -194,7 +194,7 @@ plot(example_large_scale$ydata,
 
 \section{\Rcode{sessionInfo()}}
 
-<<sessioninfo, results='asis', include=FALSE>>=
+<<sessioninfo, results='asis', echo=FALSE>>=
 toLatex(sessionInfo())
 @
 
