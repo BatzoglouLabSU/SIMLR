@@ -34,7 +34,7 @@ dyn.load("./R/projsplx_R.so")
 sourceCpp("./src/Rtsne.cpp")
 
 # load the datasets
-load(file="./data/Zelsel.RData")
+load(file="./data/Test_5_Zeisel.RData")
 
 # test SIMLR.R on the large scale dataset of Zelsel
 set.seed(11111)
