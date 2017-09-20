@@ -12,6 +12,10 @@ Single-cell RNA-seq technologies enable high throughput gene expression measurem
 
 Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large scale) capable of handling large scale datasets. 
 
+**MAIN FUNCTIONS**
+
+Besides the standard implementation of SIMLR, we provide *SIMLR_Large_Scale* to handle large scale datasets, *SIMLR_Feature_Ranking* to rank the most important features for the clustering and *SIMLR_Estimate_Number_of_Clusters* to estimate the number of clusters from the data as suggested in the original paper. 
+
 **REFERENCE**
 
 The latest draft of the manuscript related to *SIMLR* can be found as a preprint at http://biorxiv.org/content/early/2017/02/28/052225 and it is published on Nature Methods at http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4207.html. 
