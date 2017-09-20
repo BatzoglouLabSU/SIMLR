@@ -1,4 +1,4 @@
-# Estimates the number of clusters by means of two huristics 
+# Estimates the number of clusters by means of two huristics
 "SIMLR_Estimate_Number_of_Clusters" = function( X, NUMC = 2:5, cores.ratio = 1 ) {
 
     D_Kernels = multiple.kernel(X,cores.ratio)
@@ -29,8 +29,8 @@
 
     quality = NULL
 
-    if (min(NUMC)<=1) {
-        staop('Note that we always assume a minimum of at least 2 clusters: please change values for NUMC.')
+    if (min(NUMC)<1) {
+        stop('Note that we always assume a minimum of at least 2 clusters: please change values for NUMC.')
     }
 
     W = (W + t(W)) / 2
@@ -54,7 +54,6 @@
         eigenvalue = res$x
         b = res$ix
         U = U[,b]
-        eigengap = abs(diff(eigenvalue))
         for (ck in NUMC) {
             if(ck==1) {
                 tmp = array(0,dim(U))
@@ -68,8 +67,8 @@
                 UU = UU / tmp
                 res = discretisation(UU)
                 EigenVectors = res$EigenVectors^2
-                temp1 = t(apply(tmp,1,function(x) return(sort(x,decreasing=TRUE))))
-                tmp = 1/(temp1[,1]+.Machine$double.eps)
+                temp1 = t(apply(EigenVectors,1,function(x) return(sort(x,decreasing=TRUE))))
+                tmp = 1 / (temp1[,1]+.Machine$double.eps)
                 tmp1 = Matrix(0,nrow=length(tmp),ncol=length(tmp),sparse=TRUE)
                 diag(tmp1) = tmp
                 tmp = tmp1%*%temp1[,1:max(2,ck-1)]
@@ -98,7 +97,7 @@
     c = array(0,c(n,1))
     for(j in 2:k) {
         c = c + abs(EigenVectors%*%R[,(j-1)])
-        R[,j]=t(EigenVectors[which.min(c),])
+        R[,j] = t(EigenVectors[which.min(c),])
     }
 
     lastObjectiveValue = 0
@@ -129,14 +128,13 @@
 
 # Discretizes previously rotated eigenvectors in discretisation 
 # Timothee Cour, Stella Yu, Jianbo Shi, 2004 
-"discretisationEigenVectorData" = function( EigenVectors ) {
+"discretisationEigenVectorData" = function( EigenVector ) {
 
-    n = nrow(EigenVectors)
-    k = ncol(EigenVectors)
+    n = nrow(EigenVector)
+    k = ncol(EigenVector)
 
-    J = apply(t(EigenVectors),2,function(x) return(which.max(x)))
-    Y = Matrix(0,nrow=n,ncol=k,sparse=TRUE)
-    Y[1:n,as.vector(t(J))] = 1
+    J = apply(t(EigenVector),2,function(x) return(which.max(x)))
+    Y = sparseMatrix(i=1:n,j=t(J),x=1,dims=c(n,k))
 
     return(Y)
 
