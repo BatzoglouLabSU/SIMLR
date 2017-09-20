@@ -1,14 +1,14 @@
 # Estimates the number of clusters by means of two huristics
 "SIMLR_Estimate_Number_of_Clusters" = function( X, NUMC = 2:5, cores.ratio = 1 ) {
 
-    D_Kernels = multiple.kernel(X,cores.ratio)
+    D_Kernels = multiple.kernel(t(X),cores.ratio)
     distX = array(0,c(dim(D_Kernels[[1]])[1],dim(D_Kernels[[1]])[2]))
     for (i in 1:length(D_Kernels)) {
         distX = distX + D_Kernels[[i]]
     }
     distX = distX / length(D_Kernels)
     W =  max(max(distX)) - distX
-    W = network.diffusion(W,max(ceiling(nrow(X)/20),10))
+    W = network.diffusion(W,max(ceiling(ncol(X)/20),10))
 
     Quality = Estimate_Number_of_Clusters_given_graph(W,NUMC)
     Quality_plus = Estimate_Number_of_Clusters_given_graph(W,NUMC+1)
