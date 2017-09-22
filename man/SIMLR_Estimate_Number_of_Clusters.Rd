@@ -18,5 +18,5 @@ a list of 2 elements: K1 and K2 with an estimation of the best clusters (the low
 values the better) as discussed in the original paper of SIMLR
 }
 \description{
-Estimates the number of clusters by means of two huristics as discussed in the SIMLR paper
+estimate the number of clusters by means of two huristics as discussed in the SIMLR paper
 }
