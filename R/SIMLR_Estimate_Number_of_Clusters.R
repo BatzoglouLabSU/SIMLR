@@ -1,4 +1,4 @@
-#' Estimates the number of clusters by means of two huristics as discussed in the SIMLR paper 
+#' estimate the number of clusters by means of two huristics as discussed in the SIMLR paper 
 #' 
 #' @title SIMLR Estimate Number of Clusters
 #'
@@ -10,6 +10,12 @@
 #' values the better) as discussed in the original paper of SIMLR
 #' 
 #' @export SIMLR_Estimate_Number_of_Clusters
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
+#' @importFrom parallel parLapply
+#' @importFrom stats dnorm kmeans pbeta rnorm
+#' @importFrom methods is
+#' @import Matrix
+#' @useDynLib SIMLR projsplx
 #'
 "SIMLR_Estimate_Number_of_Clusters" = function( X, NUMC = 2:5, cores.ratio = 1 ) {
 
