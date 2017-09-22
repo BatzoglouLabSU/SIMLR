@@ -195,9 +195,9 @@ plot(example_large_scale$ydata,
 Now, as a final example, we also provide the results of two heuristics (see the original SIMLR paper) to estimate the number of clusters from data. 
 
 <<SIMLR_Number_Clusters_run, warning=FALSE>>=
-set.seed(32411)
+set.seed(53900)
 NUMC = 2:5
-res_example = SIMLR_Estimate_Number_of_Clusters(Test_2_Kolod$in_X,NUMC=NUMC,cores.ratio=1)
+res_example = SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X, NUMC = NUMC, cores.ratio = 1)
 print(paste0("Best number of clusters, K1 heuristic: ",NUMC[which.min(res_example$K1)],", K2 heuristic: ",NUMC[which.min(res_example$K2)],"."))
 print(res_example)
 @
