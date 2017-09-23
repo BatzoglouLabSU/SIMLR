@@ -20,3 +20,10 @@ values the better) as discussed in the original paper of SIMLR
 \description{
 estimate the number of clusters by means of two huristics as discussed in the SIMLR paper
 }
+\examples{
+
+SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
+   NUMC = 2:5,
+   cores.ratio = 1)
+
+}

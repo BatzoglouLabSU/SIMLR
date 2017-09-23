@@ -127,7 +127,7 @@ We now compute the normalized mutual information between the inferred clusters b
 
 <<nmi_performance>>=
 nmi_1 = compare(BuettnerFlorian$true_labs[,1], example$y$cluster, method="nmi")
-print(nmi_1)
+nmi_1
 @
 
 As a further understanding of the results, we now visualize the cell populations in a plot. 
@@ -171,7 +171,7 @@ We compute the normalized mutual information between the inferred clusters by SI
 
 <<nmi_performance_large_scale>>=
 nmi_2 = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
-print(nmi_2)
+nmi_2
 @
 
 As a further understanding of the results, also in this case we visualize the cell populations in a plot. 
@@ -197,9 +197,24 @@ Now, as a final example, we also provide the results of two heuristics (see the 
 <<SIMLR_Number_Clusters_run, warning=FALSE>>=
 set.seed(53900)
 NUMC = 2:5
-res_example = SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X, NUMC = NUMC, cores.ratio = 1)
-print(paste0("Best number of clusters, K1 heuristic: ",NUMC[which.min(res_example$K1)],", K2 heuristic: ",NUMC[which.min(res_example$K2)],"."))
-print(res_example)
+res_example = SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
+    NUMC = NUMC,
+    cores.ratio = 1)
+@
+
+Best number of clusters, K1 heuristic:
+<<SIMLR_NC_output_k1>>=
+NUMC[which.min(res_example$K1)]
+@
+
+K2 heuristic:
+<<SIMLR_NC_output_k2>>=
+NUMC[which.min(res_example$K2)]
+@
+
+Results of the two heuristics:
+<<SIMLR_NC_output, warning=FALSE>>=
+res_example
 @
 
 \section{\Rcode{sessionInfo()}}

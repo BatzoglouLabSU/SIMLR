@@ -1,6 +1,12 @@
 #' estimate the number of clusters by means of two huristics as discussed in the SIMLR paper 
 #' 
 #' @title SIMLR Estimate Number of Clusters
+#' 
+#' @examples
+#' 
+#' SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
+#'    NUMC = 2:5,
+#'    cores.ratio = 1)
 #'
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells
 #' @param NUMC vector of number of clusters to be considered
@@ -10,8 +16,7 @@
 #' values the better) as discussed in the original paper of SIMLR
 #' 
 #' @export SIMLR_Estimate_Number_of_Clusters
-#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
-#' @importFrom parallel parLapply
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ parLapply
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
