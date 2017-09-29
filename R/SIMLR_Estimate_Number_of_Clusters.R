@@ -6,7 +6,7 @@
 #' 
 #' SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
 #'    NUMC = 2:5,
-#'    cores.ratio = 1)
+#'    cores.ratio = 0)
 #'
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells
 #' @param NUMC vector of number of clusters to be considered

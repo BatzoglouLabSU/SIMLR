@@ -199,7 +199,7 @@ set.seed(53900)
 NUMC = 2:5
 res_example = SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
     NUMC = NUMC,
-    cores.ratio = 1)
+    cores.ratio = 0)
 @
 
 Best number of clusters, K1 heuristic:
