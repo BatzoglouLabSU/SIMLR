@@ -24,6 +24,6 @@ estimate the number of clusters by means of two huristics as discussed in the SI
 
 SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
    NUMC = 2:5,
-   cores.ratio = 1)
+   cores.ratio = 0)
 
 }
