@@ -39,7 +39,7 @@ perform the SIMLR clustering algorithm for large scale datasets
 }
 \examples{
 resized = ZeiselAmit$in_X[, 1:340]
-\\donotrun{
+\dontrun{
 SIMLR_Large_Scale(X = resized, c = ZeiselAmit$n_clust, k = 5, kk = 5)
 }
 
