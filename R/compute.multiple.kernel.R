@@ -23,7 +23,7 @@
     
     # setup a parallelized estimation of the kernels
     cores = as.integer(cores.ratio * (detectCores() - 1))
-    if (cores < 1) {
+    if (cores < 1 || is.na(cores) || is.null(cores)) {
         cores = 1
     }
 
