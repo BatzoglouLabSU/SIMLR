@@ -1,10 +1,10 @@
 We here provide the Matlab implementation of both SIMLR and CIMLR. 
 
-** SETUP **
+**SETUP**
 
 Before running our tool, the user needs to mex compile serveral C-mex files. This can be done by running the code SETUP.m. 
 
-** DEMOS **
+**DEMOS**
 
 We provide 3 demos for the usage of SIMLR in both small scale and large scale implementations. In Matlab_main_demo_SIMLR.m we run SIMLR on 4 small-scale datasets while in Matlab_main_demo_SIMLR_Large_Scale.m, we show an example of how to run our tool on 1 large scale dataset. The script Matlab_main_demo_SIMLR_Estimate_Number_of_Clusters.m provides an example of estimation of the best number of clusters by SIMLR. 
 

@@ -93,7 +93,7 @@ Moreover, for the large scale example, the dataset of Zelsel.RData refers to htt
 
 **RUNNING THE MATLAB IMPLEMENTATION**
 
-We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. Furthermore, we also provide two demos for *CIMLR* with the data from https://www.ncbi.nlm.nih.gov/pubmed/26061751. 
+We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. Furthermore, we provide two demos for *CIMLR* with the data from https://www.ncbi.nlm.nih.gov/pubmed/26061751. 
 
 Please refer to the directory *MATLAB* and the file README.txt within for further details. 
 
