@@ -3,7 +3,8 @@ clc
 close all
 
 addpath('data')
-dataset = {'1_mECS', '2_Kolod', '3_Pollen', '4_Usoskin'} %% four datasets tested on the paper
+addpath('src')
+dataset = {'1_mECS', '2_Kolod', '3_Pollen', '4_Usoskin'}
 
 for i = 1:4
     load(['Test_' dataset{i}]);
@@ -16,5 +17,4 @@ for i = 1:4
     %%% visualization
     figure;
     gscatter(ydata(:,1),ydata(:,2),true_labs);
-    
 end

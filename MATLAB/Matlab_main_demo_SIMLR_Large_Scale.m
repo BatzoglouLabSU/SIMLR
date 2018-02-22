@@ -3,7 +3,8 @@ clc
 close all
 
 addpath('data')
-dataset = {'5_Zeisel'} %% four datasets tested on the paper
+addpath('src')
+dataset = {'5_Zeisel'}
 
 for i = 1
     load(['Test_' dataset{i}]);

@@ -7,7 +7,7 @@ In this repository we provide implementations in both R and Matlab of *SIMLR* (h
 
 The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the two methods (namely *SIMLR* and *CIMLR*), but no data in order to make it smaller for download. Some example data together with the implementations are provided in the branch SIMLR_full (bigger to download). We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications. 
 
-Moreover, the tools is also availble on Bioconductor (https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html) with the branch master of this repository referring to the stable version on Bioconductor and the development branch of this repository referring to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
+Moreover, the tools are also available on Bioconductor (https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html). The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
 
 The standard implementations of *SIMLR* are provided in the scripts *SIMLR.R* for R and *SIMLR.m* for Matlab. Similarly, we provide in the scripts *CIMLR.R* and *CIMLR.m* the implementations of *CIMLR* in both R and Matlab. 
 
@@ -25,7 +25,7 @@ Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large 
 
 **CIMLR**
 
-Outcomes for cancer patients vary greatly even within the same tumor type, and characterization of molecular subtypes of cancer holds important promise for improving prognosis and personalized treatment. This promise has motivated recent efforts to produce large amounts of multidimensional genomic ("multi-omic") data, but current algorithms still face challenges in the integrated analysis of such data. Here we present Cancer Integration via Multikernel Learning (*CIMLR*; based on an algorithm originally developed for analysis of single-cell RNA-Seq data), a new cancer subtyping method that integrates multi-omic data to reveal molecular subtypes of cancer. We apply CIMLR to multi-omic data from 32 cancer types and show significant improvements in both computational efficiency and ability to extract biologically meaningful cancer subtypes. The discovered subtypes exhibit significant differences in patient survival for 21 of the 32 studied cancer types. Our analysis reveals integrated patterns of gene expression, methylation, point mutations and copy number changes in multiple cancers and highlights patterns specifically associated with poor patient outcomes. 
+Outcomes for cancer patients vary greatly even within the same tumor type, and characterization of molecular subtypes of cancer holds important promise for improving prognosis and personalized treatment. This promise has motivated recent efforts to produce large amounts of multidimensional genomic ("multi-omic") data, but current algorithms still face challenges in the integrated analysis of such data. Here we present Cancer Integration via Multikernel Learning (*CIMLR*), a new cancer subtyping method that integrates multi-omic data to reveal molecular subtypes of cancer. *CIMLR* extends the original implementation of *SIMLR* to take as input multiple data matrices corresponding to different types of measurements upon the same set of tumors. We applied *CIMLR* to multi-omic data from 32 cancer types and showed significant improvements in both computational efficiency and ability to extract biologically meaningful cancer subtypes. The discovered subtypes exhibited significant differences in patient survival for 21 of the 32 studied cancer types. Our analysis revealed integrated patterns of gene expression, methylation, point mutations and copy number changes in multiple cancers and highlights patterns specifically associated with poor patient outcomes. 
 
 **REFERENCE**
 
@@ -33,7 +33,9 @@ The latest version of the manuscript related to *SIMLR* is published on Nature M
 
 **CITATION**
 
-When using *SIMLR*, please cite Wang, Bo, et al. "Visualization and analysis of single-cell RNA-seq data by kernel-based similarity learning." Nature methods 14.4 (2017): 414. For *CIMLR*, please cite Ramazzotti, Daniele, et al. "Multi-omic tumor data reveal diversity of molecular mechanisms underlying survival." bioRxiv (2018): 267245. 
+When using *SIMLR*, please cite Wang, Bo, et al. "Visualization and analysis of single-cell RNA-seq data by kernel-based similarity learning." Nature methods 14.4 (2017): 414. 
+
+For *CIMLR*, please cite Ramazzotti, Daniele, et al. "Multi-omic tumor data reveal diversity of molecular mechanisms underlying survival." bioRxiv (2018): 267245. 
 
 The citation of Wang, Bo, et al. "SIMLR: A Tool for Large‐Scale Genomic Analyses by Multi‐Kernel Learning." Proteomics 18.2 (2018) is optional, although appreciated. 
 
@@ -61,9 +63,9 @@ install_github("BatzoglouLabSU/SIMLR", ref = 'development')
 
 library(SIMLR)
 
-We notice that on the "master" branch it is hosted the latest stable version of the code which is also available on Bioconductor on the stable repository. While on the "development" branch it is hosted the latest version that is on the devel repository on Bioconductor. 
+The "master" branch hosts the latest stable version of the code which is also available on Bioconductor on the stable repository, while the "development" branch hosts the latest version that is on the devel repository on Bioconductor. 
 
-We describe next our to manually install our software in case one wishes to do so. 
+We describe next the procedure to manually install our software in case one wishes to do so. 
 
 **RUNNING THE R IMPLEMENTATION**
 
