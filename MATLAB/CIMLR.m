@@ -99,31 +99,6 @@ for iter = 1:NITER
     [distX1, idx] = sort(distX,2);
 end;
 
-% compute the relative contribution of each data type
-data_contribution = zeros(2,4);
-data_contribution(1,1) = mean(alphaK(1:55));
-data_contribution(2,1) = max(alphaK(1:55));
-data_contribution(1,2) = mean(alphaK(56:110));
-data_contribution(2,2) = max(alphaK(56:110));
-data_contribution(1,3) = mean(alphaK(111:165));
-data_contribution(2,3) = max(alphaK(111:165));
-data_contribution(1,4) = mean(alphaK(166:220));
-data_contribution(2,4) = max(alphaK(166:220));
-
-% normalize the contributions
-contributions_sum_mean = data_contribution(1,1) + data_contribution(1,2) + data_contribution(1,3) + data_contribution(1,4);
-contributions_sum_max = data_contribution(2,1) + data_contribution(2,2) + data_contribution(2,3) + data_contribution(2,4);
-data_contribution(1,1) = data_contribution(1,1) / contributions_sum_mean;
-data_contribution(1,2) = data_contribution(1,2) / contributions_sum_mean;
-data_contribution(1,3) = data_contribution(1,3) / contributions_sum_mean;
-data_contribution(1,4) = data_contribution(1,4) / contributions_sum_mean;
-data_contribution(2,1) = data_contribution(2,1) / contributions_sum_max;
-data_contribution(2,2) = data_contribution(2,2) / contributions_sum_max;
-data_contribution(2,3) = data_contribution(2,3) / contributions_sum_max;
-data_contribution(2,4) = data_contribution(2,4) / contributions_sum_max;
-
-save(strcat('data_contribution_C_',num2str(c),'.mat'),'data_contribution');
-
 LF = F;
 D = diag(sum(S,order));
 L = D - S;
@@ -137,8 +112,6 @@ else
     end
 end
 timeOurs = toc(t0);
-
-save(strcat('S_C_',num2str(c),'.mat'),'S');
 
 [~,center] = litekmeans(LF, c,'replicates',200);
 [~,center] = min(dist2(center,LF),[],2);
