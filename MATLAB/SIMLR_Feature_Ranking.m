@@ -1,7 +1,7 @@
 function [aggR,pval] = SIMLR_Feature_Ranking(A,X)
 
 %%% A is the similarity matrix by SIMLR
-%%%X is the data of size nxp
+%%% X is the data of size nxp
 
 %%%glist is the ranking of genes
 %addpath('/Users/Bo/Documents/PHD_in_Stanford/Work_Serafim/SingleCell/GB_similaritylearning/RankAggreg')

@@ -1,4 +1,4 @@
-function [S0, F] = SIMLR_LARGE(X, c, k, ifimpute,normalize)
+function [S0, F] = SIMLR_Large_Scale(X, c, k, ifimpute,normalize)
 
 %%%
 if nargin==2

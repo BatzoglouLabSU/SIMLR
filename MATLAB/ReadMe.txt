@@ -1,8 +1,10 @@
-We here provide the Matlab implementation of both SIMLR and CIMLR. 
+We here provide the Matlab implementations of both SIMLR and CIMLR. 
 
 **SETUP**
 
 Before running our tool, the user needs to mex compile serveral C-mex files. This can be done by running the code SETUP.m. 
+
+Note: the compiling steps implemented in the file SETUP.m are required ONLY to run SIMLR_Large_Scale. All the other scripts do not need them. In order to run the mex command (and, hence, the script SETUP.m), one should have installed a valid compiler. 
 
 **DEMOS**
 
