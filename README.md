@@ -69,11 +69,13 @@ We describe next the procedure to manually install our software in case one wish
 
 **RUNNING THE R IMPLEMENTATION**
 
-We provide the R demo code to run our *SIMLR* on 4 examples in the script *R_main_demo_SIMLR.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_SIMLR_Large_Scale.R*. A demo for the estimation of the number of clusters by *SIMLR* is also provided in the script *R_main_demo_SIMLR_Estimate_Number_of_Clusters.R*. 
+We provide the R demo code to run *SIMLR* on 4 examples in the script *R_main_demo_SIMLR.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_SIMLR_Large_Scale.R*. A demo for the estimation of the number of clusters by *SIMLR* is also provided in the script *R_main_demo_SIMLR_Estimate_Number_of_Clusters.R*. 
+
+The R demo code to run *CIMLR* is also provided in the script *R_main_demo_CIMLR.R*. Besides this, a demo for the estimation of the number of clusters by *CIMLR* can be found in the script *R_main_demo_CIMLR_Estimate_Number_of_Clusters.R*. 
 
 The R libraries required to run the demos can be installed by running the script *install_R_libraries.R*. We now present a set of requirements to run the examples. 
 
-1) Required R libraries. *SIMLR* requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
+1) Required R libraries. our tool requires 2 R packages to run, namely the *Matrix* package (see https://cran.r-project.org/web/packages/Matrix/index.html) to handle sparse matrices and the *parallel* package (see https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) for a parallel implementation of the kernel estimation. 
 
 To run the large scale analysis, it is necessary to install 4 more packages, namely *Rcpp* package (see https://cran.r-project.org/web/packages/Rcpp/index.html), *pracma* package (see https://cran.r-project.org/web/packages/pracma/index.html), *RcppAnnoy* package (see https://cran.rstudio.com/web/packages/RcppAnnoy/index.html) and *RSpectra* package (see https://cran.r-project.org/web/packages/RSpectra/index.html). 
 
@@ -85,11 +87,13 @@ All these packages, can be installed with the R built-in *install.packages* func
 
 An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 
-3) Example datasets. The 5 example datasets are provided in the directory data of the branch SIMLR_full. 
+3) Example datasets. The 6 example datasets are provided in the directory data of the branch SIMLR_full. We recall that those data are provided purely as examples and after some pre-processing; they should not be used in place of the ones provided in the respective publications. 
 
 Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
 
-Moreover, for the large scale example, the dataset of Zelsel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174. 
+Moreover, for the large scale example, the dataset of Test_5_Zeisel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174. 
+
+Finally, we provide the dataset Test_6_gliomas_multi_omic_data.RData from https://www.ncbi.nlm.nih.gov/pubmed/26061751 to text *CIMLR*. 
 
 **RUNNING THE MATLAB IMPLEMENTATION**
 

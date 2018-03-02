@@ -32,4 +32,4 @@ end;
 
 % estimate the best number of clusters
 NUMC = 2:15;
-[K1, K2] = Estimate_Number_of_Clusters_CIMLR(alldata, NUMC);
+[K1, K2] = Estimate_Number_of_Clusters_CIMLR(alldata,NUMC);

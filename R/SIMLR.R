@@ -1,5 +1,5 @@
 # perform the SIMLR clustering algorithm
-"SIMLR" <- function( X, c , no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
+"SIMLR" <- function( X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE, cores.ratio = 1 ) {
     
     # set any required parameter to the defaults
     if(is.na(no.dim)) {
