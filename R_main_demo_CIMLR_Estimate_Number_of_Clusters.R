@@ -11,6 +11,7 @@ source("./R/network.diffusion.R")
 load(file="./data/Test_6_gliomas_multi_omic_data.RData")
 
 # in this example we test the estimation of the number of cluster on Test_6_gliomas_multi_omic_data 
+# where the number of clusters is supposed to be 3 
 set.seed(86677)
 cat("Performing analysis for Test_6_gliomas_multi_omic_data","\n")
 NUMC = 2:15
