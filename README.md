@@ -93,7 +93,7 @@ Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih
 
 Moreover, for the large scale example, the dataset of Test_5_Zeisel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174. 
 
-Finally, we provide the dataset Test_6_gliomas_multi_omic_data.RData from https://www.ncbi.nlm.nih.gov/pubmed/26061751 to text *CIMLR*. 
+Finally, we provide the dataset Test_6_gliomas_multi_omic_data.RData from https://www.ncbi.nlm.nih.gov/pubmed/26061751 to test *CIMLR*. 
 
 **RUNNING THE MATLAB IMPLEMENTATION**
 

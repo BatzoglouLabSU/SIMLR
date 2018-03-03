@@ -28,8 +28,9 @@ for i = 1:size(alldata{1},2)
     alldata{3}(isnan(alldata{3}(:,i)),i) = 0.5;
     alldata{4}(:,i) = (alldata{4}(:,i) - min(alldata{4}(:,i))) / (max(alldata{4}(:,i)) - min(alldata{4}(:,i)));
     alldata{4}(isnan(alldata{4}(:,i)),i) = 0.5;
-end;
+end
 
 % estimate the best number of clusters
 NUMC = 2:15;
+rng(32655,'twister'); %%% for reproducibility
 [K1, K2] = Estimate_Number_of_Clusters_CIMLR(alldata,NUMC);
