@@ -97,7 +97,7 @@ for iter = 1:NITER
     S_old = S;
     distX = Kbeta(D_Kernels,alphaK');
     [distX1, idx] = sort(distX,2);
-end;
+end
 
 LF = F;
 D = diag(sum(S,order));
