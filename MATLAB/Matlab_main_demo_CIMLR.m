@@ -32,5 +32,5 @@ end;
 
 % perform CIMLR
 C = 3; %%% number of clusters
-rng(4355677); %%% for reproducibility
+rng(43556,'twister'); %%% for reproducibility
 [y, S, F, ydata] = CIMLR(alldata,C,10);
