@@ -28,7 +28,7 @@ for i = 1:size(alldata{1},2)
     alldata{3}(isnan(alldata{3}(:,i)),i) = 0.5;
     alldata{4}(:,i) = (alldata{4}(:,i) - min(alldata{4}(:,i))) / (max(alldata{4}(:,i)) - min(alldata{4}(:,i)));
     alldata{4}(isnan(alldata{4}(:,i)),i) = 0.5;
-end;
+end
 
 % perform CIMLR
 C = 3; %%% number of clusters
