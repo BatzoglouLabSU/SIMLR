@@ -1,4 +1,36 @@
-# perform the SIMLR clustering algorithm
+#' perform the CIMLR clustering algorithm
+#' 
+#' @title CIMLR
+#'
+#' @examples
+#' CIMLR(X = GliomasReduced$in_X, c = 3, cores.ratio = 0)
+#' 
+#' @param X a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
+#' @param c number of clusters to be estimated over X
+#' @param no.dim number of dimensions
+#' @param k tuning parameter
+#' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
+#'
+#' @return clusters the patients based on CIMLR and their similarities
+ 
+#' @return list of 8 elements describing the clusters obtained by CIMLR, of which y are the resulting clusters: 
+#'      y = results of k-means clusterings,
+#'      S = similarities computed by CIMLR, 
+#'      F = results from network diffiusion, 
+#'      ydata = data referring the the results by k-means,
+#'      alphaK = clustering coefficients,
+#'      execution.time = execution time of the present run,
+#'      converge = iterative convergence values by T-SNE,
+#'      LF = parameters of the clustering
+#' 
+#' @export CIMLR
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ
+#' @importFrom parallel parLapply
+#' @importFrom stats dnorm kmeans pbeta rnorm
+#' @importFrom methods is
+#' @import Matrix
+#' @useDynLib SIMLR projsplx
+#'
 "CIMLR" <- function( X, c, no.dim = NA, k = 10, cores.ratio = 1 ) {
     
     # set any required parameter to the defaults

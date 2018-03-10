@@ -6,6 +6,7 @@
 | master | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=master)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
 | development | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=development)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
 
+
 **OVERVIEW**
 
 In this repository we provide implementations in both R and Matlab of *SIMLR* (https://www.nature.com/articles/nmeth.4207) and *CIMLR* (https://www.biorxiv.org/content/early/2018/02/16/267245). These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. 

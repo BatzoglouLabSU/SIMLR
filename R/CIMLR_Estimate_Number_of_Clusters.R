@@ -1,4 +1,27 @@
-# Estimates the number of clusters by means of two huristics
+#' estimate the number of clusters by means of two huristics as discussed in the CIMLR paper 
+#' 
+#' @title CIMLR Estimate Number of Clusters
+#' 
+#' @examples
+#' 
+#' CIMLR_Estimate_Number_of_Clusters(GliomasReduced$in_X,
+#'    NUMC = 2:5,
+#'    cores.ratio = 0)
+#'
+#' @param X is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
+#' @param NUMC vector of number of clusters to be considered
+#' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
+#'
+#' @return a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 
+#' values the better) as discussed in the original paper of SIMLR
+#' 
+#' @export CIMLR_Estimate_Number_of_Clusters
+#' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ parLapply
+#' @importFrom stats dnorm kmeans pbeta rnorm
+#' @importFrom methods is
+#' @import Matrix
+#' @useDynLib SIMLR projsplx
+#'
 "CIMLR_Estimate_Number_of_Clusters" = function( all_data, NUMC = 2:5, cores.ratio = 1 ) {
 
     for(data_types in 1:length(all_data)) {
