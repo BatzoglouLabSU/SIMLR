@@ -1,10 +1,9 @@
 language: r
 r: bioc-release
-r: bioc-devel
 
 cache: packages
 
-before_install:    
+before_install:
   - tlmgr install tcolorbox
   - tlmgr install bera
   - tlmgr install nowidow
