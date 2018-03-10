@@ -1,5 +1,6 @@
 language: r
 r: bioc-release
+r: bioc-devel
 
 cache: packages
 
@@ -16,8 +17,4 @@ branches:
   - master
   - development
 
-# r_packages:
-#   - covr
-
-# after_success:
-#   - Rscript -e 'library(covr); codecov()'
+r_check_args: "--no-vignettes"
