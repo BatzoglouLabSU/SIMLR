@@ -13,13 +13,13 @@ data(ZeiselAmit)
 }
 \value{
 list of 6: 
-	in_X = input dataset as an (m x n) gene expression measurements of individual cells,
+	in_X = input dataset as an (m x n) gene expression measurements of individual cells, 
  	n_clust = number of clusters (number of distinct true labels), 
  	true_labs = ground true of cluster assignments for each of the n_clust clusters, 
- 	seed = seed used to compute the results for the example,
- 	results = result by SIMLR for the inputs defined as described,
+ 	seed = seed used to compute the results for the example, 
+ 	results = result by SIMLR for the inputs defined as described, 
  	nmi = normalized mutual information as a measure of the inferred clusters compared to the true labels
 }
 \description{
-example dataset to test SIMLR large scale, reduced version from the work by Zeisel, Amit, et al.
+example dataset to test SIMLR large scale. This is a reduced version of the dataset from the work by Zeisel, Amit, et al.
 }

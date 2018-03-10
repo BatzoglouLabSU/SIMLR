@@ -1,36 +1,58 @@
-#' estimate the number of clusters by means of two huristics as discussed in the SIMLR paper 
+#' estimate the number of clusters by means of two huristics as discussed in the CIMLR paper 
 #' 
-#' @title SIMLR Estimate Number of Clusters
+#' @title CIMLR Estimate Number of Clusters
 #' 
 #' @examples
 #' 
-#' SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
+#' CIMLR_Estimate_Number_of_Clusters(GliomasReduced$in_X,
 #'    NUMC = 2:5,
 #'    cores.ratio = 0)
 #'
-#' @param X an (m x n) data matrix of gene expression measurements of individual cells
+#' @param all_data is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
 #' @param NUMC vector of number of clusters to be considered
 #' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
 #'
 #' @return a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 
 #' values the better) as discussed in the original paper of SIMLR
 #' 
-#' @export SIMLR_Estimate_Number_of_Clusters
+#' @export CIMLR_Estimate_Number_of_Clusters
 #' @importFrom parallel stopCluster makeCluster detectCores clusterEvalQ parLapply
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
 #'
-"SIMLR_Estimate_Number_of_Clusters" = function( X, NUMC = 2:5, cores.ratio = 1 ) {
+"CIMLR_Estimate_Number_of_Clusters" = function( all_data, NUMC = 2:5, cores.ratio = 1 ) {
 
-    D_Kernels = multiple.kernel.numc(t(X),cores.ratio)
-    distX = array(0,c(dim(D_Kernels[[1]])[1],dim(D_Kernels[[1]])[2]))
-    for (i in 1:length(D_Kernels)) {
-        distX = distX + D_Kernels[[i]]
+    for(data_types in 1:length(all_data)) {
+
+        X = all_data[[data_types]]
+
+        if(data_types==1) {
+
+            D_Kernels = multiple.kernel.numc(t(X),cores.ratio)
+            distX = array(0,c(dim(D_Kernels[[1]])[1],dim(D_Kernels[[1]])[2]))
+            for (i in 1:length(D_Kernels)) {
+                distX = distX + D_Kernels[[i]]
+            }
+            distX = distX / length(D_Kernels)
+            W =  max(max(distX)) - distX
+            W = network.diffusion.numc(W,max(ceiling(ncol(X)/20),10))
+
+        }
+        else {
+
+            D_Kernels = c(D_Kernels,multiple.kernel.numc(t(X),cores.ratio))
+            distX = array(0,c(dim(D_Kernels[[1]])[1],dim(D_Kernels[[1]])[2]))
+            for (i in 1:length(D_Kernels)) {
+                distX = distX + D_Kernels[[i]]
+            }
+            distX = distX / length(D_Kernels)
+            W0 =  max(max(distX)) - distX
+            W = W + network.diffusion.numc(W0,max(ceiling(ncol(X)/20),10))
+
+        }
+
     }
-    distX = distX / length(D_Kernels)
-    W =  max(max(distX)) - distX
-    W = network.diffusion.numc(W,max(ceiling(ncol(X)/20),10))
 
     Quality = Estimate_Number_of_Clusters_given_graph(W,NUMC)
     Quality_plus = Estimate_Number_of_Clusters_given_graph(W,NUMC+1)
