@@ -16,5 +16,3 @@ branches:
   only:
   - master
   - development
-
-r_check_args: "--no-vignettes"
