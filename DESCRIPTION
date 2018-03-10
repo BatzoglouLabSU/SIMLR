@@ -3,11 +3,9 @@ Version: 1.5.1
 Date: 2018-03-09
 Title: Title: 
     SIMLR and CIMLR Multi-kernel LeaRning methods
-Authors@R: c(person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
-             person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
+Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
+             person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
              person("Luca", "De Sano", role=c("aut"), email="l.desano@campus.unimib.it"),
-             person("Junjie", "Zhu", role=c("ctb")),
-             person("Emma", "Pierson", role=c("ctb")),
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Daniele Ramazzotti <daniele.ramazzotti@yahoo.com>
 Depends:
@@ -28,7 +26,7 @@ Suggests:
     knitr,
     igraph
 Description:
-    In this package we provide implementations of both SIMLR (https://www.nature.com/articles/nmeth.4207) and CIMLR (https://www.biorxiv.org/content/early/2018/02/16/267245). These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. 
+    In this package we provide implementations of both SIMLR and CIMLR. These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. 
 Encoding: UTF-8
 LazyData: TRUE
 License: file LICENSE
