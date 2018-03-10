@@ -20,7 +20,6 @@
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
-#' @useDynLib SIMLR projsplx
 #'
 "SIMLR_Estimate_Number_of_Clusters" = function( X, NUMC = 2:5, cores.ratio = 1 ) {
 

@@ -7,11 +7,11 @@
 CIMLR_Estimate_Number_of_Clusters(all_data, NUMC = 2:5, cores.ratio = 1)
 }
 \arguments{
+\item{all_data}{is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients}
+
 \item{NUMC}{vector of number of clusters to be considered}
 
 \item{cores.ratio}{ratio of the number of cores to be used when computing the multi-kernel}
-
-\item{X}{is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients}
 }
 \value{
 a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 

@@ -130,7 +130,7 @@
         # call the c function for the optimization
         c_input = -t(ad)
         c_output = t(ad)
-        ad = t(.Call("projsplx_R",c_input,c_output))
+        ad = t(.Call("projsplx", c_input, c_output))
         
         A[inda] = as.vector(ad)
         A[is.nan(A)] = 0

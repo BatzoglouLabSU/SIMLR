@@ -8,7 +8,7 @@
 #'    NUMC = 2:5,
 #'    cores.ratio = 0)
 #'
-#' @param X is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
+#' @param all_data is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
 #' @param NUMC vector of number of clusters to be considered
 #' @param cores.ratio ratio of the number of cores to be used when computing the multi-kernel
 #'
@@ -20,7 +20,6 @@
 #' @importFrom stats dnorm kmeans pbeta rnorm
 #' @importFrom methods is
 #' @import Matrix
-#' @useDynLib SIMLR projsplx
 #'
 "CIMLR_Estimate_Number_of_Clusters" = function( all_data, NUMC = 2:5, cores.ratio = 1 ) {
 
