@@ -7,36 +7,34 @@
 BiocStyle::latex()
 @
 
-%% \VignetteIndexEntry{An R Package for todo}
+%\VignetteIndexEntry{SIMLR and CIMLR Multi-kernel LeaRning methods}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{placeins}
 \usepackage{url}
 \usepackage{tcolorbox}
+\usepackage{authblk}
 
 \begin{document}
 
 \title{\Biocpkg{SIMLR} and \Biocpkg{CIMLR} Multi-kernel LeaRning methods}
 
-\author{
-    Bo Wang\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
-    Daniele Ramazzotti\footnote{Department of Pathology, Stanford University, Stanford, CA , USA.} \and
-    Luca De Sano\footnote{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca 
-    Milano, Italy.} \and
-    Junjie Zhu\footnote{Department of Electrical Engineering, Stanford University, Stanford, CA , USA.} \and
-    Emma Pierson\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.} \and
-    Serafim Batzoglou\footnote{Department of Computer Science, Stanford University, Stanford, CA , USA.}
-}
+\author[1]{Daniele Ramazzotti}
+\author[1]{Bo Wang}
+\author[2]{Luca De Sano}
+\author[1]{Serafim Batzoglou}
+
+\affil[1]{Department of Computer Science, Stanford University, Stanford, CA , USA.}
+\affil[2]{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca 
+    Milano, Italy.}
 
 \date{\today}
 \maketitle
 
-
-\begin{tcolorbox}{\bf Overview.} In this package we provide implementations of both SIMLR (https://www.nature.com/articles/nmeth.4207) and CIMLR (https://www.biorxiv.org/content/early/2018/02/16/267245). These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. \\
+\begin{tcolorbox}{\bf Overview.} In this package we provide implementations of both SIMLR and CIMLR. These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. \\
 
 \vspace{1.0cm}
-
 
 {\em In this vignette, we give an overview of the package by presenting some of its main functions.}
 
