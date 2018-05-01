@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.5.1
-Date: 2018-03-09
+Version: 1.6.0
+Date: 2018-05-01
 Title: Title: 
     SIMLR and CIMLR Multi-kernel LeaRning methods
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
