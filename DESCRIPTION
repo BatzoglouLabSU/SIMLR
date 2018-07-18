@@ -1,13 +1,13 @@
 Package: SIMLR
-Version: 1.7.0
-Date: 2018-05-01
+Version: 1.7.1
+Date: 2018-07-18
 Title: Title: 
     SIMLR and CIMLR Multi-kernel LeaRning methods
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
              person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
-             person("Luca", "De Sano", role=c("aut"), email="l.desano@campus.unimib.it"),
+             person("Luca", "De Sano", role=c("aut"), email="luca.desano@gmail.com"),
              person("Serafim", "Batzoglou", role=c("ctb")))
-Maintainer: Daniele Ramazzotti <daniele.ramazzotti@yahoo.com>
+Maintainer: Luca De Sano <luca.desano@gmail.com>
 Depends:
     R (>= 3.4),
 Imports:
