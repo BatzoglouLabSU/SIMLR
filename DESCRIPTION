@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.7.1
-Date: 2018-07-18
+Version: 1.7.2
+Date: 2018-09-27
 Title: Title: 
     SIMLR and CIMLR Multi-kernel LeaRning methods
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
@@ -9,7 +9,7 @@ Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniel
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Luca De Sano <luca.desano@gmail.com>
 Depends:
-    R (>= 3.4),
+    R (>= 3.5),
 Imports:
     parallel,
     Matrix,
@@ -33,7 +33,7 @@ License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
 biocViews: Clustering, GeneExpression, Sequencing, SingleCell
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 LinkingTo: Rcpp
 NeedsCompilation: yes
 VignetteBuilder: knitr

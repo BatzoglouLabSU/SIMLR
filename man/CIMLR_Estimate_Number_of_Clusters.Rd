@@ -4,7 +4,8 @@
 \alias{CIMLR_Estimate_Number_of_Clusters}
 \title{CIMLR Estimate Number of Clusters}
 \usage{
-CIMLR_Estimate_Number_of_Clusters(all_data, NUMC = 2:5, cores.ratio = 1)
+CIMLR_Estimate_Number_of_Clusters(all_data, NUMC = 2:5,
+  cores.ratio = 1)
 }
 \arguments{
 \item{all_data}{is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients}

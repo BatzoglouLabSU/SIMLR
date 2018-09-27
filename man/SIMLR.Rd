@@ -4,8 +4,8 @@
 \alias{SIMLR}
 \title{SIMLR}
 \usage{
-SIMLR(X, c, no.dim = NA, k = 10, if.impute = FALSE, normalize = FALSE,
-  cores.ratio = 1)
+SIMLR(X, c, no.dim = NA, k = 10, if.impute = FALSE,
+  normalize = FALSE, cores.ratio = 1)
 }
 \arguments{
 \item{X}{an (m x n) data matrix of gene expression measurements of individual cells or
