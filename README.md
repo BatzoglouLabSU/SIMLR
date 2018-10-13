@@ -1,5 +1,5 @@
-Single-cell Interpretation via Multi-kernel LeaRning **SIMLR** 
-============================================================== 
+Single-cell Interpretation via Multi-kernel LeaRning (**SIMLR**) 
+================================================================ 
 
 **OVERVIEW**
 
