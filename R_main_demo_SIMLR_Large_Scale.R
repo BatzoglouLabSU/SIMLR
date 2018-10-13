@@ -1,15 +1,15 @@
 # required external packages for SIMLR large scale
-library(Rcpp)
-library(Matrix)
-library(pracma)
-library(RcppAnnoy)
-library(RSpectra)
+library("Rcpp")
+library("Matrix")
+library("pracma")
+library("RcppAnnoy")
+library("RSpectra")
 
 # load the igraph package to compute the NMI
-library(igraph)
+library("igraph")
 
 # load the palettes for the plots
-library(grDevices)
+library("grDevices")
 
 # load the SIMLR R package
 source("./R/SIMLR_Large_Scale.R")

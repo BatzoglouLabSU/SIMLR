@@ -1,6 +1,6 @@
 # required external packages for SIMLR
-library(Matrix)
-library(parallel)
+library("Matrix")
+library("parallel")
 
 # load the SIMLR R package
 source("./R/SIMLR_Estimate_Number_of_Clusters.R")

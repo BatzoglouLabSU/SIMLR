@@ -1,9 +1,9 @@
 # required external packages for SIMLR
-library(Matrix)
-library(parallel)
+library("Matrix")
+library("parallel")
 
 # load the igraph package to compute the NMI
-library(igraph)
+library("igraph")
 
 # load the palettes for the plots
 library(grDevices)
