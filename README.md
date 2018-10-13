@@ -5,7 +5,7 @@ Single-cell Interpretation via Multi-kernel LeaRning (**SIMLR**)
 
 In this repository we provide implementations in both R and Matlab of *SIMLR* (https://www.nature.com/articles/nmeth.4207). The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the method and some example data. We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications. 
 
-Moreover, the tool is also available on Bioconductor (https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html). The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
+Moreover, the tool is also available on Bioconductor at https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html. The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
 
 The standard implementations of *SIMLR* are provided in the scripts *SIMLR.R* for R and *SIMLR.m* for Matlab. Besides these standard implementations, we also provide *SIMLR_Large_Scale* to handle large scale datasets (scripts *SIMLR_Large_Scale.R* and *SIMLR_Large_Scale.m* for R and Matlab) and *SIMLR_Feature_Ranking* to rank the most important features for the learned similarities (scripts *SIMLR_Feature_Ranking.R* and *SIMLR_Feature_Ranking.m* for R and Matlab). 
 
@@ -81,7 +81,7 @@ Moreover, for the large scale example, the dataset of Test_5_Zeisel.RData refers
 
 **RUNNING THE MATLAB IMPLEMENTATION**
 
-We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. 
+We also provide the MATLAB code to run *SIMLR* on the 5 example datasets in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. 
 
 Please refer to the directory *MATLAB* and the file README.txt within for further details. 
 
