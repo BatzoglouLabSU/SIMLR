@@ -2,7 +2,7 @@
 % Please edit documentation in R/CIMLR_Estimate_Number_of_Clusters.R
 \name{CIMLR_Estimate_Number_of_Clusters}
 \alias{CIMLR_Estimate_Number_of_Clusters}
-\title{CIMLR Estimate Number of Clusters, refer to https://github.com/danro9685/CIMLR}
+\title{please refer to https://github.com/danro9685/CIMLR}
 \usage{
 CIMLR_Estimate_Number_of_Clusters(all_data, NUMC = 2:5,
   cores.ratio = 1)

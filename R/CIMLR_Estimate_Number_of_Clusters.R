@@ -1,6 +1,6 @@
 #' estimate the number of clusters by means of two huristics as discussed in the CIMLR paper 
 #' 
-#' @title CIMLR Estimate Number of Clusters, refer to https://github.com/danro9685/CIMLR 
+#' @title please refer to https://github.com/danro9685/CIMLR 
 #' 
 ## @examples
 ## 

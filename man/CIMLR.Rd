@@ -2,7 +2,7 @@
 % Please edit documentation in R/CIMLR.R
 \name{CIMLR}
 \alias{CIMLR}
-\title{CIMLR, refer to https://github.com/danro9685/CIMLR}
+\title{please refer to https://github.com/danro9685/CIMLR}
 \usage{
 CIMLR(X, c, no.dim = NA, k = 10, cores.ratio = 1)
 }

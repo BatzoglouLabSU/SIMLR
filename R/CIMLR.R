@@ -1,6 +1,6 @@
 #' perform the CIMLR clustering algorithm
 #' 
-#' @title CIMLR, refer to https://github.com/danro9685/CIMLR 
+#' @title please refer to https://github.com/danro9685/CIMLR 
 #'
 ## @examples
 ## CIMLR(X = GliomasReduced$in_X, c = 3, cores.ratio = 0)
