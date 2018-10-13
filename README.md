@@ -1,6 +1,12 @@
 Single-cell Interpretation via Multi-kernel LeaRning (**SIMLR**) 
 ================================================================ 
 
+| Branch              | Stato CI      |
+|---------------------|---------------|
+| master | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=master)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
+| development | [![Build Status](https://travis-ci.org/BatzoglouLabSU/SIMLR.svg?branch=development)](https://travis-ci.org/BatzoglouLabSU/SIMLR) |
+
+
 **OVERVIEW**
 
 In this repository we provide implementations in both R and Matlab of *SIMLR* (https://www.nature.com/articles/nmeth.4207). The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the method and some example data. We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications. 
