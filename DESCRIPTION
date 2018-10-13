@@ -1,10 +1,10 @@
 Package: SIMLR
-Version: 1.7.2
-Date: 2018-09-27
-Title: Title: 
-    SIMLR and CIMLR Multi-kernel LeaRning methods
-Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti@yahoo.com"),
-             person("Bo", "Wang", role=c("aut"), email="bowang87@stanford.edu"),
+Version: 1.7.3
+Date: 2018-10-13
+Title: 
+    Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
+Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti1@gmail.com"),
+             person("Bo", "Wang", role=c("ctb"), email="wangbo.yunze@gmail.com"),
              person("Luca", "De Sano", role=c("aut"), email="luca.desano@gmail.com"),
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Luca De Sano <luca.desano@gmail.com>
@@ -26,7 +26,7 @@ Suggests:
     knitr,
     igraph
 Description:
-    In this package we provide implementations of both SIMLR and CIMLR. These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. 
+    Single-cell RNA-seq technologies enable high throughput gene expression measurement of individual cells, and allow the discovery of heterogeneity within cell populations. Measurement of cell-to-cell gene expression similarity is critical for the identification, visualization and analysis of cell populations. However, single-cell data introduce challenges to conventional measures of gene expression similarity because of the high level of noise, outliers and dropouts. We develop a novel similarity-learning framework, SIMLR (Single-cell Interpretation via Multi-kernel LeaRning), which learns an appropriate distance metric from the data for dimension reduction, clustering and visualization. 
 Encoding: UTF-8
 LazyData: TRUE
 License: file LICENSE
