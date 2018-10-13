@@ -2,7 +2,7 @@
 % Please edit documentation in R/CIMLR.R
 \name{CIMLR}
 \alias{CIMLR}
-\title{CIMLR}
+\title{please refer to https://github.com/danro9685/CIMLR}
 \usage{
 CIMLR(X, c, no.dim = NA, k = 10, cores.ratio = 1)
 }
@@ -32,8 +32,4 @@ list of 8 elements describing the clusters obtained by CIMLR, of which y are the
 }
 \description{
 perform the CIMLR clustering algorithm
-}
-\examples{
-CIMLR(X = GliomasReduced$in_X, c = 3, cores.ratio = 0)
-
 }

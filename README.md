@@ -1,5 +1,5 @@
-**SIMLR** and **CIMLR** Multi-kernel LeaRning methods 
-===================================================== 
+Single-cell Interpretation via Multi-kernel LeaRning (**SIMLR**) 
+================================================================ 
 
 | Branch              | Stato CI      |
 |---------------------|---------------|
@@ -9,17 +9,13 @@
 
 **OVERVIEW**
 
-In this repository we provide implementations in both R and Matlab of *SIMLR* (https://www.nature.com/articles/nmeth.4207) and *CIMLR* (https://www.biorxiv.org/content/early/2018/02/16/267245). These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. 
+In this repository we provide implementations in both R and Matlab of *SIMLR* (https://www.nature.com/articles/nmeth.4207). The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the method and some example data. We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications. 
 
-The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the two methods (namely *SIMLR* and *CIMLR*), but no data in order to make it smaller for download. Some example data together with the implementations are provided in the branch SIMLR_full (bigger to download). We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications. 
+Moreover, the tool is also available on Bioconductor at https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html. The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
 
-Moreover, the tools are also available on Bioconductor (https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html). The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html). 
+The standard implementations of *SIMLR* are provided in the scripts *SIMLR.R* for R and *SIMLR.m* for Matlab. Besides these standard implementations, we also provide *SIMLR_Large_Scale* to handle large scale datasets (scripts *SIMLR_Large_Scale.R* and *SIMLR_Large_Scale.m* for R and Matlab) and *SIMLR_Feature_Ranking* to rank the most important features for the learned similarities (scripts *SIMLR_Feature_Ranking.R* and *SIMLR_Feature_Ranking.m* for R and Matlab). 
 
-The standard implementations of *SIMLR* are provided in the scripts *SIMLR.R* for R and *SIMLR.m* for Matlab. Similarly, we provide in the scripts *CIMLR.R* and *CIMLR.m* the implementations of *CIMLR* in both R and Matlab. 
-
-Besides the standard implementation of *SIMLR*, we also provide *SIMLR_Large_Scale* to handle large scale datasets (scripts *SIMLR_Large_Scale.R* and *SIMLR_Large_Scale.m* for R and Matlab) and *SIMLR_Feature_Ranking* to rank the most important features for the learned similarities (scripts *SIMLR_Feature_Ranking.R* and *SIMLR_Feature_Ranking.m* for R and Matlab). We notice that this last function can also be used to prioritize features for the results by *CIMLR*, with the shrewdness of modifying the input data as follow: *CIMLR* takes as input a list of multiple data types (multi-omics) for the same samples (rows in the input matrices), which need to be trasformed into one unique input matrix with the same rows and by appending into it all the features (columns) of the list of matrices as input. As an example, if you provide to *CIMLR* 4 input data of 100 samples and 1000 features each, the input to compute the feature ranking will be one matrix of 100 rows and 4000 columns. 
-
-Finally, we also provide scripts to estimate the number of clusters from the data as suggested in the original papers in the scripts *SIMLR_Estimate_Number_of_Clusters.R* and *SIMLR_Estimate_Number_of_Clusters.m* for *SIMLR* and *CIMLR_Estimate_Number_of_Clusters.R* and *CIMLR_Estimate_Number_of_Clusters.m* for *CIMLR*. 
+Finally, we also provide scripts to estimate the number of clusters from the data as suggested in the original paper in the scripts *SIMLR_Estimate_Number_of_Clusters.R* and *SIMLR_Estimate_Number_of_Clusters.m*. 
 
 **SIMLR**
 
@@ -29,25 +25,17 @@ Single-cell RNA-seq technologies enable high throughput gene expression measurem
 
 Furthermore, here we also provide an implementation of *SIMLR* (see SIMLR large scale) capable of handling large scale datasets. 
 
-**CIMLR**
-
-Outcomes for cancer patients vary greatly even within the same tumor type, and characterization of molecular subtypes of cancer holds important promise for improving prognosis and personalized treatment. This promise has motivated recent efforts to produce large amounts of multidimensional genomic ("multi-omic") data, but current algorithms still face challenges in the integrated analysis of such data. Here we present Cancer Integration via Multikernel Learning (*CIMLR*), a new cancer subtyping method that integrates multi-omic data to reveal molecular subtypes of cancer. *CIMLR* extends the original implementation of *SIMLR* to take as input multiple data matrices corresponding to different types of measurements upon the same set of tumors. We applied *CIMLR* to multi-omic data from 32 cancer types and showed significant improvements in both computational efficiency and ability to extract biologically meaningful cancer subtypes. The discovered subtypes exhibited significant differences in patient survival for 21 of the 32 studied cancer types. Our analysis revealed integrated patterns of gene expression, methylation, point mutations and copy number changes in multiple cancers and highlights patterns specifically associated with poor patient outcomes. 
-
-**REFERENCE**
-
-The latest version of the manuscript related to *SIMLR* is published on Nature Methods at https://www.nature.com/articles/nmeth.4207. While, the latest draft of the manuscript of *CIMLR* can be found as a preprint at https://www.biorxiv.org/content/early/2018/02/16/267245. We also provide a paper describing the software that is published on PROTEOMICS and can be found at http://onlinelibrary.wiley.com/doi/10.1002/pmic.201700232/full. 
-
 **CITATION**
 
-When using *SIMLR*, please cite Wang, Bo, et al. "Visualization and analysis of single-cell RNA-seq data by kernel-based similarity learning." Nature methods 14.4 (2017): 414. 
+The latest version of the manuscript related to *SIMLR* is published on Nature Methods at https://www.nature.com/articles/nmeth.4207. We also provide a paper describing the software that is published on PROTEOMICS and can be found at http://onlinelibrary.wiley.com/doi/10.1002/pmic.201700232/full. 
 
-For *CIMLR*, please cite Ramazzotti, Daniele, et al. "Multi-omic tumor data reveal diversity of molecular mechanisms underlying survival." bioRxiv (2018): 267245. 
+When using *SIMLR*, please cite Wang, Bo, et al. "Visualization and analysis of single-cell RNA-seq data by kernel-based similarity learning." Nature methods 14.4 (2017): 414. 
 
 The citation of Wang, Bo, et al. "SIMLR: A Tool for Large‐Scale Genomic Analyses by Multi‐Kernel Learning." Proteomics 18.2 (2018) is optional, although appreciated. 
 
 **INSTALLING SIMLR R Bioconductor IMPLEMENTATION**
 
-As mentioned, both *SIMLR* and *CIMLR* are also hosted on Bioconductor at https://bioconductor.org/packages/release/bioc/html/SIMLR.html and can be installed as follow. To install the package directly from Bioconductor, run the following commands directly from R: 
+As mentioned, *SIMLR* is also hosted on Bioconductor at https://bioconductor.org/packages/release/bioc/html/SIMLR.html and can be installed as follow. To install the package directly from Bioconductor, run the following commands directly from R: 
 
 source("https://bioconductor.org/biocLite.R")
 
@@ -55,19 +43,19 @@ biocLite("SIMLR")
 
 Moreover, it is also possible to install the Github version of the tool from R by using the R library devtools. 
 
-library(devtools)
+library("devtools")
 
 install_github("BatzoglouLabSU/SIMLR", ref = 'master')
 
-library(SIMLR)
+library("SIMLR")
 
 or,
 
-library(devtools)
+library("devtools")
 
 install_github("BatzoglouLabSU/SIMLR", ref = 'development')
 
-library(SIMLR)
+library("SIMLR")
 
 The "master" branch hosts the latest stable version of the code which is also available on Bioconductor on the stable repository, while the "development" branch hosts the latest version that is on the devel repository on Bioconductor. 
 
@@ -76,8 +64,6 @@ We describe next the procedure to manually install our software in case one wish
 **RUNNING THE R IMPLEMENTATION**
 
 We provide the R demo code to run *SIMLR* on 4 examples in the script *R_main_demo_SIMLR.R*. Furthermore, we provide a large scale implementation of *SIMLR* (see large scale implementation) with 1 example in the script *R_main_demo_SIMLR_Large_Scale.R*. A demo for the estimation of the number of clusters by *SIMLR* is also provided in the script *R_main_demo_SIMLR_Estimate_Number_of_Clusters.R*. 
-
-The R demo code to run *CIMLR* is also provided in the script *R_main_demo_CIMLR.R*. Besides this, a demo for the estimation of the number of clusters by *CIMLR* can be found in the script *R_main_demo_CIMLR_Estimate_Number_of_Clusters.R*. 
 
 The R libraries required to run the demos can be installed by running the script *install_R_libraries.R*. We now present a set of requirements to run the examples. 
 
@@ -93,20 +79,18 @@ All these packages, can be installed with the R built-in *install.packages* func
 
 An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., *projsplx_R.o* and *projsplx_R.so*). 
 
-3) Example datasets. The 6 example datasets are provided in the directory data of the branch SIMLR_full. We recall that those data are provided purely as examples and after some pre-processing; they should not be used in place of the ones provided in the respective publications. 
+3) Example datasets. The 5 example datasets are provided in the directory data of the branch. We recall that those data are provided purely as examples and after some pre-processing; they should not be used in place of the ones provided in the respective publications. 
 
 Specifically, the dataset of Test_1_mECS.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25599176, Test_2_Kolod.RData refers to http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/, Test_3_Pollen.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25086649 and Test_4_Usoskin.RData refers to http://www.ncbi.nlm.nih.gov/pubmed/25420068. 
 
 Moreover, for the large scale example, the dataset of Test_5_Zeisel.RData refers to https://www.ncbi.nlm.nih.gov/pubmed/25700174. 
 
-Finally, we provide the dataset Test_6_gliomas_multi_omic_data.RData from https://www.ncbi.nlm.nih.gov/pubmed/26061751 to test *CIMLR*. 
-
 **RUNNING THE MATLAB IMPLEMENTATION**
 
-We also provide the MATLAB code to run *SIMLR* on the 5 examples in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. Furthermore, we provide two demos for *CIMLR* with the data from https://www.ncbi.nlm.nih.gov/pubmed/26061751. 
+We also provide the MATLAB code to run *SIMLR* on the 5 example datasets in the script *Matlab_main_demo_SIMLR.m* and *Matlab_main_demo_SIMLR_Large_Scale.m*. 
 
 Please refer to the directory *MATLAB* and the file README.txt within for further details. 
 
 **DEBUG**
 
-Please feel free to send us emails if you have problems running our tool. The corresponding emails are daniele.ramazzotti@stanford.edu or bowang87@stanford.edu. 
+Please feel free to contact us if you have problems running our tool at daniele.ramazzotti1@gmail.com or wangbo.yunze@gmail.com. 
