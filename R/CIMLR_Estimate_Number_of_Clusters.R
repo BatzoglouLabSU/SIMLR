@@ -1,12 +1,12 @@
 #' estimate the number of clusters by means of two huristics as discussed in the CIMLR paper 
 #' 
-#' @title CIMLR Estimate Number of Clusters
+#' @title CIMLR Estimate Number of Clusters, refer to https://github.com/danro9685/CIMLR 
 #' 
-#' @examples
-#' 
-#' CIMLR_Estimate_Number_of_Clusters(GliomasReduced$in_X,
-#'    NUMC = 2:5,
-#'    cores.ratio = 0)
+## @examples
+## 
+## CIMLR_Estimate_Number_of_Clusters(GliomasReduced$in_X,
+##    NUMC = 2:5,
+##    cores.ratio = 0)
 #'
 #' @param all_data is a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients
 #' @param NUMC vector of number of clusters to be considered

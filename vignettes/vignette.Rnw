@@ -7,7 +7,7 @@
 BiocStyle::latex()
 @
 
-%\VignetteIndexEntry{SIMLR and CIMLR Multi-kernel LeaRning methods}
+%\VignetteIndexEntry{Single-cell Interpretation via Multi-kernel LeaRning (\Biocpkg{SIMLR})}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -18,7 +18,7 @@ BiocStyle::latex()
 
 \begin{document}
 
-\title{\Biocpkg{SIMLR} and \Biocpkg{CIMLR} Multi-kernel LeaRning methods}
+\title{Single-cell Interpretation via Multi-kernel LeaRning (\Biocpkg{SIMLR})}
 
 \author[1]{Daniele Ramazzotti}
 \author[1]{Bo Wang}
@@ -26,13 +26,12 @@ BiocStyle::latex()
 \author[1]{Serafim Batzoglou}
 
 \affil[1]{Department of Computer Science, Stanford University, Stanford, CA , USA.}
-\affil[2]{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca 
-    Milano, Italy.}
+\affil[2]{Dipartimento di Informatica Sistemistica e Comunicazione, Università degli Studi Milano Bicocca Milano, Italy.}
 
 \date{\today}
 \maketitle
 
-\begin{tcolorbox}{\bf Overview.} In this package we provide implementations of both SIMLR and CIMLR. These methods were originally applied to single-cell and cancer genomic data, but they are in principle capable of effectively and efficiently learning similarities in all the contexts where diverse and heterogeneous statistical characteristics of the data make the problem harder for standard approaches. \\
+\begin{tcolorbox}{\bf Overview.} Single-cell RNA-seq technologies enable high throughput gene expression measurement of individual cells, and allow the discovery of heterogeneity within cell populations. Measurement of cell-to-cell gene expression similarity is critical for the identification, visualization and analysis of cell populations. However, single-cell data introduce challenges to conventional measures of gene expression similarity because of the high level of noise, outliers and dropouts. We develop a novel similarity-learning framework, SIMLR (Single-cell Interpretation via Multi-kernel LeaRning), which learns an appropriate distance metric from the data for dimension reduction, clustering and visualization. \\
 
 \vspace{1.0cm}
 
@@ -64,8 +63,8 @@ background = "#f3f3ff"
 \item[1.0.0] implements SIMLR and SIMLR feature ranking algorithms. 
 \item[1.0.2] implements SIMLR large scale algorithms. 
 \item[1.5.1] implements CIMLR clustering method. 
+\item[1.7.3] removed the CIMLR clustering method; for it, please refer to https://github.com/danro9685/CIMLR. 
 \end{itemize}
-
 
 \section{Algorithms and useful links} \label{sec:stuff}
 
@@ -75,27 +74,20 @@ background = "#f3f3ff"
 \begin{tabular}{| l | p{6.0cm} | l |}
 {\bf Acronym} & {\bf Extended name} & {\bf Reference}\\ \hline
 
-
-SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & \href{https://www.nature.com/articles/nmeth.4207}{Paper}\\ \hline
-CIMLR & Cancer Integration via Multikernel LeaRning & \href{https://www.biorxiv.org/content/early/2018/02/16/267245}{Paper}\\ \hline
-
+SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & \href{https://www.nature.com/articles/nmeth.4207}{Publication}\\ \hline
+Package & A Tool for Large‐Scale Genomic Analyses & \href{https://onlinelibrary.wiley.com/doi/full/10.1002/pmic.201700232}{Publication}\\ \hline
 
 \end{tabular}
 \end{center}
 
-
-
-
-
 \section{Using the SIMLR R package}
 
-We first load the data provided as examples in the package. The dataset BuettnerFlorian is used for an example of the standard SIMLR, while the dataset ZeiselAmit is used for an example of SIMLR large scale. Moreover, the dataset GliomasReduced is a reduced dataset of lower grade gliomas to be used as an example for CIMLR. 
+We first load the data provided as examples in the package. The dataset BuettnerFlorian is used for an example of the standard SIMLR, while the dataset ZeiselAmit is used for an example of SIMLR large scale. 
 
 <<req>>=
 library(SIMLR)
 data(BuettnerFlorian)
 data(ZeiselAmit)
-data(GliomasReduced)
 @
 
 The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering. 
@@ -148,14 +140,7 @@ head(ranks$pval)
 head(ranks$aggR)
 @
 
-Similarly, We now show an example for CIMLR on a reduced version of the cohort of lower grade glioma cancer patients originally published in Cancer Genome Atlas Research Network. "Comprehensive, integrative genomic analysis of diffuse lower-grade gliomas." New England Journal of Medicine 372.26 (2015): 2481-2498. Also in this case, we ask for 3 clusters. 
-
-<<CIMLR_run, warning=FALSE>>=
-set.seed(11111)
-example_llg = CIMLR(X = GliomasReduced$in_X, c = 3, cores.ratio = 0)
-@
-
-We finally show an example for SIMLR large scale on an input dataset being a reduced version of the dataset provided in Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
+Similarly, we show an example for SIMLR large scale on an input dataset being a reduced version of the dataset provided in Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
 
 <<SIMLR_Large_Scale_run, warning=FALSE>>=
 set.seed(11111)
