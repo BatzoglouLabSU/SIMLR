@@ -75,7 +75,7 @@ background = "#f3f3ff"
 {\bf Acronym} & {\bf Extended name} & {\bf Reference}\\ \hline
 
 SIMLR & Single-cell Interpretation via Multi-kernel LeaRning & \href{https://www.nature.com/articles/nmeth.4207}{Publication}\\ \hline
-Package & A Tool for Large‐Scale Genomic Analyses & \href{https://onlinelibrary.wiley.com/doi/full/10.1002/pmic.201700232}{Publication}\\ \hline
+Package & A Tool for Large-Scale Genomic Analyses & \href{https://onlinelibrary.wiley.com/doi/full/10.1002/pmic.201700232}{Publication}\\ \hline
 
 \end{tabular}
 \end{center}
