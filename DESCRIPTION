@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.8.0
-Date: 2018-10-31
+Version: 1.9.2
+Date: 2018-10-18
 Title: 
     Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti1@gmail.com"),
@@ -32,7 +32,7 @@ LazyData: TRUE
 License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
-biocViews: Clustering, GeneExpression, Sequencing, SingleCell
+biocViews: ImmunoOncology, Clustering, GeneExpression, Sequencing, SingleCell
 RoxygenNote: 6.1.0
 LinkingTo: Rcpp
 NeedsCompilation: yes
