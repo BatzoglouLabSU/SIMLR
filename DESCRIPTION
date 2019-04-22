@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.9.2
-Date: 2019-04-20
+Version: 1.9.3
+Date: 2019-04-22
 Title: 
     Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti1@gmail.com"),
@@ -9,7 +9,7 @@ Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniel
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Luca De Sano <luca.desano@gmail.com>
 Depends:
-    R (>= 3.7),
+    R (>= 3.6),
 Imports:
     parallel,
     Matrix,
