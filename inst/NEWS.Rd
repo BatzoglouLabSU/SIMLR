@@ -2,6 +2,12 @@
 \title{News for Package \pkg{SIMLR}}
 \encoding{UTF-8}
 
+\section{Changes in version 1.11.1 (2019-10-13)}{
+    \itemize{
+        \item Fix C++ bug. 
+    }
+}
+
 \section{Changes in version 1.7.3 (2018-10-13)}{
     \itemize{
         \item Removed CIMLR implementation. 
