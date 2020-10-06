@@ -4,8 +4,7 @@
 \alias{SIMLR_Large_Scale}
 \title{SIMLR Large Scale}
 \usage{
-SIMLR_Large_Scale(X, c, k = 10, kk = 100, if.impute = FALSE,
-  normalize = FALSE)
+SIMLR_Large_Scale(X, c, k = 10, kk = 100, if.impute = FALSE, normalize = FALSE)
 }
 \arguments{
 \item{X}{an (m x n) data matrix of gene expression measurements of individual cells or
