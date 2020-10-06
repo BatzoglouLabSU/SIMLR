@@ -4,7 +4,9 @@
 \name{ZeiselAmit}
 \alias{ZeiselAmit}
 \title{test dataset for SIMLR large scale}
-\format{gene expression measurements of individual cells}
+\format{
+gene expression measurements of individual cells
+}
 \source{
 Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq." Science 347.6226 (2015): 1138-1142.
 }

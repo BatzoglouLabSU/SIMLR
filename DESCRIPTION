@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.15.0
-Date: 2020-04-29
+Version: 1.15.1
+Date: 2020-10-06
 Title: 
     Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti1@gmail.com"),
@@ -9,7 +9,7 @@ Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniel
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Luca De Sano <luca.desano@gmail.com>
 Depends:
-    R (>= 3.6.0),
+    R (>= 4.0.0),
 Imports:
     parallel,
     Matrix,
@@ -33,7 +33,7 @@ License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
 biocViews: ImmunoOncology, Clustering, GeneExpression, Sequencing, SingleCell
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 LinkingTo: Rcpp
 NeedsCompilation: yes
 VignetteBuilder: knitr
