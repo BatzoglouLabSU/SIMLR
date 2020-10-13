@@ -1,9 +1,10 @@
 Package: SIMLR
 Version: 1.15.2
-Date: 2020-10-12
+Date: 2020-10-13
 Title: 
     Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
-Authors@R: c(person("Daniele", "Ramazzotti", role=c("aut", "cre"), email="daniele.ramazzotti1@gmail.com"),
+Authors@R: c(person("Daniele", "Ramazzotti", role=c("cre","aut"),email="daniele.ramazzotti@yahoo.com",
+                comment = c(ORCID = "0000-0002-6087-2666")),
              person("Bo", "Wang", role=c("aut"), email="wangbo.yunze@gmail.com"),
              person("Luca", "De Sano", role=c("aut"), email="luca.desano@gmail.com"),
              person("Serafim", "Batzoglou", role=c("ctb")))
