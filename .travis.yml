@@ -3,6 +3,8 @@ r: bioc-devel
 
 cache: packages
 
+warnings_are_errors: false
+
 before_install:
   - tlmgr install pdfcrop
   - tlmgr install tcolorbox
