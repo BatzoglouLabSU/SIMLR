@@ -15,6 +15,7 @@ BiocStyle::latex()
 \usepackage{url}
 \usepackage{tcolorbox}
 \usepackage{authblk}
+\usepackage{expl3}
 
 \begin{document}
 
