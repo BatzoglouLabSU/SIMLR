@@ -17,8 +17,6 @@
 #' @return a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower   
 #' values the better) as discussed in the original paper of SIMLR
 #'
-
-
 "CIMLR_Estimate_Number_of_Clusters" = function(
     all_data,
     NUMC = 2:5,
