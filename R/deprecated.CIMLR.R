@@ -21,10 +21,6 @@
     all_data,
     NUMC = 2:5,
     cores.ratio = 1) {
-    if (!requireNamespace("CIMLR", quietly = TRUE)) {
-        stop("Package \"CIMLR\" needed for this function to work. Please install it from https://github.com/danro9685/CIMLR",
-        call. = FALSE)
-    }
     .Defunct("CIMLR_Estimate_Number_of_Clusters", package = "CIMLR", 
         msg = "This function has been removed and it is now provided by the CIMLR package, please refer to https://github.com/danro9685/CIMLR")
 }
@@ -48,10 +44,6 @@
 #' @export CIMLR        
 #'  
 "CIMLR" <- function( X, c, no.dim = NA, k = 10, cores.ratio = 1 ) {
-    if (!requireNamespace("CIMLR", quietly = TRUE)) {
-        stop("Package \"CIMLR\" needed for this function to work. Please install it from https://github.com/danro9685/CIMLR",
-        call. = FALSE)
-    }
     .Defunct("CIMLR", package = "CIMLR", 
         msg = "This function has been removed and it is now provided by the CIMLR package, please refer to https://github.com/danro9685/CIMLR")
 }
