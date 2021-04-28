@@ -3,7 +3,12 @@
 ^.gitignore$
 ^.travis.yml$
 ^.git/.*$
-src/*.o
-src/*.so
-LICENSE.md
-.travis.yml
+^.github
+^.github/.*$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^doc$
+^Meta$
+^vignettes/.*Rmd$
+^vignettes/.*gml$
