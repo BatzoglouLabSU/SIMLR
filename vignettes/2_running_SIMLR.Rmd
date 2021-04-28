@@ -1,0 +1,116 @@
+---
+title: Running SIMLR
+output: html_document
+---
+
+In this vignette, we give an overview of the package by presenting some of its main functions. 
+
+We first load the data provided as examples in the package. The dataset BuettnerFlorian is used for 
+an example of the standard SIMLR, while the dataset ZeiselAmit is used for an example of SIMLR large scale. 
+
+```{r}
+library(SIMLR)
+data(BuettnerFlorian)
+data(ZeiselAmit)
+```
+
+The external R package igraph is required for the computation of the normalized mutual information to 
+assess the results of the clustering. 
+
+```{r}
+install.packages("igraph")
+library(igraph)
+```
+
+We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. "Computational analysis of 
+cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells." Nature 
+biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 cell populations, i.e., clusters. 
+
+```{r}
+set.seed(11111)
+example = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
+```
+
+We now compute the normalized mutual information between the inferred clusters by SIMLR and the true ones. 
+This measure with values in [0,1], allows us to assess the performance of the clustering with higher values 
+reflecting better performance. 
+
+```{r}
+nmi_1 = compare(BuettnerFlorian$true_labs[,1], example$y$cluster, method="nmi")
+print(nmi_1)
+```
+
+As a further understanding of the results, we now visualize the cell populations in a plot. 
+
+```{r fig.width=12, fig.height=8, warning=FALSE, fig.cap="Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Florian, et al."}
+plot(example$ydata, 
+    col = c(topo.colors(BuettnerFlorian$n_clust))[BuettnerFlorian$true_labs[,1]], 
+    xlab = "SIMLR component 1",
+    ylab = "SIMLR component 2",
+    pch = 20,
+    main="SIMILR 2D visualization for BuettnerFlorian")
+```
+
+We also run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues. 
+
+```{r}
+set.seed(11111)
+ranks = SIMLR_Feature_Ranking(A=BuettnerFlorian$results$S,X=BuettnerFlorian$in_X)
+head(ranks$pval)
+head(ranks$aggR)
+```
+
+Similarly, we show an example for SIMLR large scale on an input dataset being a reduced version of the dataset 
+provided in Buettner, Zeisel, Amit, et al. "Cell types in the mouse cortex and hippocampus revealed by single-cell 
+RNA-seq." Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. 
+But we should notice that here we use for computational reasons a reduced version of the data, so please refer to the 
+original publication for the full data. 
+
+```{r}
+set.seed(11111)
+example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, kk = 10)
+```
+
+We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones. 
+
+```{r}
+nmi_2 = compare(ZeiselAmit$true_labs[,1], example_large_scale$y$cluster, method="nmi")
+print(nmi_2)
+```
+
+As a further understanding of the results, also in this case we visualize the cell populations in a plot. 
+
+```{r fig.width=12, fig.height=8, warning=FALSE, fig.cap="Visualization of the 9 cell populations retrieved by SIMLR large scale on the dataset by Zeisel, Amit, et al."}
+plot(example_large_scale$ydata, 
+    col = c(topo.colors(ZeiselAmit$n_clust))[ZeiselAmit$true_labs[,1]], 
+    xlab = "SIMLR component 1",
+    ylab = "SIMLR component 2",
+    pch = 20,
+    main="SIMILR 2D visualization for ZeiselAmit")
+```
+
+Now, as a final example, we also provide the results of two heuristics (see the original SIMLR paper) to 
+estimate the number of clusters from data. 
+
+```{r}
+set.seed(53900)
+NUMC = 2:5
+res_example = SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
+    NUMC = NUMC,
+    cores.ratio = 0)
+```
+
+Best number of clusters, K1 heuristic: 
+```{r}
+NUMC[which.min(res_example$K1)]
+```
+
+K2 heuristic: 
+```{r}
+NUMC[which.min(res_example$K2)]
+```
+
+Results of the two heuristics: 
+```{r}
+res_example
+```
