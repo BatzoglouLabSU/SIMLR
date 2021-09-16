@@ -20,6 +20,7 @@ perform the SIMLR feature ranking algorithm. This takes as input the original
 input data and the corresponding similarity matrix computed by SIMLR
 }
 \examples{
+data(BuettnerFlorian)
 SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 
 }

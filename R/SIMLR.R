@@ -3,6 +3,7 @@
 #' @title SIMLR
 #'
 #' @examples
+#' data(BuettnerFlorian)
 #' SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 #' 
 #' @param X an (m x n) data matrix of gene expression measurements of individual cells or

@@ -20,6 +20,7 @@
 # Vignette files
 vignettes/*.html
 vignettes/*.pdf
+vignettes/figure/*.pdf
 
 # System
 .DS_Store
@@ -34,6 +35,10 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# Compile output
+*.o
+*.so
 
 docs
 doc

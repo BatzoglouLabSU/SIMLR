@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // Rtsne_cpp
 Rcpp::List Rtsne_cpp(NumericVector I, NumericVector J, NumericVector V, int no_dims_in, double perplexity_in, double theta_in, bool verbose, int max_iter, NumericMatrix Y_in, bool init);
 RcppExport SEXP _SIMLR_Rtsne_cpp(SEXP ISEXP, SEXP JSEXP, SEXP VSEXP, SEXP no_dims_inSEXP, SEXP perplexity_inSEXP, SEXP theta_inSEXP, SEXP verboseSEXP, SEXP max_iterSEXP, SEXP Y_inSEXP, SEXP initSEXP) {
