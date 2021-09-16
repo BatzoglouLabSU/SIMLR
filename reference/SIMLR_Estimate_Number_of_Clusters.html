@@ -58,9 +58,6 @@
 
 
 
-<!-- dependencies from examples -->
-
-
   
 
   
@@ -83,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.18.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.19.1</span>
       </span>
     </div>
 
@@ -137,7 +134,7 @@
     <p>estimate the number of clusters by means of two huristics as discussed in the SIMLR paper</p>
     </div>
 
-    <pre class="usage"><span class='fu'>SIMLR_Estimate_Number_of_Clusters</span><span class='op'>(</span><span class='va'>X</span>, NUMC <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>5</span>, cores.ratio <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>SIMLR_Estimate_Number_of_Clusters</span><span class='op'>(</span><span class='va'>X</span>, NUMC <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>5</span>, cores.ratio <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,17 +159,18 @@
 values the better) as discussed in the original paper of SIMLR</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>SIMLR_Estimate_Number_of_Clusters</span><span class='op'>(</span><span class='va'>BuettnerFlorian</span><span class='op'>$</span><span class='va'>in_X</span>,
-   NUMC <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>5</span>,
-   cores.ratio <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
-</div><div class='co'>#&gt; $K1
-#&gt; [1] -63.04223 -19.49278 -23.77182  13.30109
-#&gt; 
-#&gt; $K2
-#&gt; [1] -94.56335 -25.99037 -29.71477  15.96130
-#&gt; </div><div class='input'>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>BuettnerFlorian</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>SIMLR_Estimate_Number_of_Clusters</span><span class='op'>(</span><span class='va'>BuettnerFlorian</span><span class='op'>$</span><span class='va'>in_X</span>,</span>
+<span class='r-in'>   NUMC <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>5</span>,</span>
+<span class='r-in'>   cores.ratio <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $K1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -63.04223 -19.49278 -23.77182  13.30109</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $K2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -94.56335 -25.99037 -29.71477  15.96130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
