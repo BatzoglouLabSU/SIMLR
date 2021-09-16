@@ -1,6 +1,6 @@
 Package: SIMLR
-Version: 1.19.0
-Date: 2021-04-28
+Version: 1.19.1
+Date: 2021-09-16
 Title: 
     Single-cell Interpretation via Multi-kernel LeaRning (SIMLR)
 Authors@R: c(person("Daniele", "Ramazzotti", role=c("cre","aut"),email="daniele.ramazzotti@yahoo.com",
@@ -11,7 +11,7 @@ Authors@R: c(person("Daniele", "Ramazzotti", role=c("cre","aut"),email="daniele.
              person("Serafim", "Batzoglou", role=c("ctb")))
 Maintainer: Luca De Sano <luca.desano@gmail.com>
 Depends:
-    R (>= 4.0.0),
+    R (>= 4.1.0),
 Imports:
     parallel,
     Matrix,
@@ -30,7 +30,6 @@ Suggests:
 Description:
     Single-cell RNA-seq technologies enable high throughput gene expression measurement of individual cells, and allow the discovery of heterogeneity within cell populations. Measurement of cell-to-cell gene expression similarity is critical for the identification, visualization and analysis of cell populations. However, single-cell data introduce challenges to conventional measures of gene expression similarity because of the high level of noise, outliers and dropouts. We develop a novel similarity-learning framework, SIMLR (Single-cell Interpretation via Multi-kernel LeaRning), which learns an appropriate distance metric from the data for dimension reduction, clustering and visualization. 
 Encoding: UTF-8
-LazyData: TRUE
 License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
