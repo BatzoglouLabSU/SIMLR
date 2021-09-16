@@ -23,7 +23,8 @@ CIMLR_Estimate_Number_of_Clusters
 }
 \examples{
    
-\dontrun{    
+\dontrun{
+data(GliomasReduced)    
 CIMLR_Estimate_Number_of_Clusters(GliomasReduced$in_X,   
    NUMC = 2:5,   
    cores.ratio = 0)  

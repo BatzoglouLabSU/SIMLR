@@ -34,7 +34,7 @@ License: file LICENSE
 URL: https://github.com/BatzoglouLabSU/SIMLR
 BugReports: https://github.com/BatzoglouLabSU/SIMLR
 biocViews: ImmunoOncology, Clustering, GeneExpression, Sequencing, SingleCell
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 LinkingTo: Rcpp
 NeedsCompilation: yes
 VignetteBuilder: knitr

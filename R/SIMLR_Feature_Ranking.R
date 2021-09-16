@@ -4,6 +4,7 @@
 #' @title SIMLR Feature Ranking
 #'
 #' @examples
+#' data(BuettnerFlorian)
 #' SIMLR_Feature_Ranking(A = BuettnerFlorian$results$S, X = BuettnerFlorian$in_X)
 #' 
 #' @param A an (n x n) similarity matrix by SIMLR

@@ -27,6 +27,7 @@ perform the CIMLR clustering algorithm
 \examples{
    
 \dontrun{
+data(GliomasReduced)
 CIMLR(X = GliomasReduced$in_X, c = 3, cores.ratio = 0)   
 }    
 }

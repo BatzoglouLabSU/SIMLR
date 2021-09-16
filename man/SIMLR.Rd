@@ -47,6 +47,7 @@ list of 8 elements describing the clusters obtained by SIMLR, of which y are the
 perform the SIMLR clustering algorithm
 }
 \examples{
+data(BuettnerFlorian)
 SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 
 }

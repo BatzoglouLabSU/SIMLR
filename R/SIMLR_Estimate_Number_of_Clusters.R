@@ -3,7 +3,7 @@
 #' @title SIMLR Estimate Number of Clusters
 #' 
 #' @examples
-#' 
+#' data(BuettnerFlorian)
 #' SIMLR_Estimate_Number_of_Clusters(BuettnerFlorian$in_X,
 #'    NUMC = 2:5,
 #'    cores.ratio = 0)
