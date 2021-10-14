@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.19.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.1</span>
       </span>
     </div>
 
@@ -99,9 +99,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"igraph"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Installing package into '/home/runner/work/_temp/Library'
 ## (as 'lib' is unspecified)</code></pre>
-<pre><code>## Warning: unable to access index for repository /src/contrib:
-##   cannot open URL '/src/contrib/PACKAGES'</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'igraph'</code></pre>
@@ -112,7 +110,7 @@
 ## 
 ##     union</code></pre>
 <p>We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. “Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells.” Nature biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 cell populations, i.e., clusters.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">example</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR.html">SIMLR</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">n_clust</span>, cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## Computing the multiple Kernels.
@@ -154,12 +152,12 @@
 ## Epoch: Iteration # 900  error is:  0.2822566 
 ## Epoch: Iteration # 1000  error is:  0.1553403</code></pre>
 <p>We now compute the normalized mutual information between the inferred clusters by SIMLR and the true ones. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nmi_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.888298</code></pre>
 <p>As a further understanding of the results, we now visualize the cell populations in a plot.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">example</span><span class="op">$</span><span class="va">ydata</span>, 
     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">topo.colors</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">n_clust</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>, 
     xlab <span class="op">=</span> <span class="st">"SIMLR component 1"</span>,
@@ -172,7 +170,7 @@ Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Flo
 </p>
 </div>
 <p>We also run SIMLR feature ranking on the same inputs to get a rank of the key genes with the related pvalues.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR_Feature_Ranking.html">SIMLR_Feature_Ranking</a></span><span class="op">(</span>A<span class="op">=</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">S</span>,X<span class="op">=</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span><span class="op">)</span></code></pre></div>
 <pre><code>## 1 
@@ -275,15 +273,15 @@ Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Flo
 ## 98 
 ## 99 
 ## 100</code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ranks</span><span class="op">$</span><span class="va">pval</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.086748e-128  1.189327e-90  5.504924e-80  4.652359e-75  5.593957e-73
 ## [6]  3.373056e-69</code></pre>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ranks</span><span class="op">$</span><span class="va">aggR</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 5701 1689 7549   57 2653 8081</code></pre>
 <p>Similarly, we show an example for SIMLR large scale on an input dataset being a reduced version of the dataset provided in Buettner, Zeisel, Amit, et al. “Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq.” Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. But we should notice that here we use for computational reasons a reduced version of the data, so please refer to the original publication for the full data.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">example_large_scale</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR_Large_Scale.html">SIMLR_Large_Scale</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span>, kk <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## Performing fast PCA.
@@ -599,12 +597,12 @@ Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Flo
 ## Performing iteration 299.
 ## Performing iteration 300.</code></pre>
 <p>We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nmi_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example_large_scale</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.04158302</code></pre>
 <p>As a further understanding of the results, also in this case we visualize the cell populations in a plot.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">example_large_scale</span><span class="op">$</span><span class="va">ydata</span>, 
     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">topo.colors</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>, 
     xlab <span class="op">=</span> <span class="st">"SIMLR component 1"</span>,
@@ -617,22 +615,22 @@ Visualization of the 9 cell populations retrieved by SIMLR large scale on the da
 </p>
 </div>
 <p>Now, as a final example, we also provide the results of two heuristics (see the original SIMLR paper) to estimate the number of clusters from data.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">53900</span><span class="op">)</span>
 <span class="va">NUMC</span> <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>
 <span class="va">res_example</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR_Estimate_Number_of_Clusters.html">SIMLR_Estimate_Number_of_Clusters</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>,
     NUMC <span class="op">=</span> <span class="va">NUMC</span>,
     cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p>Best number of clusters, K1 heuristic:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">NUMC</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">res_example</span><span class="op">$</span><span class="va">K1</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>K2 heuristic:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">NUMC</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">res_example</span><span class="op">$</span><span class="va">K2</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Results of the two heuristics:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res_example</span></code></pre></div>
 <pre><code>## $K1
 ## [1] -63.04223 -19.49278 -23.77182  13.30109
@@ -656,7 +654,7 @@ Visualization of the 9 cell populations retrieved by SIMLR large scale on the da
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
