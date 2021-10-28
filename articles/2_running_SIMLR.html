@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.20.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
       <h1 data-toc-skip>Running SIMLR</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/master/vignettes/2_running_SIMLR.Rmd" class="external-link"><code>vignettes/2_running_SIMLR.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/vignettes/2_running_SIMLR.Rmd" class="external-link"><code>vignettes/2_running_SIMLR.Rmd</code></a></small>
       <div class="hidden name"><code>2_running_SIMLR.Rmd</code></div>
 
     </div>
@@ -97,65 +97,65 @@
 <p>The external R package igraph is required for the computation of the normalized mutual information to assess the results of the clustering.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"igraph"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)</code></pre>
+<pre><code><span class="co">## Installing package into '/home/runner/work/_temp/Library'</span>
+<span class="co">## (as 'lib' is unspecified)</span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'igraph'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from 'package:base':
-## 
-##     union</code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## Attaching package: 'igraph'</span></code></pre>
+<pre><code><span class="co">## The following objects are masked from 'package:stats':</span>
+<span class="co">## </span>
+<span class="co">##     decompose, spectrum</span></code></pre>
+<pre><code><span class="co">## The following object is masked from 'package:base':</span>
+<span class="co">## </span>
+<span class="co">##     union</span></code></pre>
 <p>We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. “Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells.” Nature biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 cell populations, i.e., clusters.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">example</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR.html">SIMLR</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">n_clust</span>, cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<pre><code>## Computing the multiple Kernels.
-## Performing network diffiusion.
-## Iteration:  1 
-## Iteration:  2 
-## Iteration:  3 
-## Iteration:  4 
-## Iteration:  5 
-## Iteration:  6 
-## Iteration:  7 
-## Iteration:  8 
-## Iteration:  9 
-## Iteration:  10 
-## Iteration:  11</code></pre>
-<pre><code>## Warning in SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, : Maybe
-## you should set a larger value of c.</code></pre>
-<pre><code>## Performing t-SNE.
-## Epoch: Iteration # 100  error is:  0.1137384 
-## Epoch: Iteration # 200  error is:  0.06067954 
-## Epoch: Iteration # 300  error is:  0.05842238 
-## Epoch: Iteration # 400  error is:  0.05837357 
-## Epoch: Iteration # 500  error is:  0.05832652 
-## Epoch: Iteration # 600  error is:  0.0582829 
-## Epoch: Iteration # 700  error is:  0.05824284 
-## Epoch: Iteration # 800  error is:  0.05820373 
-## Epoch: Iteration # 900  error is:  0.05816691 
-## Epoch: Iteration # 1000  error is:  0.05813224 
-## Performing Kmeans.
-## Performing t-SNE.
-## Epoch: Iteration # 100  error is:  11.78569 
-## Epoch: Iteration # 200  error is:  0.6091568 
-## Epoch: Iteration # 300  error is:  0.624592 
-## Epoch: Iteration # 400  error is:  0.529589 
-## Epoch: Iteration # 500  error is:  0.4000718 
-## Epoch: Iteration # 600  error is:  0.322198 
-## Epoch: Iteration # 700  error is:  0.3040607 
-## Epoch: Iteration # 800  error is:  0.2942464 
-## Epoch: Iteration # 900  error is:  0.2822566 
-## Epoch: Iteration # 1000  error is:  0.1553403</code></pre>
+<pre><code><span class="co">## Computing the multiple Kernels.</span>
+<span class="co">## Performing network diffiusion.</span>
+<span class="co">## Iteration:  1 </span>
+<span class="co">## Iteration:  2 </span>
+<span class="co">## Iteration:  3 </span>
+<span class="co">## Iteration:  4 </span>
+<span class="co">## Iteration:  5 </span>
+<span class="co">## Iteration:  6 </span>
+<span class="co">## Iteration:  7 </span>
+<span class="co">## Iteration:  8 </span>
+<span class="co">## Iteration:  9 </span>
+<span class="co">## Iteration:  10 </span>
+<span class="co">## Iteration:  11</span></code></pre>
+<pre><code><span class="co">## Warning in SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, : Maybe</span>
+<span class="co">## you should set a larger value of c.</span></code></pre>
+<pre><code><span class="co">## Performing t-SNE.</span>
+<span class="co">## Epoch: Iteration # 100  error is:  0.1137384 </span>
+<span class="co">## Epoch: Iteration # 200  error is:  0.06067954 </span>
+<span class="co">## Epoch: Iteration # 300  error is:  0.05842238 </span>
+<span class="co">## Epoch: Iteration # 400  error is:  0.05837357 </span>
+<span class="co">## Epoch: Iteration # 500  error is:  0.05832652 </span>
+<span class="co">## Epoch: Iteration # 600  error is:  0.0582829 </span>
+<span class="co">## Epoch: Iteration # 700  error is:  0.05824284 </span>
+<span class="co">## Epoch: Iteration # 800  error is:  0.05820373 </span>
+<span class="co">## Epoch: Iteration # 900  error is:  0.05816691 </span>
+<span class="co">## Epoch: Iteration # 1000  error is:  0.05813224 </span>
+<span class="co">## Performing Kmeans.</span>
+<span class="co">## Performing t-SNE.</span>
+<span class="co">## Epoch: Iteration # 100  error is:  11.78569 </span>
+<span class="co">## Epoch: Iteration # 200  error is:  0.6091568 </span>
+<span class="co">## Epoch: Iteration # 300  error is:  0.624592 </span>
+<span class="co">## Epoch: Iteration # 400  error is:  0.529589 </span>
+<span class="co">## Epoch: Iteration # 500  error is:  0.4000718 </span>
+<span class="co">## Epoch: Iteration # 600  error is:  0.322198 </span>
+<span class="co">## Epoch: Iteration # 700  error is:  0.3040607 </span>
+<span class="co">## Epoch: Iteration # 800  error is:  0.2942464 </span>
+<span class="co">## Epoch: Iteration # 900  error is:  0.2822566 </span>
+<span class="co">## Epoch: Iteration # 1000  error is:  0.1553403</span></code></pre>
 <p>We now compute the normalized mutual information between the inferred clusters by SIMLR and the true ones. This measure with values in [0,1], allows us to assess the performance of the clustering with higher values reflecting better performance.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nmi_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.888298</code></pre>
+<pre><code><span class="co">## [1] 0.888298</span></code></pre>
 <p>As a further understanding of the results, we now visualize the cell populations in a plot.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">example</span><span class="op">$</span><span class="va">ydata</span>, 
@@ -173,434 +173,434 @@ Visualization of the 3 cell populations retrieved by SIMLR on the dataset by Flo
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR_Feature_Ranking.html">SIMLR_Feature_Ranking</a></span><span class="op">(</span>A<span class="op">=</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">S</span>,X<span class="op">=</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span><span class="op">)</span></code></pre></div>
-<pre><code>## 1 
-## 2 
-## 3 
-## 4 
-## 5 
-## 6 
-## 7 
-## 8 
-## 9 
-## 10 
-## 11 
-## 12 
-## 13 
-## 14 
-## 15 
-## 16 
-## 17 
-## 18 
-## 19 
-## 20 
-## 21 
-## 22 
-## 23 
-## 24 
-## 25 
-## 26 
-## 27 
-## 28 
-## 29 
-## 30 
-## 31 
-## 32 
-## 33 
-## 34 
-## 35 
-## 36 
-## 37 
-## 38 
-## 39 
-## 40 
-## 41 
-## 42 
-## 43 
-## 44 
-## 45 
-## 46 
-## 47 
-## 48 
-## 49 
-## 50 
-## 51 
-## 52 
-## 53 
-## 54 
-## 55 
-## 56 
-## 57 
-## 58 
-## 59 
-## 60 
-## 61 
-## 62 
-## 63 
-## 64 
-## 65 
-## 66 
-## 67 
-## 68 
-## 69 
-## 70 
-## 71 
-## 72 
-## 73 
-## 74 
-## 75 
-## 76 
-## 77 
-## 78 
-## 79 
-## 80 
-## 81 
-## 82 
-## 83 
-## 84 
-## 85 
-## 86 
-## 87 
-## 88 
-## 89 
-## 90 
-## 91 
-## 92 
-## 93 
-## 94 
-## 95 
-## 96 
-## 97 
-## 98 
-## 99 
-## 100</code></pre>
+<pre><code><span class="co">## 1 </span>
+<span class="co">## 2 </span>
+<span class="co">## 3 </span>
+<span class="co">## 4 </span>
+<span class="co">## 5 </span>
+<span class="co">## 6 </span>
+<span class="co">## 7 </span>
+<span class="co">## 8 </span>
+<span class="co">## 9 </span>
+<span class="co">## 10 </span>
+<span class="co">## 11 </span>
+<span class="co">## 12 </span>
+<span class="co">## 13 </span>
+<span class="co">## 14 </span>
+<span class="co">## 15 </span>
+<span class="co">## 16 </span>
+<span class="co">## 17 </span>
+<span class="co">## 18 </span>
+<span class="co">## 19 </span>
+<span class="co">## 20 </span>
+<span class="co">## 21 </span>
+<span class="co">## 22 </span>
+<span class="co">## 23 </span>
+<span class="co">## 24 </span>
+<span class="co">## 25 </span>
+<span class="co">## 26 </span>
+<span class="co">## 27 </span>
+<span class="co">## 28 </span>
+<span class="co">## 29 </span>
+<span class="co">## 30 </span>
+<span class="co">## 31 </span>
+<span class="co">## 32 </span>
+<span class="co">## 33 </span>
+<span class="co">## 34 </span>
+<span class="co">## 35 </span>
+<span class="co">## 36 </span>
+<span class="co">## 37 </span>
+<span class="co">## 38 </span>
+<span class="co">## 39 </span>
+<span class="co">## 40 </span>
+<span class="co">## 41 </span>
+<span class="co">## 42 </span>
+<span class="co">## 43 </span>
+<span class="co">## 44 </span>
+<span class="co">## 45 </span>
+<span class="co">## 46 </span>
+<span class="co">## 47 </span>
+<span class="co">## 48 </span>
+<span class="co">## 49 </span>
+<span class="co">## 50 </span>
+<span class="co">## 51 </span>
+<span class="co">## 52 </span>
+<span class="co">## 53 </span>
+<span class="co">## 54 </span>
+<span class="co">## 55 </span>
+<span class="co">## 56 </span>
+<span class="co">## 57 </span>
+<span class="co">## 58 </span>
+<span class="co">## 59 </span>
+<span class="co">## 60 </span>
+<span class="co">## 61 </span>
+<span class="co">## 62 </span>
+<span class="co">## 63 </span>
+<span class="co">## 64 </span>
+<span class="co">## 65 </span>
+<span class="co">## 66 </span>
+<span class="co">## 67 </span>
+<span class="co">## 68 </span>
+<span class="co">## 69 </span>
+<span class="co">## 70 </span>
+<span class="co">## 71 </span>
+<span class="co">## 72 </span>
+<span class="co">## 73 </span>
+<span class="co">## 74 </span>
+<span class="co">## 75 </span>
+<span class="co">## 76 </span>
+<span class="co">## 77 </span>
+<span class="co">## 78 </span>
+<span class="co">## 79 </span>
+<span class="co">## 80 </span>
+<span class="co">## 81 </span>
+<span class="co">## 82 </span>
+<span class="co">## 83 </span>
+<span class="co">## 84 </span>
+<span class="co">## 85 </span>
+<span class="co">## 86 </span>
+<span class="co">## 87 </span>
+<span class="co">## 88 </span>
+<span class="co">## 89 </span>
+<span class="co">## 90 </span>
+<span class="co">## 91 </span>
+<span class="co">## 92 </span>
+<span class="co">## 93 </span>
+<span class="co">## 94 </span>
+<span class="co">## 95 </span>
+<span class="co">## 96 </span>
+<span class="co">## 97 </span>
+<span class="co">## 98 </span>
+<span class="co">## 99 </span>
+<span class="co">## 100</span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ranks</span><span class="op">$</span><span class="va">pval</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1.086748e-128  1.189327e-90  5.504924e-80  4.652359e-75  5.593957e-73
-## [6]  3.373056e-69</code></pre>
+<pre><code><span class="co">## [1] 1.086748e-128  1.189327e-90  5.504924e-80  4.652359e-75  5.593957e-73</span>
+<span class="co">## [6]  3.373056e-69</span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ranks</span><span class="op">$</span><span class="va">aggR</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5701 1689 7549   57 2653 8081</code></pre>
+<pre><code><span class="co">## [1] 5701 1689 7549   57 2653 8081</span></code></pre>
 <p>Similarly, we show an example for SIMLR large scale on an input dataset being a reduced version of the dataset provided in Buettner, Zeisel, Amit, et al. “Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq.” Science 347.6226 (2015): 1138-1142. For this dataset we have a ground true of 9 cell populations, i.e., clusters. But we should notice that here we use for computational reasons a reduced version of the data, so please refer to the original publication for the full data.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">11111</span><span class="op">)</span>
 <span class="va">example_large_scale</span> <span class="op">=</span> <span class="fu"><a href="../reference/SIMLR_Large_Scale.html">SIMLR_Large_Scale</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span>, kk <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## Performing fast PCA.
-## Performing k-nearest neighbour search.
-## Computing the multiple Kernels.
-## Performing the iterative procedure  5  times.
-## Iteration:  1 
-## Iteration:  2 
-## Iteration:  3 
-## Iteration:  4 
-## Iteration:  5 
-## Performing Kmeans.
-## Performing t-SNE.
-## The main loop will be now performed with a maximum of 300 iterations.
-## Performing iteration 1.
-## Performing iteration 2.
-## Performing iteration 3.
-## Performing iteration 4.
-## Performing iteration 5.
-## Performing iteration 6.
-## Performing iteration 7.
-## Performing iteration 8.
-## Performing iteration 9.
-## Performing iteration 10.
-## Performing iteration 11.
-## Performing iteration 12.
-## Performing iteration 13.
-## Performing iteration 14.
-## Performing iteration 15.
-## Performing iteration 16.
-## Performing iteration 17.
-## Performing iteration 18.
-## Performing iteration 19.
-## Performing iteration 20.
-## Performing iteration 21.
-## Performing iteration 22.
-## Performing iteration 23.
-## Performing iteration 24.
-## Performing iteration 25.
-## Performing iteration 26.
-## Performing iteration 27.
-## Performing iteration 28.
-## Performing iteration 29.
-## Performing iteration 30.
-## Performing iteration 31.
-## Performing iteration 32.
-## Performing iteration 33.
-## Performing iteration 34.
-## Performing iteration 35.
-## Performing iteration 36.
-## Performing iteration 37.
-## Performing iteration 38.
-## Performing iteration 39.
-## Performing iteration 40.
-## Performing iteration 41.
-## Performing iteration 42.
-## Performing iteration 43.
-## Performing iteration 44.
-## Performing iteration 45.
-## Performing iteration 46.
-## Performing iteration 47.
-## Performing iteration 48.
-## Performing iteration 49.
-## Performing iteration 50.
-## Performing iteration 51.
-## Performing iteration 52.
-## Performing iteration 53.
-## Performing iteration 54.
-## Performing iteration 55.
-## Performing iteration 56.
-## Performing iteration 57.
-## Performing iteration 58.
-## Performing iteration 59.
-## Performing iteration 60.
-## Performing iteration 61.
-## Performing iteration 62.
-## Performing iteration 63.
-## Performing iteration 64.
-## Performing iteration 65.
-## Performing iteration 66.
-## Performing iteration 67.
-## Performing iteration 68.
-## Performing iteration 69.
-## Performing iteration 70.
-## Performing iteration 71.
-## Performing iteration 72.
-## Performing iteration 73.
-## Performing iteration 74.
-## Performing iteration 75.
-## Performing iteration 76.
-## Performing iteration 77.
-## Performing iteration 78.
-## Performing iteration 79.
-## Performing iteration 80.
-## Performing iteration 81.
-## Performing iteration 82.
-## Performing iteration 83.
-## Performing iteration 84.
-## Performing iteration 85.
-## Performing iteration 86.
-## Performing iteration 87.
-## Performing iteration 88.
-## Performing iteration 89.
-## Performing iteration 90.
-## Performing iteration 91.
-## Performing iteration 92.
-## Performing iteration 93.
-## Performing iteration 94.
-## Performing iteration 95.
-## Performing iteration 96.
-## Performing iteration 97.
-## Performing iteration 98.
-## Performing iteration 99.
-## Performing iteration 100.
-## Performing iteration 101.
-## Performing iteration 102.
-## Performing iteration 103.
-## Performing iteration 104.
-## Performing iteration 105.
-## Performing iteration 106.
-## Performing iteration 107.
-## Performing iteration 108.
-## Performing iteration 109.
-## Performing iteration 110.
-## Performing iteration 111.
-## Performing iteration 112.
-## Performing iteration 113.
-## Performing iteration 114.
-## Performing iteration 115.
-## Performing iteration 116.
-## Performing iteration 117.
-## Performing iteration 118.
-## Performing iteration 119.
-## Performing iteration 120.
-## Performing iteration 121.
-## Performing iteration 122.
-## Performing iteration 123.
-## Performing iteration 124.
-## Performing iteration 125.
-## Performing iteration 126.
-## Performing iteration 127.
-## Performing iteration 128.
-## Performing iteration 129.
-## Performing iteration 130.
-## Performing iteration 131.
-## Performing iteration 132.
-## Performing iteration 133.
-## Performing iteration 134.
-## Performing iteration 135.
-## Performing iteration 136.
-## Performing iteration 137.
-## Performing iteration 138.
-## Performing iteration 139.
-## Performing iteration 140.
-## Performing iteration 141.
-## Performing iteration 142.
-## Performing iteration 143.
-## Performing iteration 144.
-## Performing iteration 145.
-## Performing iteration 146.
-## Performing iteration 147.
-## Performing iteration 148.
-## Performing iteration 149.
-## Performing iteration 150.
-## Performing iteration 151.
-## Performing iteration 152.
-## Performing iteration 153.
-## Performing iteration 154.
-## Performing iteration 155.
-## Performing iteration 156.
-## Performing iteration 157.
-## Performing iteration 158.
-## Performing iteration 159.
-## Performing iteration 160.
-## Performing iteration 161.
-## Performing iteration 162.
-## Performing iteration 163.
-## Performing iteration 164.
-## Performing iteration 165.
-## Performing iteration 166.
-## Performing iteration 167.
-## Performing iteration 168.
-## Performing iteration 169.
-## Performing iteration 170.
-## Performing iteration 171.
-## Performing iteration 172.
-## Performing iteration 173.
-## Performing iteration 174.
-## Performing iteration 175.
-## Performing iteration 176.
-## Performing iteration 177.
-## Performing iteration 178.
-## Performing iteration 179.
-## Performing iteration 180.
-## Performing iteration 181.
-## Performing iteration 182.
-## Performing iteration 183.
-## Performing iteration 184.
-## Performing iteration 185.
-## Performing iteration 186.
-## Performing iteration 187.
-## Performing iteration 188.
-## Performing iteration 189.
-## Performing iteration 190.
-## Performing iteration 191.
-## Performing iteration 192.
-## Performing iteration 193.
-## Performing iteration 194.
-## Performing iteration 195.
-## Performing iteration 196.
-## Performing iteration 197.
-## Performing iteration 198.
-## Performing iteration 199.
-## Performing iteration 200.
-## Performing iteration 201.
-## Performing iteration 202.
-## Performing iteration 203.
-## Performing iteration 204.
-## Performing iteration 205.
-## Performing iteration 206.
-## Performing iteration 207.
-## Performing iteration 208.
-## Performing iteration 209.
-## Performing iteration 210.
-## Performing iteration 211.
-## Performing iteration 212.
-## Performing iteration 213.
-## Performing iteration 214.
-## Performing iteration 215.
-## Performing iteration 216.
-## Performing iteration 217.
-## Performing iteration 218.
-## Performing iteration 219.
-## Performing iteration 220.
-## Performing iteration 221.
-## Performing iteration 222.
-## Performing iteration 223.
-## Performing iteration 224.
-## Performing iteration 225.
-## Performing iteration 226.
-## Performing iteration 227.
-## Performing iteration 228.
-## Performing iteration 229.
-## Performing iteration 230.
-## Performing iteration 231.
-## Performing iteration 232.
-## Performing iteration 233.
-## Performing iteration 234.
-## Performing iteration 235.
-## Performing iteration 236.
-## Performing iteration 237.
-## Performing iteration 238.
-## Performing iteration 239.
-## Performing iteration 240.
-## Performing iteration 241.
-## Performing iteration 242.
-## Performing iteration 243.
-## Performing iteration 244.
-## Performing iteration 245.
-## Performing iteration 246.
-## Performing iteration 247.
-## Performing iteration 248.
-## Performing iteration 249.
-## Performing iteration 250.
-## Performing iteration 251.
-## Performing iteration 252.
-## Performing iteration 253.
-## Performing iteration 254.
-## Performing iteration 255.
-## Performing iteration 256.
-## Performing iteration 257.
-## Performing iteration 258.
-## Performing iteration 259.
-## Performing iteration 260.
-## Performing iteration 261.
-## Performing iteration 262.
-## Performing iteration 263.
-## Performing iteration 264.
-## Performing iteration 265.
-## Performing iteration 266.
-## Performing iteration 267.
-## Performing iteration 268.
-## Performing iteration 269.
-## Performing iteration 270.
-## Performing iteration 271.
-## Performing iteration 272.
-## Performing iteration 273.
-## Performing iteration 274.
-## Performing iteration 275.
-## Performing iteration 276.
-## Performing iteration 277.
-## Performing iteration 278.
-## Performing iteration 279.
-## Performing iteration 280.
-## Performing iteration 281.
-## Performing iteration 282.
-## Performing iteration 283.
-## Performing iteration 284.
-## Performing iteration 285.
-## Performing iteration 286.
-## Performing iteration 287.
-## Performing iteration 288.
-## Performing iteration 289.
-## Performing iteration 290.
-## Performing iteration 291.
-## Performing iteration 292.
-## Performing iteration 293.
-## Performing iteration 294.
-## Performing iteration 295.
-## Performing iteration 296.
-## Performing iteration 297.
-## Performing iteration 298.
-## Performing iteration 299.
-## Performing iteration 300.</code></pre>
+<pre><code><span class="co">## Performing fast PCA.</span>
+<span class="co">## Performing k-nearest neighbour search.</span>
+<span class="co">## Computing the multiple Kernels.</span>
+<span class="co">## Performing the iterative procedure  5  times.</span>
+<span class="co">## Iteration:  1 </span>
+<span class="co">## Iteration:  2 </span>
+<span class="co">## Iteration:  3 </span>
+<span class="co">## Iteration:  4 </span>
+<span class="co">## Iteration:  5 </span>
+<span class="co">## Performing Kmeans.</span>
+<span class="co">## Performing t-SNE.</span>
+<span class="co">## The main loop will be now performed with a maximum of 300 iterations.</span>
+<span class="co">## Performing iteration 1.</span>
+<span class="co">## Performing iteration 2.</span>
+<span class="co">## Performing iteration 3.</span>
+<span class="co">## Performing iteration 4.</span>
+<span class="co">## Performing iteration 5.</span>
+<span class="co">## Performing iteration 6.</span>
+<span class="co">## Performing iteration 7.</span>
+<span class="co">## Performing iteration 8.</span>
+<span class="co">## Performing iteration 9.</span>
+<span class="co">## Performing iteration 10.</span>
+<span class="co">## Performing iteration 11.</span>
+<span class="co">## Performing iteration 12.</span>
+<span class="co">## Performing iteration 13.</span>
+<span class="co">## Performing iteration 14.</span>
+<span class="co">## Performing iteration 15.</span>
+<span class="co">## Performing iteration 16.</span>
+<span class="co">## Performing iteration 17.</span>
+<span class="co">## Performing iteration 18.</span>
+<span class="co">## Performing iteration 19.</span>
+<span class="co">## Performing iteration 20.</span>
+<span class="co">## Performing iteration 21.</span>
+<span class="co">## Performing iteration 22.</span>
+<span class="co">## Performing iteration 23.</span>
+<span class="co">## Performing iteration 24.</span>
+<span class="co">## Performing iteration 25.</span>
+<span class="co">## Performing iteration 26.</span>
+<span class="co">## Performing iteration 27.</span>
+<span class="co">## Performing iteration 28.</span>
+<span class="co">## Performing iteration 29.</span>
+<span class="co">## Performing iteration 30.</span>
+<span class="co">## Performing iteration 31.</span>
+<span class="co">## Performing iteration 32.</span>
+<span class="co">## Performing iteration 33.</span>
+<span class="co">## Performing iteration 34.</span>
+<span class="co">## Performing iteration 35.</span>
+<span class="co">## Performing iteration 36.</span>
+<span class="co">## Performing iteration 37.</span>
+<span class="co">## Performing iteration 38.</span>
+<span class="co">## Performing iteration 39.</span>
+<span class="co">## Performing iteration 40.</span>
+<span class="co">## Performing iteration 41.</span>
+<span class="co">## Performing iteration 42.</span>
+<span class="co">## Performing iteration 43.</span>
+<span class="co">## Performing iteration 44.</span>
+<span class="co">## Performing iteration 45.</span>
+<span class="co">## Performing iteration 46.</span>
+<span class="co">## Performing iteration 47.</span>
+<span class="co">## Performing iteration 48.</span>
+<span class="co">## Performing iteration 49.</span>
+<span class="co">## Performing iteration 50.</span>
+<span class="co">## Performing iteration 51.</span>
+<span class="co">## Performing iteration 52.</span>
+<span class="co">## Performing iteration 53.</span>
+<span class="co">## Performing iteration 54.</span>
+<span class="co">## Performing iteration 55.</span>
+<span class="co">## Performing iteration 56.</span>
+<span class="co">## Performing iteration 57.</span>
+<span class="co">## Performing iteration 58.</span>
+<span class="co">## Performing iteration 59.</span>
+<span class="co">## Performing iteration 60.</span>
+<span class="co">## Performing iteration 61.</span>
+<span class="co">## Performing iteration 62.</span>
+<span class="co">## Performing iteration 63.</span>
+<span class="co">## Performing iteration 64.</span>
+<span class="co">## Performing iteration 65.</span>
+<span class="co">## Performing iteration 66.</span>
+<span class="co">## Performing iteration 67.</span>
+<span class="co">## Performing iteration 68.</span>
+<span class="co">## Performing iteration 69.</span>
+<span class="co">## Performing iteration 70.</span>
+<span class="co">## Performing iteration 71.</span>
+<span class="co">## Performing iteration 72.</span>
+<span class="co">## Performing iteration 73.</span>
+<span class="co">## Performing iteration 74.</span>
+<span class="co">## Performing iteration 75.</span>
+<span class="co">## Performing iteration 76.</span>
+<span class="co">## Performing iteration 77.</span>
+<span class="co">## Performing iteration 78.</span>
+<span class="co">## Performing iteration 79.</span>
+<span class="co">## Performing iteration 80.</span>
+<span class="co">## Performing iteration 81.</span>
+<span class="co">## Performing iteration 82.</span>
+<span class="co">## Performing iteration 83.</span>
+<span class="co">## Performing iteration 84.</span>
+<span class="co">## Performing iteration 85.</span>
+<span class="co">## Performing iteration 86.</span>
+<span class="co">## Performing iteration 87.</span>
+<span class="co">## Performing iteration 88.</span>
+<span class="co">## Performing iteration 89.</span>
+<span class="co">## Performing iteration 90.</span>
+<span class="co">## Performing iteration 91.</span>
+<span class="co">## Performing iteration 92.</span>
+<span class="co">## Performing iteration 93.</span>
+<span class="co">## Performing iteration 94.</span>
+<span class="co">## Performing iteration 95.</span>
+<span class="co">## Performing iteration 96.</span>
+<span class="co">## Performing iteration 97.</span>
+<span class="co">## Performing iteration 98.</span>
+<span class="co">## Performing iteration 99.</span>
+<span class="co">## Performing iteration 100.</span>
+<span class="co">## Performing iteration 101.</span>
+<span class="co">## Performing iteration 102.</span>
+<span class="co">## Performing iteration 103.</span>
+<span class="co">## Performing iteration 104.</span>
+<span class="co">## Performing iteration 105.</span>
+<span class="co">## Performing iteration 106.</span>
+<span class="co">## Performing iteration 107.</span>
+<span class="co">## Performing iteration 108.</span>
+<span class="co">## Performing iteration 109.</span>
+<span class="co">## Performing iteration 110.</span>
+<span class="co">## Performing iteration 111.</span>
+<span class="co">## Performing iteration 112.</span>
+<span class="co">## Performing iteration 113.</span>
+<span class="co">## Performing iteration 114.</span>
+<span class="co">## Performing iteration 115.</span>
+<span class="co">## Performing iteration 116.</span>
+<span class="co">## Performing iteration 117.</span>
+<span class="co">## Performing iteration 118.</span>
+<span class="co">## Performing iteration 119.</span>
+<span class="co">## Performing iteration 120.</span>
+<span class="co">## Performing iteration 121.</span>
+<span class="co">## Performing iteration 122.</span>
+<span class="co">## Performing iteration 123.</span>
+<span class="co">## Performing iteration 124.</span>
+<span class="co">## Performing iteration 125.</span>
+<span class="co">## Performing iteration 126.</span>
+<span class="co">## Performing iteration 127.</span>
+<span class="co">## Performing iteration 128.</span>
+<span class="co">## Performing iteration 129.</span>
+<span class="co">## Performing iteration 130.</span>
+<span class="co">## Performing iteration 131.</span>
+<span class="co">## Performing iteration 132.</span>
+<span class="co">## Performing iteration 133.</span>
+<span class="co">## Performing iteration 134.</span>
+<span class="co">## Performing iteration 135.</span>
+<span class="co">## Performing iteration 136.</span>
+<span class="co">## Performing iteration 137.</span>
+<span class="co">## Performing iteration 138.</span>
+<span class="co">## Performing iteration 139.</span>
+<span class="co">## Performing iteration 140.</span>
+<span class="co">## Performing iteration 141.</span>
+<span class="co">## Performing iteration 142.</span>
+<span class="co">## Performing iteration 143.</span>
+<span class="co">## Performing iteration 144.</span>
+<span class="co">## Performing iteration 145.</span>
+<span class="co">## Performing iteration 146.</span>
+<span class="co">## Performing iteration 147.</span>
+<span class="co">## Performing iteration 148.</span>
+<span class="co">## Performing iteration 149.</span>
+<span class="co">## Performing iteration 150.</span>
+<span class="co">## Performing iteration 151.</span>
+<span class="co">## Performing iteration 152.</span>
+<span class="co">## Performing iteration 153.</span>
+<span class="co">## Performing iteration 154.</span>
+<span class="co">## Performing iteration 155.</span>
+<span class="co">## Performing iteration 156.</span>
+<span class="co">## Performing iteration 157.</span>
+<span class="co">## Performing iteration 158.</span>
+<span class="co">## Performing iteration 159.</span>
+<span class="co">## Performing iteration 160.</span>
+<span class="co">## Performing iteration 161.</span>
+<span class="co">## Performing iteration 162.</span>
+<span class="co">## Performing iteration 163.</span>
+<span class="co">## Performing iteration 164.</span>
+<span class="co">## Performing iteration 165.</span>
+<span class="co">## Performing iteration 166.</span>
+<span class="co">## Performing iteration 167.</span>
+<span class="co">## Performing iteration 168.</span>
+<span class="co">## Performing iteration 169.</span>
+<span class="co">## Performing iteration 170.</span>
+<span class="co">## Performing iteration 171.</span>
+<span class="co">## Performing iteration 172.</span>
+<span class="co">## Performing iteration 173.</span>
+<span class="co">## Performing iteration 174.</span>
+<span class="co">## Performing iteration 175.</span>
+<span class="co">## Performing iteration 176.</span>
+<span class="co">## Performing iteration 177.</span>
+<span class="co">## Performing iteration 178.</span>
+<span class="co">## Performing iteration 179.</span>
+<span class="co">## Performing iteration 180.</span>
+<span class="co">## Performing iteration 181.</span>
+<span class="co">## Performing iteration 182.</span>
+<span class="co">## Performing iteration 183.</span>
+<span class="co">## Performing iteration 184.</span>
+<span class="co">## Performing iteration 185.</span>
+<span class="co">## Performing iteration 186.</span>
+<span class="co">## Performing iteration 187.</span>
+<span class="co">## Performing iteration 188.</span>
+<span class="co">## Performing iteration 189.</span>
+<span class="co">## Performing iteration 190.</span>
+<span class="co">## Performing iteration 191.</span>
+<span class="co">## Performing iteration 192.</span>
+<span class="co">## Performing iteration 193.</span>
+<span class="co">## Performing iteration 194.</span>
+<span class="co">## Performing iteration 195.</span>
+<span class="co">## Performing iteration 196.</span>
+<span class="co">## Performing iteration 197.</span>
+<span class="co">## Performing iteration 198.</span>
+<span class="co">## Performing iteration 199.</span>
+<span class="co">## Performing iteration 200.</span>
+<span class="co">## Performing iteration 201.</span>
+<span class="co">## Performing iteration 202.</span>
+<span class="co">## Performing iteration 203.</span>
+<span class="co">## Performing iteration 204.</span>
+<span class="co">## Performing iteration 205.</span>
+<span class="co">## Performing iteration 206.</span>
+<span class="co">## Performing iteration 207.</span>
+<span class="co">## Performing iteration 208.</span>
+<span class="co">## Performing iteration 209.</span>
+<span class="co">## Performing iteration 210.</span>
+<span class="co">## Performing iteration 211.</span>
+<span class="co">## Performing iteration 212.</span>
+<span class="co">## Performing iteration 213.</span>
+<span class="co">## Performing iteration 214.</span>
+<span class="co">## Performing iteration 215.</span>
+<span class="co">## Performing iteration 216.</span>
+<span class="co">## Performing iteration 217.</span>
+<span class="co">## Performing iteration 218.</span>
+<span class="co">## Performing iteration 219.</span>
+<span class="co">## Performing iteration 220.</span>
+<span class="co">## Performing iteration 221.</span>
+<span class="co">## Performing iteration 222.</span>
+<span class="co">## Performing iteration 223.</span>
+<span class="co">## Performing iteration 224.</span>
+<span class="co">## Performing iteration 225.</span>
+<span class="co">## Performing iteration 226.</span>
+<span class="co">## Performing iteration 227.</span>
+<span class="co">## Performing iteration 228.</span>
+<span class="co">## Performing iteration 229.</span>
+<span class="co">## Performing iteration 230.</span>
+<span class="co">## Performing iteration 231.</span>
+<span class="co">## Performing iteration 232.</span>
+<span class="co">## Performing iteration 233.</span>
+<span class="co">## Performing iteration 234.</span>
+<span class="co">## Performing iteration 235.</span>
+<span class="co">## Performing iteration 236.</span>
+<span class="co">## Performing iteration 237.</span>
+<span class="co">## Performing iteration 238.</span>
+<span class="co">## Performing iteration 239.</span>
+<span class="co">## Performing iteration 240.</span>
+<span class="co">## Performing iteration 241.</span>
+<span class="co">## Performing iteration 242.</span>
+<span class="co">## Performing iteration 243.</span>
+<span class="co">## Performing iteration 244.</span>
+<span class="co">## Performing iteration 245.</span>
+<span class="co">## Performing iteration 246.</span>
+<span class="co">## Performing iteration 247.</span>
+<span class="co">## Performing iteration 248.</span>
+<span class="co">## Performing iteration 249.</span>
+<span class="co">## Performing iteration 250.</span>
+<span class="co">## Performing iteration 251.</span>
+<span class="co">## Performing iteration 252.</span>
+<span class="co">## Performing iteration 253.</span>
+<span class="co">## Performing iteration 254.</span>
+<span class="co">## Performing iteration 255.</span>
+<span class="co">## Performing iteration 256.</span>
+<span class="co">## Performing iteration 257.</span>
+<span class="co">## Performing iteration 258.</span>
+<span class="co">## Performing iteration 259.</span>
+<span class="co">## Performing iteration 260.</span>
+<span class="co">## Performing iteration 261.</span>
+<span class="co">## Performing iteration 262.</span>
+<span class="co">## Performing iteration 263.</span>
+<span class="co">## Performing iteration 264.</span>
+<span class="co">## Performing iteration 265.</span>
+<span class="co">## Performing iteration 266.</span>
+<span class="co">## Performing iteration 267.</span>
+<span class="co">## Performing iteration 268.</span>
+<span class="co">## Performing iteration 269.</span>
+<span class="co">## Performing iteration 270.</span>
+<span class="co">## Performing iteration 271.</span>
+<span class="co">## Performing iteration 272.</span>
+<span class="co">## Performing iteration 273.</span>
+<span class="co">## Performing iteration 274.</span>
+<span class="co">## Performing iteration 275.</span>
+<span class="co">## Performing iteration 276.</span>
+<span class="co">## Performing iteration 277.</span>
+<span class="co">## Performing iteration 278.</span>
+<span class="co">## Performing iteration 279.</span>
+<span class="co">## Performing iteration 280.</span>
+<span class="co">## Performing iteration 281.</span>
+<span class="co">## Performing iteration 282.</span>
+<span class="co">## Performing iteration 283.</span>
+<span class="co">## Performing iteration 284.</span>
+<span class="co">## Performing iteration 285.</span>
+<span class="co">## Performing iteration 286.</span>
+<span class="co">## Performing iteration 287.</span>
+<span class="co">## Performing iteration 288.</span>
+<span class="co">## Performing iteration 289.</span>
+<span class="co">## Performing iteration 290.</span>
+<span class="co">## Performing iteration 291.</span>
+<span class="co">## Performing iteration 292.</span>
+<span class="co">## Performing iteration 293.</span>
+<span class="co">## Performing iteration 294.</span>
+<span class="co">## Performing iteration 295.</span>
+<span class="co">## Performing iteration 296.</span>
+<span class="co">## Performing iteration 297.</span>
+<span class="co">## Performing iteration 298.</span>
+<span class="co">## Performing iteration 299.</span>
+<span class="co">## Performing iteration 300.</span></code></pre>
 <p>We compute the normalized mutual information between the inferred clusters by SIMLR large scale and the true ones.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nmi_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example_large_scale</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.04158302</code></pre>
+<pre><code><span class="co">## [1] 0.04158302</span></code></pre>
 <p>As a further understanding of the results, also in this case we visualize the cell populations in a plot.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">example_large_scale</span><span class="op">$</span><span class="va">ydata</span>, 
@@ -624,19 +624,19 @@ Visualization of the 9 cell populations retrieved by SIMLR large scale on the da
 <p>Best number of clusters, K1 heuristic:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">NUMC</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">res_example</span><span class="op">$</span><span class="va">K1</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code><span class="co">## [1] 2</span></code></pre>
 <p>K2 heuristic:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">NUMC</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">res_example</span><span class="op">$</span><span class="va">K2</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code><span class="co">## [1] 2</span></code></pre>
 <p>Results of the two heuristics:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res_example</span></code></pre></div>
-<pre><code>## $K1
-## [1] -63.04223 -19.49278 -23.77182  13.30109
-## 
-## $K2
-## [1] -94.56335 -25.99037 -29.71477  15.96130</code></pre>
+<pre><code><span class="co">## $K1</span>
+<span class="co">## [1] -63.04223 -19.49278 -23.77182  13.30109</span>
+<span class="co">## </span>
+<span class="co">## $K2</span>
+<span class="co">## [1] -94.56335 -25.99037 -29.71477  15.96130</span></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -654,7 +654,7 @@ Visualization of the 9 cell populations retrieved by SIMLR large scale on the da
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

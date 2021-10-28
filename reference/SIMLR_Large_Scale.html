@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.20.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/BatzoglouLabSU/SIMLR/">
+  <a href="https://github.com/BatzoglouLabSU/SIMLR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>SIMLR Large Scale</h1>
-    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/master/R/SIMLR_Large_Scale.R"><code>R/SIMLR_Large_Scale.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/R/SIMLR_Large_Scale.R" class="external-link"><code>R/SIMLR_Large_Scale.R</code></a></small>
     <div class="hidden name"><code>SIMLR_Large_Scale.Rd</code></div>
     </div>
 
@@ -64,24 +64,27 @@
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, k <span class="op">=</span> <span class="fl">10</span>, kk <span class="op">=</span> <span class="fl">100</span>, if.impute <span class="op">=</span> <span class="cn">FALSE</span>, normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>X</th>
-      <td><p>an (m x n) data matrix of gene expression measurements of individual cells or
-and object of class SCESet</p></td>
-    </tr><tr><th>c</th>
-      <td><p>number of clusters to be estimated over X</p></td>
-    </tr><tr><th>k</th>
-      <td><p>tuning parameter</p></td>
-    </tr><tr><th>kk</th>
-      <td><p>number of principal components to be assessed in the PCA</p></td>
-    </tr><tr><th>if.impute</th>
-      <td><p>should I traspose the input data?</p></td>
-    </tr><tr><th>normalize</th>
-      <td><p>should I normalize the input data?</p></td>
-    </tr></table><h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>clusters the cells based on SIMLR Large Scale and their similarities</p>
-<p>list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
+    <div id="ref-sections">
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>X</dt>
+<dd><p>an (m x n) data matrix of gene expression measurements of individual cells or
+and object of class SCESet</p></dd>
+<dt>c</dt>
+<dd><p>number of clusters to be estimated over X</p></dd>
+<dt>k</dt>
+<dd><p>tuning parameter</p></dd>
+<dt>kk</dt>
+<dd><p>number of principal components to be assessed in the PCA</p></dd>
+<dt>if.impute</dt>
+<dd><p>should I traspose the input data?</p></dd>
+<dt>normalize</dt>
+<dd><p>should I normalize the input data?</p></dd>
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    <p>clusters the cells based on SIMLR Large Scale and their similarities
+list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
 	y = results of k-means clusterings,
  	S0 = similarities computed by SIMLR, 
  	F = results from the large scale iterative procedure, 
@@ -90,15 +93,19 @@ and object of class SCESet</p></td>
  	val = distances from the k-nearest neighbour search,
      ind = indeces from the k-nearest neighbour search,
  	execution.time = execution time of the present run</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">)</span></span>
+    <div id="examples">
+    <h2>Examples</h2>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">resized</span> <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">in_X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">340</span><span class="op">]</span></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span>X <span class="op">=</span> <span class="va">resized</span>, c <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span>, k <span class="op">=</span> <span class="fl">5</span>, kk <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

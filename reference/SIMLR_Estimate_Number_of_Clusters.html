@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.20.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/BatzoglouLabSU/SIMLR/">
+  <a href="https://github.com/BatzoglouLabSU/SIMLR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>SIMLR Estimate Number of Clusters</h1>
-    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/master/R/SIMLR_Estimate_Number_of_Clusters.R"><code>R/SIMLR_Estimate_Number_of_Clusters.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/R/SIMLR_Estimate_Number_of_Clusters.R" class="external-link"><code>R/SIMLR_Estimate_Number_of_Clusters.R</code></a></small>
     <div class="hidden name"><code>SIMLR_Estimate_Number_of_Clusters.Rd</code></div>
     </div>
 
@@ -64,20 +64,26 @@
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">X</span>, NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>X</th>
-      <td><p>an (m x n) data matrix of gene expression measurements of individual cells</p></td>
-    </tr><tr><th>NUMC</th>
-      <td><p>vector of number of clusters to be considered</p></td>
-    </tr><tr><th>cores.ratio</th>
-      <td><p>ratio of the number of cores to be used when computing the multi-kernel</p></td>
-    </tr></table><h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
+    <div id="ref-sections">
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>X</dt>
+<dd><p>an (m x n) data matrix of gene expression measurements of individual cells</p></dd>
+<dt>NUMC</dt>
+<dd><p>vector of number of clusters to be considered</p></dd>
+<dt>cores.ratio</dt>
+<dd><p>ratio of the number of cores to be used when computing the multi-kernel</p></dd>
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
     <p>a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 
 values the better) as discussed in the original paper of SIMLR</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">)</span></span>
+    <div id="examples">
+    <h2>Examples</h2>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>,</span>
 <span class="r-in">   NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,</span>
 <span class="r-in">   cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -89,6 +95,7 @@ values the better) as discussed in the original paper of SIMLR</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

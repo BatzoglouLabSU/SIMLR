@@ -19,7 +19,7 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR — CIM
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.20.0</span>
       </span>
     </div>
 
@@ -41,7 +41,7 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR — CIM
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/BatzoglouLabSU/SIMLR/">
+  <a href="https://github.com/BatzoglouLabSU/SIMLR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -57,7 +57,7 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR — CIM
     <div class="page-header">
     <h1>This function has been removed and it is now provided
 by the CIMLR package, please refer to https://github.com/danro9685/CIMLR</h1>
-    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/master/R/deprecated.CIMLR.R"><code>R/deprecated.CIMLR.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/R/deprecated.CIMLR.R" class="external-link"><code>R/deprecated.CIMLR.R</code></a></small>
     <div class="hidden name"><code>CIMLR.Rd</code></div>
     </div>
 
@@ -67,28 +67,35 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR</h1>
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">CIMLR</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, no.dim <span class="op">=</span> <span class="cn">NA</span>, k <span class="op">=</span> <span class="fl">10</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>X</th>
-      <td><p>a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients</p></td>
-    </tr><tr><th>c</th>
-      <td><p>number of clusters to be estimated over X</p></td>
-    </tr><tr><th>no.dim</th>
-      <td><p>number of dimensions</p></td>
-    </tr><tr><th>k</th>
-      <td><p>tuning parameter</p></td>
-    </tr><tr><th>cores.ratio</th>
-      <td><p>ratio of the number of cores to be used when computing the multi-kernel</p></td>
-    </tr></table><h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
+    <div id="ref-sections">
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>X</dt>
+<dd><p>a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients</p></dd>
+<dt>c</dt>
+<dd><p>number of clusters to be estimated over X</p></dd>
+<dt>no.dim</dt>
+<dd><p>number of dimensions</p></dd>
+<dt>k</dt>
+<dd><p>tuning parameter</p></dd>
+<dt>cores.ratio</dt>
+<dd><p>ratio of the number of cores to be used when computing the multi-kernel</p></dd>
+</dl></div>
+    <div id="value">
+    <h2>Value</h2>
     <p>clusters the patients based on CIMLR and their similarities</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in">   </span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">GliomasReduced</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GliomasReduced</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">CIMLR</span><span class="op">(</span>X <span class="op">=</span> <span class="va">GliomasReduced</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="fl">3</span>, cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>   </span>
 <span class="r-in"><span class="op">}</span>    </span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
