@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.21.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.22.0</span>
       </span>
     </div>
 
@@ -114,19 +114,13 @@
 <p><strong>RUNNING THE R IMPLEMENTATION</strong></p>
 <p>We provide the R demo code to run <em>SIMLR</em> on 4 examples in the script <em>R_main_demo_SIMLR.R</em>. Furthermore, we provide a large scale implementation of <em>SIMLR</em> (see large scale implementation) with 1 example in the script <em>R_main_demo_SIMLR_Large_Scale.R</em>. A demo for the estimation of the number of clusters by <em>SIMLR</em> is also provided in the script <em>R_main_demo_SIMLR_Estimate_Number_of_Clusters.R</em>.</p>
 <p>The R libraries required to run the demos can be installed by running the script <em>install_R_libraries.R</em>. We now present a set of requirements to run the examples.</p>
-<ol style="list-style-type: decimal">
-<li>Required R libraries. our tool requires 2 R packages to run, namely the <em>Matrix</em> package (see <a href="https://cran.r-project.org/web/packages/Matrix/index.html" class="external-link uri">https://cran.r-project.org/web/packages/Matrix/index.html</a>) to handle sparse matrices and the <em>parallel</em> package (see <a href="https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf" class="external-link uri">https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf</a>) for a parallel implementation of the kernel estimation.</li>
-</ol>
+<ol style="list-style-type: decimal"><li>Required R libraries. our tool requires 2 R packages to run, namely the <em>Matrix</em> package (see <a href="https://cran.r-project.org/web/packages/Matrix/index.html" class="external-link uri">https://cran.r-project.org/web/packages/Matrix/index.html</a>) to handle sparse matrices and the <em>parallel</em> package (see <a href="https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf" class="external-link uri">https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf</a>) for a parallel implementation of the kernel estimation.</li></ol>
 <p>To run the large scale analysis, it is necessary to install 4 more packages, namely <em>Rcpp</em> package (see <a href="https://cran.r-project.org/web/packages/Rcpp/index.html" class="external-link uri">https://cran.r-project.org/web/packages/Rcpp/index.html</a>), <em>pracma</em> package (see <a href="https://cran.r-project.org/web/packages/pracma/index.html" class="external-link uri">https://cran.r-project.org/web/packages/pracma/index.html</a>), <em>RcppAnnoy</em> package (see <a href="https://cran.rstudio.com/web/packages/RcppAnnoy/index.html" class="external-link uri">https://cran.rstudio.com/web/packages/RcppAnnoy/index.html</a>) and <em>RSpectra</em> package (see <a href="https://cran.r-project.org/web/packages/RSpectra/index.html" class="external-link uri">https://cran.r-project.org/web/packages/RSpectra/index.html</a>).</p>
 <p>Furthermore, to run the examples, we require the <em>igraph</em> package (see <a href="http://igraph.org/r/" class="external-link uri">http://igraph.org/r/</a>) to compute the normalized mutual informetion metric and the <em>grDevices</em> package (see <a href="https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html" class="external-link uri">https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html</a>) to color the plots.</p>
 <p>All these packages, can be installed with the R built-in <em>install.packages</em> function.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>External C code. We make use of an external C program during the computations. The code is located in the R directory in the file <em>projsplx_R.c</em>. In order to compite the program, one needs to run on the shell the command <em>R CMD SHLIB -c projsplx_R.c</em>.</li>
-</ol>
+<ol start="2" style="list-style-type: decimal"><li>External C code. We make use of an external C program during the computations. The code is located in the R directory in the file <em>projsplx_R.c</em>. In order to compite the program, one needs to run on the shell the command <em>R CMD SHLIB -c projsplx_R.c</em>.</li></ol>
 <p>An OS X pre-compiled file is also provided. Note: if there are issues in compiling the .c file, try to remove the pre-compiled files (i.e., <em>projsplx_R.o</em> and <em>projsplx_R.so</em>).</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Example datasets. The 5 example datasets are provided in the directory data of the branch. We recall that those data are provided purely as examples and after some pre-processing; they should not be used in place of the ones provided in the respective publications.</li>
-</ol>
+<ol start="3" style="list-style-type: decimal"><li>Example datasets. The 5 example datasets are provided in the directory data of the branch. We recall that those data are provided purely as examples and after some pre-processing; they should not be used in place of the ones provided in the respective publications.</li></ol>
 <p>Specifically, the dataset of Test_1_mECS.RData refers to <a href="http://www.ncbi.nlm.nih.gov/pubmed/25599176" class="external-link uri">http://www.ncbi.nlm.nih.gov/pubmed/25599176</a>, Test_2_Kolod.RData refers to <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/" class="external-link uri">http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4595712/</a>, Test_3_Pollen.RData refers to <a href="http://www.ncbi.nlm.nih.gov/pubmed/25086649" class="external-link uri">http://www.ncbi.nlm.nih.gov/pubmed/25086649</a> and Test_4_Usoskin.RData refers to <a href="http://www.ncbi.nlm.nih.gov/pubmed/25420068" class="external-link uri">http://www.ncbi.nlm.nih.gov/pubmed/25420068</a>.</p>
 <p>Moreover, for the large scale example, the dataset of Test_5_Zeisel.RData refers to <a href="https://www.ncbi.nlm.nih.gov/pubmed/25700174" class="external-link uri">https://www.ncbi.nlm.nih.gov/pubmed/25700174</a>.</p>
 <p><strong>RUNNING THE MATLAB IMPLEMENTATION</strong></p>
@@ -192,7 +186,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer>
