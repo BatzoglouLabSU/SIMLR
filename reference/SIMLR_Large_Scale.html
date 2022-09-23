@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.22.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.24.0</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, k <span class="op">=</span> <span class="fl">10</span>, kk <span class="op">=</span> <span class="fl">100</span>, if.impute <span class="op">=</span> <span class="cn">FALSE</span>, normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, k <span class="op">=</span> <span class="fl">10</span>, kk <span class="op">=</span> <span class="fl">100</span>, if.impute <span class="op">=</span> <span class="cn">FALSE</span>, normalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,21 +71,36 @@
     <dl><dt>X</dt>
 <dd><p>an (m x n) data matrix of gene expression measurements of individual cells or
 and object of class SCESet</p></dd>
+
+
 <dt>c</dt>
 <dd><p>number of clusters to be estimated over X</p></dd>
+
+
 <dt>k</dt>
 <dd><p>tuning parameter</p></dd>
+
+
 <dt>kk</dt>
 <dd><p>number of principal components to be assessed in the PCA</p></dd>
+
+
 <dt>if.impute</dt>
 <dd><p>should I traspose the input data?</p></dd>
+
+
 <dt>normalize</dt>
 <dd><p>should I normalize the input data?</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>clusters the cells based on SIMLR Large Scale and their similarities
-list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
+    
+
+<p>clusters the cells based on SIMLR Large Scale and their similarities</p>
+
+
+<p>list of 8 elements describing the clusters obtained by SIMLR, of which y are the resulting clusters: 
 	y = results of k-means clusterings,
  	S0 = similarities computed by SIMLR, 
  	F = results from the large scale iterative procedure, 
@@ -98,12 +113,12 @@ list of 8 elements describing the clusters obtained by SIMLR, of which y are the
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">resized</span> <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">in_X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">340</span><span class="op">]</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span>X <span class="op">=</span> <span class="va">resized</span>, c <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span>, k <span class="op">=</span> <span class="fl">5</span>, kk <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">resized</span> <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">in_X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">340</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">SIMLR_Large_Scale</span><span class="op">(</span>X <span class="op">=</span> <span class="va">resized</span>, c <span class="op">=</span> <span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">n_clust</span>, k <span class="op">=</span> <span class="fl">5</span>, kk <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +133,7 @@ list of 8 elements describing the clusters obtained by SIMLR, of which y are the
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

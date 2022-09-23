@@ -19,7 +19,7 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR — CIM
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.22.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.24.0</span>
       </span>
     </div>
 
@@ -66,34 +66,45 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR</h1>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">CIMLR</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, no.dim <span class="op">=</span> <span class="cn">NA</span>, k <span class="op">=</span> <span class="fl">10</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CIMLR</span><span class="op">(</span><span class="va">X</span>, <span class="va">c</span>, no.dim <span class="op">=</span> <span class="cn">NA</span>, k <span class="op">=</span> <span class="fl">10</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>X</dt>
 <dd><p>a list of multi-omic data each of which is an (m x n) data matrix of measurements of cancer patients</p></dd>
+
+
 <dt>c</dt>
 <dd><p>number of clusters to be estimated over X</p></dd>
+
+
 <dt>no.dim</dt>
 <dd><p>number of dimensions</p></dd>
+
+
 <dt>k</dt>
 <dd><p>tuning parameter</p></dd>
+
+
 <dt>cores.ratio</dt>
 <dd><p>ratio of the number of cores to be used when computing the multi-kernel</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>clusters the patients based on CIMLR and their similarities</p>
+    
+
+<p>clusters the patients based on CIMLR and their similarities</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">   </span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GliomasReduced</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">CIMLR</span><span class="op">(</span>X <span class="op">=</span> <span class="va">GliomasReduced</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="fl">3</span>, cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>   </span>
-<span class="r-in"><span class="op">}</span>    </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>   </span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GliomasReduced</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">CIMLR</span><span class="op">(</span>X <span class="op">=</span> <span class="va">GliomasReduced</span><span class="op">$</span><span class="va">in_X</span>, c <span class="op">=</span> <span class="fl">3</span>, cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>   </span></span>
+<span class="r-in"><span><span class="op">}</span>    </span></span>
 </code></pre></div>
     </div>
   </div>
@@ -108,7 +119,7 @@ by the CIMLR package, please refer to https://github.com/danro9685/CIMLR</h1>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

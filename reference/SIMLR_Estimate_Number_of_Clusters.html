@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.22.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.24.0</span>
       </span>
     </div>
 
@@ -63,37 +63,44 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">X</span>, NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">X</span>, NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cores.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>X</dt>
 <dd><p>an (m x n) data matrix of gene expression measurements of individual cells</p></dd>
+
+
 <dt>NUMC</dt>
 <dd><p>vector of number of clusters to be considered</p></dd>
+
+
 <dt>cores.ratio</dt>
 <dd><p>ratio of the number of cores to be used when computing the multi-kernel</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 
+    
+
+<p>a list of 2 elements: K1 and K2 with an estimation of the best clusters (the lower 
 values the better) as discussed in the original paper of SIMLR</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>,</span>
-<span class="r-in">   NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,</span>
-<span class="r-in">   cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">SIMLR_Estimate_Number_of_Clusters</span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">in_X</span>,</span></span>
+<span class="r-in"><span>   NUMC <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span>   cores.ratio <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $K1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -63.04223 -19.49278 -23.77182  13.30109</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $K2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -94.56335 -25.99037 -29.71477  15.96130</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -108,7 +115,7 @@ values the better) as discussed in the original paper of SIMLR</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
