@@ -149,7 +149,7 @@ jobs:
       - name: Install latex packages
         run: |
           install.packages('tinytex')
-          tinytex::install_tinytex()
+          tinytex::install_tinytex(force = TRUE)
           tinytex::tlmgr_install(c('tcolorbox', 'bera', 'nowidow', 'parnotes',
           'marginfix', 'titlesec', 'fancyhdr', 'enumitem', 'parskip', 'preprint',
           'soul', 'placeins', 'ragged2e', 'ms', 'footmisc', 'changepage',
@@ -375,7 +375,7 @@ jobs:
       - name: Install latex packages
         run: |
           install.packages('tinytex')
-          tinytex::install_tinytex()
+          tinytex::install_tinytex(force = TRUE)
           tinytex::tlmgr_install(c('tcolorbox', 'bera', 'nowidow', 'parnotes',
           'marginfix', 'titlesec', 'fancyhdr', 'enumitem', 'parskip', 'preprint',
           'soul', 'placeins', 'ragged2e', 'ms', 'footmisc', 'changepage',
