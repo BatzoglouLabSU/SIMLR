@@ -892,7 +892,8 @@ void TSNE::computeSquaredEuclideanDistance(double* X, int N, int D, double* DD) 
     }
     double a1 = -2.0;
     double a2 = 1.0;
-    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N, &N FCONE FCONE);
+    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N);
+    //dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N, &N FCONE FCONE);
     free(dataSums); dataSums = NULL;
 }
 
