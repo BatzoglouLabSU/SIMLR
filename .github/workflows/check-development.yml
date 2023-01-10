@@ -156,8 +156,8 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages('rcmdcheck')
           install.packages('igraph')
+          install.packages('rcmdcheck')
         shell: Rscript {0}
 
       - name: Query dependencies
