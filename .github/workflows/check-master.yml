@@ -47,7 +47,7 @@ env:
   run_covr: 'false'
   run_pkgdown: 'true'
   has_RUnit: 'false'
-  cache-version: 'cache-v1'
+  cache-version: 'cache-v2'
 
 jobs:
   ## This first job uses the GitHub repository branch name to infer what
