@@ -157,6 +157,7 @@ jobs:
       - name: Install R packages
         run: |
           install.packages('igraph')
+          install.packages('curl')
           install.packages('rcmdcheck')
         shell: Rscript {0}
 
