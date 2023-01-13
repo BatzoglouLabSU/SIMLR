@@ -12,7 +12,7 @@
 ##
 ## Using GitHub Actions exposes you to many details about how R packages are
 ## compiled and installed in several operating system.s
-### If you need help, please follow the steps listed at
+## If you need help, please follow the steps listed at
 ## https://github.com/r-lib/actions#where-to-find-help
 ##
 ## If you found an issue specific to biocthis's GHA workflow, please report it
@@ -62,11 +62,11 @@ jobs:
         run: |
           ## Find what Bioconductor RELEASE branch we are working on
           ## otherwise, assume we are working on bioc-devel.
-          ##if echo "$GITHUB_REF" | grep -q "RELEASE_"; then
-          ##    biocversion="$(basename -- $GITHUB_REF | tr '[:upper:]' '[:lower:]')"
-          ##else
+          ###if echo "$GITHUB_REF" | grep -q "RELEASE_"; then
+          ###    biocversion="$(basename -- $GITHUB_REF | tr '[:upper:]' '[:lower:]')"
+          ###else
           biocversion="release" # biocversion="devel"
-          ##fi
+          ###fi
           ## Define the image name and print the information
           imagename="bioconductor/bioconductor_docker:${biocversion}"
           echo $imagename
@@ -79,7 +79,7 @@ jobs:
     ## was defined by the previous job. This job will determine what version of
     ## R to use for the macOS and Windows builds on the next job.
     runs-on: ubuntu-latest
-    #needs: define-docker-info
+    needs: define-docker-info
 
     ## Name shown on the GHA log
     name: ubuntu-latest
@@ -100,10 +100,10 @@ jobs:
     ## The docker container to use. Note that we link a directory on the GHA
     ## runner to a docker directory, such that we can then cache the linked
     ## directory. This directory will contain the R packages used.
-    #container:
-    #  image: ${{ needs.define-docker-info.outputs.imagename }}
-    #  volumes:
-    #    - /home/runner/work/_temp/Library:/usr/local/lib/R/host-site-library
+    ###container:
+    ###  image: ${{ needs.define-docker-info.outputs.imagename }}
+    ###  volumes:
+    ###    - /home/runner/work/_temp/Library:/usr/local/lib/R/host-site-library
 
     steps:
       - name: Install latest git
@@ -111,7 +111,10 @@ jobs:
           ## git version provided
           git --version
           ## to be able to install software properties
+          ## Update
           sudo apt-get update -y
+          ## Upgrade git and other tools
+          sudo apt-get upgrade -y
           ## to be able to use add-apt-repository
           sudo apt-get install software-properties-common -y
           ## to use stable releases of git that are already in a PPA at
@@ -141,6 +144,8 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@v2
 
       - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release' # The R version to download (if necessary) and use.
       
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -158,7 +163,8 @@ jobs:
       - name: Install R packages
         run: |
           install.packages('igraph')
-          
+          install.packages('curl')
+          install.packages('rcmdcheck')
         shell: Rscript {0}
 
       - name: Query dependencies
@@ -174,12 +180,12 @@ jobs:
       - id: findrversion
         name: Find Bioc and R versions
         run: |
-          ### Find what branch we are working on
-          #if echo "$GITHUB_REF" | grep -q "master"; then
+          ## Find what branch we are working on
+          ###if echo "$GITHUB_REF" | grep -q "master"; then
           biocversion="release" # biocversion="devel"
-          #elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
-          #    biocversion="release"
-          #fi
+          ###elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
+          ###    biocversion="release"
+          ###fi
           ## Define the R and Bioconductor version numbers
           biocversionnum=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == '${biocversion}')[, 'Bioc']; cat(as.character(res))")
           rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == '${biocversion}')[, 'R']; cat(as.character(res))")
@@ -346,11 +352,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          ## Comment/Un-comment in case you also want to run other versions
-          # - {os: ubuntu-latest, r: 'release'}
+          # Comment/Un-comment in case you also want to run other versions
           - {os: macOS-latest, r: 'release'}
           - {os: windows-latest, r: 'release'}
-          # - {os: ubuntu-16.04, rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+          ### - {os: ubuntu-16.04, rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
