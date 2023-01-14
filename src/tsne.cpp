@@ -30,6 +30,8 @@
  *
  */
 
+#define USE_FC_LEN_T
+
 #include <math.h>
 #include <float.h>
 #include <stdlib.h>
@@ -41,13 +43,19 @@
 #include "vptree.h"
 #include "tsne.h"
 
+
 #ifdef _OPENMP
   #include <omp.h>
 #endif
 
 extern "C" {
+  #include <Rconfig.h>
   #include <R_ext/BLAS.h>
 }
+
+#ifndef FCONE
+# define FCONE
+#endif
 
 using namespace std;
 
@@ -884,7 +892,7 @@ void TSNE::computeSquaredEuclideanDistance(double* X, int N, int D, double* DD) 
     }
     double a1 = -2.0;
     double a2 = 1.0;
-    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N);
+    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N, (FC_LEN_T)1, (FC_LEN_T)1);
     free(dataSums); dataSums = NULL;
 }
 
