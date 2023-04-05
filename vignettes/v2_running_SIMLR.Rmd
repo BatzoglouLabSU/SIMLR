@@ -1,25 +1,29 @@
 ---
-title: Running SIMLR
-output: html_document
+title: "Running SIMLR"
+author: 
+  - Daniele Ramazzotti
+  - Bo Wang
+  - Luca De Sano
+  - Serafim Batzoglou
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+graphics: yes
+package: SIMLR
+output:
+  BiocStyle::html_document:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Running SIMLR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{SIMLR,BiocStyle}
 ---
-
-In this vignette, we give an overview of the package by presenting some of its main functions. 
-
-We first load the data provided as examples in the package. The dataset BuettnerFlorian is used for 
-an example of the standard SIMLR, while the dataset ZeiselAmit is used for an example of SIMLR large scale. 
-
-```{r}
-library(SIMLR)
-data(BuettnerFlorian)
-data(ZeiselAmit)
-```
 
 The external R package igraph is required for the computation of the normalized mutual information to 
 assess the results of the clustering. 
 
 ```{r}
-install.packages("igraph")
 library(igraph)
+library(SIMLR)
 ```
 
 We now run SIMLR as an example on an input dataset from Buettner, Florian, et al. "Computational analysis of 
@@ -28,6 +32,7 @@ biotechnology 33.2 (2015): 155-160. For this dataset we have a ground true of 3 
 
 ```{r}
 set.seed(11111)
+data(BuettnerFlorian)
 example = SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, cores.ratio = 0)
 ```
 
@@ -68,6 +73,7 @@ original publication for the full data.
 
 ```{r}
 set.seed(11111)
+data(ZeiselAmit)
 example_large_scale = SIMLR_Large_Scale(X = ZeiselAmit$in_X, c = ZeiselAmit$n_clust, kk = 10)
 ```
 
