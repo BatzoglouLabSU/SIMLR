@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.7.9000
 pkgdown_sha: c354aa7e5ea1f9936692494c28c89e5bdd31fc68
 articles:
-  1_introduction: 1_introduction.html
-  2_running_SIMLR: 2_running_SIMLR.html
-last_built: 2023-01-14T07:37Z
+  v1_introduction: v1_introduction.html
+  v2_running_SIMLR: v2_running_SIMLR.html
+last_built: 2023-04-06T07:54Z
 

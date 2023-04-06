@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.24.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.4</span>
       </span>
     </div>
 
@@ -53,10 +53,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/1_introduction.html">Introduction</a>
+      <a href="articles/v1_introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="articles/2_running_SIMLR.html">Running SIMLR</a>
+      <a href="articles/v2_running_SIMLR.html">Running SIMLR</a>
     </li>
   </ul>
 </li>
@@ -83,7 +83,26 @@
 <div class="section level1">
 <div class="page-header"><h1 id="single-cell-interpretation-via-multi-kernel-learning-simlr">Single-cell Interpretation via Multi-kernel LeaRning (<strong>SIMLR</strong>)<a class="anchor" aria-label="anchor" href="#single-cell-interpretation-via-multi-kernel-learning-simlr"></a>
 </h1></div>
-<p><a href="https://github.com/BatzoglouLabSU/SIMLR/actions?query=workflow%3Acheck-master" class="external-link"><img src="https://github.com/BatzoglouLabSU/SIMLR/workflows/check-master/badge.svg" alt="Actions Status"></a> <a href="https://github.com/BatzoglouLabSU/SIMLR/actions?query=workflow%3Acheck-development" class="external-link"><img src="https://github.com/BatzoglouLabSU/SIMLR/workflows/check-development/badge.svg" alt="Actions Status"></a></p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Branch</th>
+<th>Status</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>master</td>
+<td><a href="https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml" class="external-link"><img src="https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml/badge.svg?branch=master" alt="R-CMD-check-bioc"></a></td>
+</tr>
+<tr class="even">
+<td>development</td>
+<td><a href="https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml" class="external-link"><img src="https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml/badge.svg?branch=development" alt="R-CMD-check-bioc"></a></td>
+</tr>
+</tbody>
+</table>
 <p><strong>OVERVIEW</strong></p>
 <p>In this repository we provide implementations in both R and Matlab of <em>SIMLR</em> (<a href="https://www.nature.com/articles/nmeth.4207" class="external-link uri">https://www.nature.com/articles/nmeth.4207</a>). The main branch of the repository (named SIMLR) provides the code (both R and Matlab) for the method and some example data. We recall that those data are provided purely as examples and should not be used in place of the ones provided in the respective publications.</p>
 <p>Moreover, the tool is also available on Bioconductor at <a href="https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html" class="external-link uri">https://www.bioconductor.org/packages/release/bioc/html/SIMLR.html</a>. The branch master of this repository refers to the stable version on Bioconductor and the development branch of this repository refers to the development version on Bioconductor (<a href="https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html" class="external-link uri">https://www.bioconductor.org/packages/devel/bioc/html/SIMLR.html</a>).</p>
