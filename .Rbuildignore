@@ -10,5 +10,5 @@
 ^pkgdown$
 ^doc$
 ^Meta$
-^vignettes/.*Rmd$
 ^vignettes/.*gml$
+^R/deprecated.CIMLR.R$

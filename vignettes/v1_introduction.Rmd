@@ -1,6 +1,21 @@
 ---
-title: Introduction
-output: html_document
+title: "Introduction"
+author: 
+  - Daniele Ramazzotti
+  - Bo Wang
+  - Luca De Sano
+  - Serafim Batzoglou
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+graphics: yes
+package: SIMLR
+output:
+  BiocStyle::html_document:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{SIMLR,BiocStyle}
 ---
 
 ## Overview

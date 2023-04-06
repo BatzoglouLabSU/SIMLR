@@ -1,9 +1,10 @@
 Single-cell Interpretation via Multi-kernel LeaRning (**SIMLR**) 
 ================================================================ 
 
-[![Actions Status](https://github.com/BatzoglouLabSU/SIMLR/workflows/check-master/badge.svg)](https://github.com/BatzoglouLabSU/SIMLR/actions?query=workflow%3Acheck-master)
-[![Actions Status](https://github.com/BatzoglouLabSU/SIMLR/workflows/check-development/badge.svg)](https://github.com/BatzoglouLabSU/SIMLR/actions?query=workflow%3Acheck-development)
-
+| Branch | Status |
+| --- | --- |
+| master | [![R-CMD-check-bioc](https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml/badge.svg?branch=master)](https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml) |
+| development | [![R-CMD-check-bioc](https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml/badge.svg?branch=development)](https://github.com/BatzoglouLabSU/SIMLR/actions/workflows/check-bioc.yml) |
 
 **OVERVIEW**
 

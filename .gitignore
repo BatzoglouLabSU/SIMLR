@@ -45,3 +45,5 @@ doc
 Meta
 /vignettes/lg_output.xml
 *.dll
+/doc/
+/Meta/
