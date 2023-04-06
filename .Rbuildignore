@@ -11,3 +11,4 @@
 ^doc$
 ^Meta$
 ^vignettes/.*gml$
+^R/deprecated.CIMLR.R$
