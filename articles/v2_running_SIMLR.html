@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.24.4</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@ Sano</h4>
                         <h4 data-toc-skip class="author">Serafim
 Batzoglou</h4>
             
-            <h4 data-toc-skip class="date">April 06, 2023</h4>
+            <h4 data-toc-skip class="date">April 14, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/vignettes/v2_running_SIMLR.Rmd" class="external-link"><code>vignettes/v2_running_SIMLR.Rmd</code></a></small>
       <div class="hidden name"><code>v2_running_SIMLR.Rmd</code></div>
@@ -100,7 +100,7 @@ Batzoglou</h4>
 normalized mutual information to assess the results of the
 clustering.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/" class="external-link">igraph</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Attaching package: 'igraph'</span></span></code></pre>
 <pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
@@ -163,7 +163,7 @@ clusters by SIMLR and the true ones. This measure with values in [0,1],
 allows us to assess the performance of the clustering with higher values
 reflecting better performance.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nmi_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">nmi_1</span> <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">BuettnerFlorian</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.888298</span></span></code></pre>
 <p>As a further understanding of the results, we now visualize the cell
@@ -620,7 +620,7 @@ publication for the full data.</p>
 <p>We compute the normalized mutual information between the inferred
 clusters by SIMLR large scale and the true ones.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nmi_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example_large_scale</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">nmi_2</span> <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">ZeiselAmit</span><span class="op">$</span><span class="va">true_labs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">example_large_scale</span><span class="op">$</span><span class="va">y</span><span class="op">$</span><span class="va">cluster</span>, method<span class="op">=</span><span class="st">"nmi"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">nmi_2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.04158302</span></span></code></pre>
 <p>As a further understanding of the results, also in this case we
