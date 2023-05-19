@@ -30,6 +30,8 @@
  *
  */
 
+#define USE_FC_LEN_T
+
 #include <math.h>
 #include <float.h>
 #include <stdlib.h>
@@ -41,9 +43,19 @@
 #include "vptree.h"
 #include "tsne.h"
 
+
+#ifdef _OPENMP
+  #include <omp.h>
+#endif
+
 extern "C" {
-    #include <R_ext/BLAS.h>
+  #include <Rconfig.h>
+  #include <R_ext/BLAS.h>
 }
+
+#ifndef FCONE
+# define FCONE
+#endif
 
 using namespace std;
 
@@ -880,7 +892,7 @@ void TSNE::computeSquaredEuclideanDistance(double* X, int N, int D, double* DD) 
     }
     double a1 = -2.0;
     double a2 = 1.0;
-    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N);
+    dgemm_("T", "N", &N, &N, &D, &a1, X, &D, X, &D, &a2, DD, &N, (FC_LEN_T)1, (FC_LEN_T)1);
     free(dataSums); dataSums = NULL;
 }
 
@@ -935,15 +947,45 @@ bool TSNE::load_data(double** data, int* n, int* d, int* no_dims, double* theta,
 		Rprintf("Error: could not open data file.\n");
 		return false;
 	}
-	fread(n, sizeof(int), 1, h);											// number of datapoints
-	fread(d, sizeof(int), 1, h);											// original dimensionality
-    fread(theta, sizeof(double), 1, h);										// gradient accuracy
-	fread(perplexity, sizeof(double), 1, h);								// perplexity
-  fread(no_dims, sizeof(int), 1, h);                                      // output dimensionality
+	// number of datapoints
+  if (fread(n, sizeof(int), 1, h) != 1) {
+    Rcpp::stop("number of datapoints: filed to read data!\n");
+  }
+	
+  // original dimensionality
+  if (fread(d, sizeof(int), 1, h) != 1) {
+    Rcpp::stop("original dimensionality: filed to read data!\n");
+  }
+
+  // gradient accuracy
+  if (fread(theta, sizeof(double), 1, h) != 1){
+    Rcpp::stop("gradient accuracy: filed to read data!\n"); 
+  }
+
+  // perplexity
+  if (fread(perplexity, sizeof(double), 1, h) != 1) {
+    Rcpp::stop("perplexity: filed to read data!\n");  
+  }
+
+  // output dimensionality
+  if (fread(no_dims, sizeof(int), 1, h) != 1) {
+    Rcpp::stop("output dimensionality: filed to read data!\n");  
+  }
+
 	*data = (double*) calloc(*d * *n, sizeof(double));
-    if(*data == NULL) { Rcpp::stop("Memory allocation failed!\n"); }
-    fread(*data, sizeof(double), *n * *d, h);                               // the data
-	if(!feof(h)) fread(rand_seed, sizeof(int), 1, h);                       // random seed
+  if(*data == NULL) { Rcpp::stop("Memory allocation failed!\n"); }
+  
+  // the data
+  if (fread(*data, sizeof(double), *n * *d, h) != *n * *d) {
+    Rcpp::stop("the data: filed to read data!\n");  
+  }
+
+  // random seed
+	if(!feof(h)) {
+    if (fread(rand_seed, sizeof(int), 1, h) != 1) {
+      Rcpp::stop("random seed: filed to read data!\n");  
+    }
+  }
   fclose(h);
 	Rprintf("Read the %i x %i data matrix successfully!\n", *n, *d);
 	return true;
