@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Running SIMLR • SIMLR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SIMLR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.28.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.28.1</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@ Sano</h4>
                         <h4 data-toc-skip class="author">Serafim
 Batzoglou</h4>
             
-            <h4 data-toc-skip class="date">October 31, 2023</h4>
+            <h4 data-toc-skip class="date">March 21, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BatzoglouLabSU/SIMLR/blob/HEAD/vignettes/v2_running_SIMLR.Rmd" class="external-link"><code>vignettes/v2_running_SIMLR.Rmd</code></a></small>
       <div class="hidden name"><code>v2_running_SIMLR.Rmd</code></div>
@@ -136,28 +136,28 @@ ground true of 3 cell populations, i.e., clusters.</p>
 <pre><code><span><span class="co">## Warning in SIMLR(X = BuettnerFlorian$in_X, c = BuettnerFlorian$n_clust, : Maybe</span></span>
 <span><span class="co">## you should set a larger value of c.</span></span></code></pre>
 <pre><code><span><span class="co">## Performing t-SNE.</span></span>
-<span><span class="co">## Epoch: Iteration # 100  error is:  0.1124703 </span></span>
-<span><span class="co">## Epoch: Iteration # 200  error is:  0.06085147 </span></span>
-<span><span class="co">## Epoch: Iteration # 300  error is:  0.06026926 </span></span>
-<span><span class="co">## Epoch: Iteration # 400  error is:  0.06018231 </span></span>
-<span><span class="co">## Epoch: Iteration # 500  error is:  0.06010447 </span></span>
-<span><span class="co">## Epoch: Iteration # 600  error is:  0.06003244 </span></span>
-<span><span class="co">## Epoch: Iteration # 700  error is:  0.05996796 </span></span>
-<span><span class="co">## Epoch: Iteration # 800  error is:  0.05990867 </span></span>
-<span><span class="co">## Epoch: Iteration # 900  error is:  0.05985291 </span></span>
-<span><span class="co">## Epoch: Iteration # 1000  error is:  0.05980161 </span></span>
+<span><span class="co">## Epoch: Iteration # 100  error is:  0.08998739 </span></span>
+<span><span class="co">## Epoch: Iteration # 200  error is:  0.06089897 </span></span>
+<span><span class="co">## Epoch: Iteration # 300  error is:  0.06045714 </span></span>
+<span><span class="co">## Epoch: Iteration # 400  error is:  0.06012935 </span></span>
+<span><span class="co">## Epoch: Iteration # 500  error is:  0.05987104 </span></span>
+<span><span class="co">## Epoch: Iteration # 600  error is:  0.05965852 </span></span>
+<span><span class="co">## Epoch: Iteration # 700  error is:  0.05948183 </span></span>
+<span><span class="co">## Epoch: Iteration # 800  error is:  0.05933143 </span></span>
+<span><span class="co">## Epoch: Iteration # 900  error is:  0.05919999 </span></span>
+<span><span class="co">## Epoch: Iteration # 1000  error is:  0.05908594 </span></span>
 <span><span class="co">## Performing Kmeans.</span></span>
 <span><span class="co">## Performing t-SNE.</span></span>
-<span><span class="co">## Epoch: Iteration # 100  error is:  11.12402 </span></span>
-<span><span class="co">## Epoch: Iteration # 200  error is:  0.7063706 </span></span>
-<span><span class="co">## Epoch: Iteration # 300  error is:  0.5380948 </span></span>
-<span><span class="co">## Epoch: Iteration # 400  error is:  0.5856649 </span></span>
-<span><span class="co">## Epoch: Iteration # 500  error is:  0.5985847 </span></span>
-<span><span class="co">## Epoch: Iteration # 600  error is:  0.580413 </span></span>
-<span><span class="co">## Epoch: Iteration # 700  error is:  0.4458508 </span></span>
-<span><span class="co">## Epoch: Iteration # 800  error is:  0.3420583 </span></span>
-<span><span class="co">## Epoch: Iteration # 900  error is:  0.2989291 </span></span>
-<span><span class="co">## Epoch: Iteration # 1000  error is:  0.2881194</span></span></code></pre>
+<span><span class="co">## Epoch: Iteration # 100  error is:  11.69701 </span></span>
+<span><span class="co">## Epoch: Iteration # 200  error is:  0.6657623 </span></span>
+<span><span class="co">## Epoch: Iteration # 300  error is:  0.4418035 </span></span>
+<span><span class="co">## Epoch: Iteration # 400  error is:  0.5574686 </span></span>
+<span><span class="co">## Epoch: Iteration # 500  error is:  0.6270695 </span></span>
+<span><span class="co">## Epoch: Iteration # 600  error is:  0.361243 </span></span>
+<span><span class="co">## Epoch: Iteration # 700  error is:  0.3024225 </span></span>
+<span><span class="co">## Epoch: Iteration # 800  error is:  0.2892506 </span></span>
+<span><span class="co">## Epoch: Iteration # 900  error is:  0.281246 </span></span>
+<span><span class="co">## Epoch: Iteration # 1000  error is:  0.2676769</span></span></code></pre>
 <p>We now compute the normalized mutual information between the inferred
 clusters by SIMLR and the true ones. This measure with values in [0,1],
 allows us to assess the performance of the clustering with higher values
