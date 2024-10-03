@@ -1,7 +1,7 @@
-pandoc: '3.3'
+pandoc: '3.4'
 pkgdown: 2.1.1.9000
-pkgdown_sha: c0cbde4221b87c7e81273e804f210213129c3d83
+pkgdown_sha: 0cb9d38d1dc25946f01ee7500be9665985d8784e
 articles:
   v1_introduction: v1_introduction.html
   v2_running_SIMLR: v2_running_SIMLR.html
-last_built: 2024-09-20T08:54Z
+last_built: 2024-10-03T06:16Z
