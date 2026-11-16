@@ -8,16 +8,22 @@ import(Matrix)
 import(Rcpp)
 import(RcppAnnoy)
 importFrom(RSpectra,eigs_sym)
-importFrom(methods,is)
-importFrom(methods,new)
-importFrom(parallel,clusterEvalQ)
-importFrom(parallel,detectCores)
-importFrom(parallel,makeCluster)
-importFrom(parallel,parLapply)
-importFrom(parallel,stopCluster)
+importFrom(methods,
+  is,
+  new
+)
+importFrom(parallel,
+  clusterEvalQ,
+  detectCores,
+  makeCluster,
+  parLapply,
+  stopCluster
+)
 importFrom(pracma,orth)
-importFrom(stats,dnorm)
-importFrom(stats,kmeans)
-importFrom(stats,pbeta)
-importFrom(stats,rnorm)
+importFrom(stats,
+  dnorm,
+  kmeans,
+  pbeta,
+  rnorm
+)
 useDynLib(SIMLR,projsplx)
